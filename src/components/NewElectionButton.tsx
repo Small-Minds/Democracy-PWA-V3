@@ -1,5 +1,5 @@
-import { Fragment, useContext, useState } from 'react';
-import { Button, Modal, Notification, Panel } from 'rsuite';
+import React, { Fragment, useContext, useState } from 'react';
+import { Button, ControlLabel, Form, FormControl, FormGroup, HelpBlock, Modal, Notification, Panel, Schema } from 'rsuite';
 import { Credentials } from '../utils/Authentication';
 import { create } from '../utils/api/ElectionManagement';
 import { useTranslation } from 'react-i18next';
@@ -18,6 +18,24 @@ function NewElectionButton() {
   const [open, setOpen] = useState<boolean>(false);
   // Set up localization hook
   const [t] = useTranslation();
+  //set up required variable for rsuite forms.
+  let form: any = undefined;
+  //form model setup
+  const msg_required = 'This field is required';
+  const model = Schema.Model({
+    title: Schema.Types.StringType()
+      .isRequired(msg_required)
+      .minLength(1, msg_required),
+    description: Schema.Types.StringType()
+      .isRequired(msg_required)
+      .minLength(1, msg_required),
+  })
+  //form data setup
+  const [formData, setFormData] = useState<Record<string,any>>({
+    title: '',
+    password: '', 
+  })
+  const [formErrors, setFormErrors] = useState<Record<string, any>>({});
   const history = useHistory();
 
   /**
@@ -34,8 +52,13 @@ function NewElectionButton() {
     // Use a fake date until the form is implemented.
     const d = new Date();
 
-    // Process form input (todo)
-
+    // Process form input, check for form errors
+    if (!form.check()) {
+      console.log('New election form has errors.')
+      console.log(formErrors);
+      setLoading(false);
+      return;
+    }
     // Call the creation endpoint.
     create({
       title: title,
@@ -77,7 +100,25 @@ function NewElectionButton() {
       </Button>
       <Modal size="xs" show={open} onHide={() => setOpen(false)}>
         <Modal.Title>Create a New Election</Modal.Title>
-        <Modal.Body>(Form to set title and subtitle.)</Modal.Body>
+        <Modal.Body>
+        <Form
+          onChange={(newData) => setFormData(newData)}
+          onCheck={(newErrors) => setFormErrors(newErrors)}
+          formValue={formData}
+          formError={formErrors}
+          model={model}
+          ref={(ref: any) => (form = ref)}
+        >
+          <FormGroup>
+            <ControlLabel>Title</ControlLabel>
+            <FormControl name="title" />
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel>Description</ControlLabel>
+            <FormControl rows={5} name="description" componentClass="textarea" />
+          </FormGroup>
+        </Form>
+        </Modal.Body>
         <Modal.Footer>
           <Button
             disabled={!ctx?.credentials.authenticated}
@@ -94,8 +135,8 @@ function NewElectionButton() {
             onClick={() => {
               setLoading(true);
               createElection(
-                'New Election',
-                'Come and vote for the new president of nothing.'
+                formData.title,
+                formData.description
               );
             }}
           >
