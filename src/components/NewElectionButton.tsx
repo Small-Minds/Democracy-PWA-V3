@@ -1,5 +1,16 @@
 import React, { Fragment, useContext, useState } from 'react';
-import { Button, ControlLabel, Form, FormControl, FormGroup, HelpBlock, Modal, Notification, Panel, Schema } from 'rsuite';
+import {
+  Button,
+  ControlLabel,
+  Form,
+  FormControl,
+  FormGroup,
+  HelpBlock,
+  Modal,
+  Notification,
+  Panel,
+  Schema,
+} from 'rsuite';
 import { Credentials } from '../utils/Authentication';
 import { create } from '../utils/api/ElectionManagement';
 import { useTranslation } from 'react-i18next';
@@ -29,12 +40,12 @@ function NewElectionButton() {
     description: Schema.Types.StringType()
       .isRequired(msg_required)
       .minLength(1, msg_required),
-  })
+  });
   //form data setup
-  const [formData, setFormData] = useState<Record<string,any>>({
+  const [formData, setFormData] = useState<Record<string, any>>({
     title: '',
-    password: '', 
-  })
+    password: '',
+  });
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
   const history = useHistory();
 
@@ -54,7 +65,7 @@ function NewElectionButton() {
 
     // Process form input, check for form errors
     if (!form.check()) {
-      console.log('New election form has errors.')
+      console.log('New election form has errors.');
       console.log(formErrors);
       setLoading(false);
       return;
@@ -98,26 +109,31 @@ function NewElectionButton() {
       >
         {t('createElectionBtn.btnLabel')}
       </Button>
-      <Modal size="xs" show={open} onHide={() => setOpen(false)}>
+      <Modal size="sm" show={open} onHide={() => setOpen(false)}>
         <Modal.Title>Create a New Election</Modal.Title>
         <Modal.Body>
-        <Form
-          onChange={(newData) => setFormData(newData)}
-          onCheck={(newErrors) => setFormErrors(newErrors)}
-          formValue={formData}
-          formError={formErrors}
-          model={model}
-          ref={(ref: any) => (form = ref)}
-        >
-          <FormGroup>
-            <ControlLabel>Title</ControlLabel>
-            <FormControl name="title" />
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>Description</ControlLabel>
-            <FormControl rows={5} name="description" componentClass="textarea" />
-          </FormGroup>
-        </Form>
+          <Form
+            onChange={(newData) => setFormData(newData)}
+            onCheck={(newErrors) => setFormErrors(newErrors)}
+            formValue={formData}
+            formError={formErrors}
+            model={model}
+            ref={(ref: any) => (form = ref)}
+            fluid
+          >
+            <FormGroup>
+              <ControlLabel>Title</ControlLabel>
+              <FormControl name="title" />
+            </FormGroup>
+            <FormGroup>
+              <ControlLabel>Description</ControlLabel>
+              <FormControl
+                rows={3}
+                name="description"
+                componentClass="textarea"
+              />
+            </FormGroup>
+          </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button
@@ -134,10 +150,7 @@ function NewElectionButton() {
             appearance="primary"
             onClick={() => {
               setLoading(true);
-              createElection(
-                formData.title,
-                formData.description
-              );
+              createElection(formData.title, formData.description);
             }}
           >
             Create
