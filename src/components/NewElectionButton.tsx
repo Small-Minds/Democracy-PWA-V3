@@ -32,8 +32,8 @@ function NewElectionButton() {
   //set up required variable for rsuite forms.
   let form: any = undefined;
   //form model setup
-  const msg_required = 'This field is required';
-  const msg_ivalid_format = 'The domain format is invalid'
+  const msg_required = t('createElectionBtn.msgRequired');
+  const msg_ivalid_format = t('createElectionBtn.msgInvalidFormat')
   const model = Schema.Model({
     title: Schema.Types.StringType()
       .isRequired(msg_required)
@@ -116,7 +116,7 @@ function NewElectionButton() {
         {t('createElectionBtn.btnLabel')}
       </Button>
       <Modal size="sm" show={open} onHide={() => setOpen(false)}>
-        <Modal.Title>Create a New Election</Modal.Title>
+        <Modal.Title>{t("createElectionBtn.electionFormTitle")}</Modal.Title>
         <Modal.Body>
           <Form
             onChange={(newData) => setFormData(newData)}
@@ -128,11 +128,11 @@ function NewElectionButton() {
             fluid
           >
             <FormGroup>
-              <ControlLabel>Title</ControlLabel>
+              <ControlLabel>{t("createElectionBtn.electionTitle")}</ControlLabel>
               <FormControl name="title" />
             </FormGroup>
             <FormGroup>
-              <ControlLabel>Description</ControlLabel>
+              <ControlLabel>{t("createElectionBtn.electionDescription")}</ControlLabel>
               <FormControl
                 rows={3}
                 name="description"
@@ -140,18 +140,18 @@ function NewElectionButton() {
               />
             </FormGroup>
             <FormGroup>
-              <ControlLabel>Enable Multiple Submissions</ControlLabel>
+              <ControlLabel>{t("createElectionBtn.electionEnableMultiSubs")}</ControlLabel>
               <FormControl 
                 name="enable_multiple_submissions"
                 accepter={RadioGroup}
                 inline
               >
-                <Radio value={true}>Yes</Radio>
-                <Radio value={false} checked>No</Radio>
+                <Radio value={true}>{t("createElectionBtn.electionMultiSubsTrue")}</Radio>
+                <Radio value={false} checked>{t("createElectionBtn.electionMultiSubsFalse")}</Radio>
               </FormControl>
             </FormGroup>
             <FormGroup>
-              <ControlLabel>Election Email Domain</ControlLabel>
+              <ControlLabel>{t("createElectionBtn.electionEmailDomain")}</ControlLabel>
               <FormControl
                 name="election_email_domain"
               >

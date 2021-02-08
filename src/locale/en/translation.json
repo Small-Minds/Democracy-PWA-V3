@@ -31,7 +31,16 @@
       "successMsgTitle": "Success",
       "successMsg": "Create new Election with ID",
       "failMsgTitle": "Error",
-      "failMsg": "Failed to start a new Election"
+      "failMsg": "Failed to start a new Election",
+      "msgRequired": "This field is required",
+      "msgInvalidFormat": "The domain format is invalid",
+      "electionFormTitle": "Create a New Election",
+      "electionTitle": "Title",
+      "electionDescription": "Description",
+      "electionEnableMultiSubs": "Enable Multiple Submissions",
+      "electionMultiSubsTrue": "Yes",
+      "electionMultiSubsFalse": "No",
+      "electionEmailDomain": "Election Email Domain"
     },
     "loggedInInfo": {
       "sectionTitle": "Authentication Data",
