@@ -31,7 +31,16 @@
       "successMsgTitle": "成功",
       "successMsg": "使用ID创建新的选举",
       "failMsgTitle": "错误",
-      "failMsg": "无法开始新的选举"
+      "failMsg": "无法开始新的选举",
+      "msgRequired": "此为必填字段",
+      "msgInvalidFormat": "域格式无效",
+      "electionFormTitle": "建立新的选举",
+      "electionTitle": "选举标题",
+      "electionDescription": "选举描述",
+      "electionEnableMultiSubs": "是否允许多个提交",
+      "electionMultiSubsTrue": "是",
+      "electionMultiSubsFalse": "否",
+      "electionEmailDomain": "选举电子邮件域名"
     },
     "loggedInInfo": {
       "sectionTitle": "认证数据",

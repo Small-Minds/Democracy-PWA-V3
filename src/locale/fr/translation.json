@@ -31,7 +31,16 @@
       "successMsgTitle": "Succès",
       "successMsg": "Créer une nouvelle élection avec ID",
       "failMsgTitle": "Erreur",
-      "failMsg": "Échec du lancement d'une nouvelle élection"
+      "failMsg": "Échec du lancement d'une nouvelle élection",
+      "msgRequired": "Ce champ est obligatoire",
+      "msgInvalidFormat": "Le format du domaine n'est pas valide",
+      "electionFormTitle": "Créer une nouvelle élection",
+      "electionTitle": "Titre",
+      "electionDescription": "La description",
+      "electionEnableMultiSubs": "Activer plusieurs soumissions",
+      "electionMultiSubsTrue": "Oui",
+      "electionMultiSubsFalse": "Non",
+      "electionEmailDomain": "Domaine de messagerie d'élection"
     },
     "loggedInInfo": {
       "sectionTitle": "Données d'authentification",
