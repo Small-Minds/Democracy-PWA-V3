@@ -10,9 +10,10 @@ export default function ElectionInfo() {
   useEffect(() => {
     getElection(id).then((res) => {
       console.log(res);
-      setElection(res.data);
+      setElection(res);
       setLoading(false);
     });
+
   }, [id]);
 
   //waiting for the response from getEletctionList

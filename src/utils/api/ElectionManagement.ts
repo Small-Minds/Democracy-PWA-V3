@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { api, getAccessToken, preRequestRefreshAuth } from '../API';
+import { api, preRequestRefreshAuth } from '../API';
 
 const electionURL = `/elections/manage/election/`;
 const electionParticipationURL = `/elections/participate/election/`;
@@ -73,13 +73,14 @@ export async function getElectionList(): Promise<AxiosResponse> {
   });
 }
 
-export async function getElection(electionId: string): Promise<AxiosResponse> {
+export async function getElection(electionId: string): Promise<Election> {
   const token = await preRequestRefreshAuth();
   let config = {
     headers: { Authorization: `JWT ${token}` },
-    params: {
-      id: electionId,
-    },
   };
-  return api.get(electionURL + electionId, config);
+  const res: AxiosResponse = await api.get(
+    electionParticipationURL + electionId,
+    config
+  );
+  return res.data;
 }

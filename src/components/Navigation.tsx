@@ -11,7 +11,7 @@ import {
   Avatar,
 } from 'rsuite';
 import { clearTokens } from '../utils/API';
-import { getUserInfo, UserInfo } from '../utils/api/User';
+import { getUserInfo, User, UserInfo } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';
 import LanguagePicker from './LanguagePicker';
 
@@ -19,20 +19,14 @@ function AccountMenu() {
   const ctx = useContext(Credentials);
   const history = useHistory();
   const [t] = useTranslation();
-  const [userInfo, setUserInfo] = useState<UserInfo | undefined>();
-
-  useEffect(() => {
-    getUserInfo().then((i) => {
-      setUserInfo(i);
-    });
-  }, [ctx]);
+  const user = useContext(User);
 
   /**
    * Extracts initials from the present userInfo
    */
   const initials = (): string => {
-    if (!userInfo || !userInfo.name) return '';
-    const elems = userInfo.name.split(' ');
+    if (!user || !user.user.name) return '';
+    const elems = user.user.name.split(' ');
     if (elems.length == 1) {
       return elems[0].charAt(0).toUpperCase();
     } else if (elems.length >= 2) {
@@ -55,9 +49,9 @@ function AccountMenu() {
     >
       <Dropdown.Item panel style={{ padding: 10 }}>
         <p>
-          <b>{userInfo?.name}</b>
+          <b>{user?.user.name}</b>
         </p>
-        <p>{userInfo?.email}</p>
+        <p>{user?.user.email}</p>
       </Dropdown.Item>
       <Dropdown.Item divider />
       <Dropdown.Item

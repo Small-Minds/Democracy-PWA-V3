@@ -5,8 +5,11 @@ import {
   getPublicElectionList,
   Election,
 } from '../utils/api/ElectionManagement';
+import { Credentials } from '../utils/Authentication';
+import ElectionListElement from './ElectionListElement';
 
 export default function PublicElectionList() {
+  const ctx = useContext(Credentials);
   const [electionList, setElectionList] = useState<Array<Election>>([]);
 
   useEffect(() => {
@@ -15,16 +18,15 @@ export default function PublicElectionList() {
     // If logged in, attempt to get the list of elections.
     getPublicElectionList().then((res) => {
       setElectionList(res.data);
+      console.log(res.data);
     });
-  }, []);
+  }, [ctx]);
 
   return (
     <div>
       <List>
         {electionList.map((election, index) => (
-          <List.Item key={index} index={index}>
-            <Link to={`/election/${election.id}`}>{election.id}</Link>
-          </List.Item>
+          <ElectionListElement key={index} index={index} election={election} />
         ))}
       </List>
     </div>

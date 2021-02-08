@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { List } from 'rsuite';
 import { getElectionList, Election } from '../utils/api/ElectionManagement';
 import { Credentials } from '../utils/Authentication';
+import ElectionListElement from './ElectionListElement';
 
 export default function ElectionList() {
   const ctx = useContext(Credentials);
@@ -27,9 +28,7 @@ export default function ElectionList() {
     <div>
       <List>
         {electionList.map((election, index) => (
-          <List.Item key={index} index={index}>
-            <Link to={`/election/${election.id}`}>{election.id}</Link>
-          </List.Item>
+          <ElectionListElement key={index} index={index} election={election} />
         ))}
       </List>
     </div>
