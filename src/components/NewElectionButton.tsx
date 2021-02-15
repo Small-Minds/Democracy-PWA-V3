@@ -10,6 +10,9 @@ import {
   Radio,
   RadioGroup,
   Schema,
+  FlexboxGrid,
+  Container,
+  Col,
 } from 'rsuite';
 import { Credentials } from '../utils/Authentication';
 import { create } from '../utils/api/ElectionManagement';
@@ -122,88 +125,97 @@ function NewElectionButton() {
         {t('createElectionBtn.btnLabel')}
       </Button>
       <Drawer
-        size="lg"
+        full
         show={open}
-        placement={'top'}
+        placement={'bottom'}
         onHide={() => setOpen(false)}
       >
-        <Drawer.Header>
-          <Drawer.Title>
-            {t('createElectionBtn.electionFormTitle')}
-          </Drawer.Title>
-        </Drawer.Header>
-        <Drawer.Body>
-          <Form
-            onChange={(newData) => setFormData(newData)}
-            onCheck={(newErrors) => setFormErrors(newErrors)}
-            formValue={formData}
-            formError={formErrors}
-            model={model}
-            ref={(ref: any) => (form = ref)}
-            fluid
+        <FlexboxGrid justify="center">
+          <FlexboxGrid.Item
+            componentClass={Col}
+            colspan={24}
+            style={{ maxWidth: '700px' }}
           >
-            <FormGroup>
-              <ControlLabel>
-                {t('createElectionBtn.electionTitle')}
-              </ControlLabel>
-              <FormControl name="title" />
-            </FormGroup>
-            <FormGroup>
-              <ControlLabel>
-                {t('createElectionBtn.electionDescription')}
-              </ControlLabel>
-              <FormControl
-                rows={3}
-                name="description"
-                componentClass="textarea"
-              />
-            </FormGroup>
-            <FormGroup>
-              <ControlLabel>
-                {t('createElectionBtn.electionEnableMultiSubs')}
-              </ControlLabel>
-              <FormControl
-                name="enable_multiple_submissions"
-                accepter={RadioGroup}
-                inline
+            <Drawer.Header>
+              <Drawer.Title>
+                {t('createElectionBtn.electionFormTitle')}
+              </Drawer.Title>
+            </Drawer.Header>
+            <Drawer.Body>
+              <Form
+                onChange={(newData) => setFormData(newData)}
+                onCheck={(newErrors) => setFormErrors(newErrors)}
+                formValue={formData}
+                formError={formErrors}
+                model={model}
+                ref={(ref: any) => (form = ref)}
+                fluid
               >
-                <Radio value={true}>
-                  {t('createElectionBtn.electionMultiSubsTrue')}
-                </Radio>
-                <Radio value={false} checked>
-                  {t('createElectionBtn.electionMultiSubsFalse')}
-                </Radio>
-              </FormControl>
-            </FormGroup>
-            <FormGroup>
-              <ControlLabel>
-                {t('createElectionBtn.electionEmailDomain')}
-              </ControlLabel>
-              <FormControl name="election_email_domain"></FormControl>
-            </FormGroup>
-          </Form>
-        </Drawer.Body>
-        <Drawer.Footer>
-          <Button
-            disabled={!ctx?.credentials.authenticated}
-            loading={loading}
-            appearance="subtle"
-            onClick={() => setOpen(false)}
-          >
-            Cancel
-          </Button>
-          <Button
-            disabled={!ctx?.credentials.authenticated}
-            loading={loading}
-            appearance="primary"
-            onClick={() => {
-              setLoading(true);
-              createElection(formData);
-            }}
-          >
-            Create
-          </Button>
-        </Drawer.Footer>
+                <FormGroup>
+                  <ControlLabel>
+                    {t('createElectionBtn.electionTitle')}
+                  </ControlLabel>
+                  <FormControl name="title" />
+                </FormGroup>
+                <FormGroup>
+                  <ControlLabel>
+                    {t('createElectionBtn.electionDescription')}
+                  </ControlLabel>
+                  <FormControl
+                    rows={5}
+                    name="description"
+                    componentClass="textarea"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <ControlLabel>
+                    {t('createElectionBtn.electionEnableMultiSubs')}
+                  </ControlLabel>
+                  <FormControl
+                    name="enable_multiple_submissions"
+                    accepter={RadioGroup}
+                    inline
+                  >
+                    <Radio value={true}>
+                      {t('createElectionBtn.electionMultiSubsTrue')}
+                    </Radio>
+                    <Radio value={false} checked>
+                      {t('createElectionBtn.electionMultiSubsFalse')}
+                    </Radio>
+                  </FormControl>
+                </FormGroup>
+                <FormGroup>
+                  <ControlLabel>
+                    {t('createElectionBtn.electionEmailDomain')}
+                  </ControlLabel>
+                  <FormControl name="election_email_domain"></FormControl>
+                </FormGroup>
+              </Form>
+              <FlexboxGrid></FlexboxGrid>
+            </Drawer.Body>
+            <Drawer.Footer style={{ paddingBottom: 10 }}>
+              <Button
+                disabled={!ctx?.credentials.authenticated}
+                loading={loading}
+                appearance="subtle"
+                onClick={() => setOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                disabled={!ctx?.credentials.authenticated}
+                loading={loading}
+                appearance="primary"
+                onClick={() => {
+                  setLoading(true);
+                  createElection(formData);
+                }}
+              >
+                Create
+              </Button>
+            </Drawer.Footer>
+          </FlexboxGrid.Item>
+        </FlexboxGrid>
       </Drawer>
     </Fragment>
   );
