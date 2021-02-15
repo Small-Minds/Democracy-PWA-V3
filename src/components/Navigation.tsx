@@ -58,7 +58,7 @@ function AccountMenu() {
       <Dropdown.Item
         icon={<Icon icon="gear-circle" />}
         onSelect={() => {
-          history.push('/manageaccount');
+          history.push('/account');
         }}
       >
         Account Setting

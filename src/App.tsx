@@ -124,7 +124,7 @@ function App() {
                             />
                             <Route path="/election/:id" component={Election} />
                             <Route
-                              path="/manageaccount"
+                              path="/account"
                               component={ManageAccount}
                             />
                             <Route path="/vote" component={HomeVote} />
