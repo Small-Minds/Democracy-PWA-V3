@@ -10,6 +10,7 @@ import {
   FlexboxGrid,
   Avatar,
 } from 'rsuite';
+import DropdownMenuItem from 'rsuite/lib/Dropdown/DropdownMenuItem';
 import { clearTokens } from '../utils/API';
 import { getUserInfo, User, UserInfo } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';
@@ -52,6 +53,15 @@ function AccountMenu() {
           <b>{user?.user.name}</b>
         </p>
         <p>{user?.user.email}</p>
+      </Dropdown.Item>
+      <Dropdown.Item divider />
+      <Dropdown.Item
+        icon={<Icon icon="gear-circle" />}
+        onSelect={() => {
+          history.push('/manageaccount');
+        }}
+      >
+        Account Setting
       </Dropdown.Item>
       <Dropdown.Item divider />
       <Dropdown.Item

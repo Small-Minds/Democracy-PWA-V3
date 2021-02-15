@@ -19,6 +19,7 @@ import HomeSetup from './pages/HomeSetup';
 import './App.css';
 import { User, UserInfo, blankUserInfo, getUserInfo } from './utils/api/User';
 import PositionApply from './pages/PositionApply';
+import ManageAccount from './pages/ManageAccount';
 
 /**
  * Parent for the entire application.
@@ -122,6 +123,10 @@ function App() {
                               component={EmptyPage}
                             />
                             <Route path="/election/:id" component={Election} />
+                            <Route
+                              path="/manageaccount"
+                              component={ManageAccount}
+                            />
                             <Route path="/vote" component={HomeVote} />
                             <Route path="/setup" component={HomeSetup} />
                             <Route path="/" component={Base} />

@@ -2,10 +2,10 @@ import React, { Fragment, useContext, useState } from 'react';
 import {
   Button,
   ControlLabel,
+  Drawer,
   Form,
   FormControl,
   FormGroup,
-  Modal,
   Notification,
   Radio,
   RadioGroup,
@@ -25,7 +25,7 @@ function NewElectionButton() {
   // When the app first starts, it is unauthenticated.
   const ctx = useContext(Credentials);
   const [loading, setLoading] = useState<boolean>(false);
-  // Modal open/closed state:
+  // Drawer open/closed state:
   const [open, setOpen] = useState<boolean>(false);
   // Set up localization hook
   const [t] = useTranslation();
@@ -55,6 +55,10 @@ function NewElectionButton() {
     description: '',
     enable_multiple_submissions: false,
     election_email_domain: 'uottawa.ca',
+    submission_end_time: null,
+    submission_start_time: null,
+    voting_end_time: null,
+    voting_start_time: null,
   });
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
   const history = useHistory();
@@ -71,7 +75,6 @@ function NewElectionButton() {
 
     // Use a fake date until the form is implemented.
     const d = new Date();
-
     // Process form input, check for form errors
     if (!form.check()) {
       console.log('New election form has errors.');
@@ -118,9 +121,18 @@ function NewElectionButton() {
       >
         {t('createElectionBtn.btnLabel')}
       </Button>
-      <Modal size="sm" show={open} onHide={() => setOpen(false)}>
-        <Modal.Title>{t('createElectionBtn.electionFormTitle')}</Modal.Title>
-        <Modal.Body>
+      <Drawer
+        size="lg"
+        show={open}
+        placement={'top'}
+        onHide={() => setOpen(false)}
+      >
+        <Drawer.Header>
+          <Drawer.Title>
+            {t('createElectionBtn.electionFormTitle')}
+          </Drawer.Title>
+        </Drawer.Header>
+        <Drawer.Body>
           <Form
             onChange={(newData) => setFormData(newData)}
             onCheck={(newErrors) => setFormErrors(newErrors)}
@@ -170,8 +182,8 @@ function NewElectionButton() {
               <FormControl name="election_email_domain"></FormControl>
             </FormGroup>
           </Form>
-        </Modal.Body>
-        <Modal.Footer>
+        </Drawer.Body>
+        <Drawer.Footer>
           <Button
             disabled={!ctx?.credentials.authenticated}
             loading={loading}
@@ -191,8 +203,8 @@ function NewElectionButton() {
           >
             Create
           </Button>
-        </Modal.Footer>
-      </Modal>
+        </Drawer.Footer>
+      </Drawer>
     </Fragment>
   );
 }
