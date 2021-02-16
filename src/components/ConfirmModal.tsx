@@ -1,31 +1,45 @@
-import React from 'react';
+import { Console } from 'console';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Modal, Button } from 'rsuite';
 
 interface ModalInput {
   modalTitle: string;
   modalBody: string;
-  callBackFunc: Function;
+  callBackFunc: any;
+  isOpen: boolean;
+  closeModal: any;
 }
 
 export default function ConfirmModal({
   modalTitle,
   modalBody,
   callBackFunc,
+  isOpen,
+  closeModal
 }: ModalInput) {
-  const [open, setOpen] = useState(false);
+
+  const[open, setOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+      if (isOpen){
+          setOpen(true)
+      }else{
+          setOpen(false)
+      }
+  });
 
   return (
-    <Modal backdrop={false} show={open} onHide={() => setOpen(false)}>
+    <Modal backdrop={false} show={open} onHide={() => closeModal()}>
       <Modal.Header>
         <Modal.Title>{modalTitle}</Modal.Title>
       </Modal.Header>
       <Modal.Body>{modalBody}</Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => callBackFunc} appearance="primary">
+        <Button onClick={() => callBackFunc()} appearance="primary">
           Ok
         </Button>
-        <Button onClick={() => setOpen(false)} appearance="subtle">
+        <Button onClick={() => closeModal()} appearance="subtle">
           Cancel
         </Button>
       </Modal.Footer>
