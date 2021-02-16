@@ -24,8 +24,9 @@ import {
   IconButton,
 } from 'rsuite';
 import AddPositionModal from '../components/AddPositionModal';
+import ConfirmModal from '../components/ConfirmModal';
 import PositionList from '../components/PositionList';
-import { getElection, ElectionDetails } from '../utils/api/ElectionManagement';
+import { getElection, ElectionDetails, deleteElection } from '../utils/api/ElectionManagement';
 import { User, UserDataInterface } from '../utils/api/User';
 import Loading from './Loading';
 
@@ -68,7 +69,11 @@ const ManagementTools: FC<ElectionSubpage> = ({
           Delete Election
         </IconButton>
       </ButtonToolbar>
-      {/* TODO: Add delete election modal. */}
+      <ConfirmModal
+        modalTitle="Delete Election"
+        modalBody="Do you want to delete this election?"
+        callBackFunc = {()=>deleteElection(id)}
+      />
       {/* TODO: Add configure times modal. */}
       <AddPositionModal
         open={addPositionOpen}

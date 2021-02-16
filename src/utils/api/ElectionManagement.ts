@@ -94,6 +94,15 @@ export async function getElection(
   return res.data;
 }
 
+export async function deleteElection(
+  electionId: string
+): Promise<AxiosResponse> {
+  const token = await preRequestRefreshAuth();
+  const res: AxiosResponse = await api.delete(electionURL + electionId, {
+    headers: { Authorization: `JWT ${token}` },
+  });
+  return res.data
+}
 /**
  * CANDIDATES
  */
