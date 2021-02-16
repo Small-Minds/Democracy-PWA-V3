@@ -123,10 +123,7 @@ function App() {
                               component={EmptyPage}
                             />
                             <Route path="/election/:id" component={Election} />
-                            <Route
-                              path="/account"
-                              component={ManageAccount}
-                            />
+                            <Route path="/account" component={ManageAccount} />
                             <Route path="/vote" component={HomeVote} />
                             <Route path="/setup" component={HomeSetup} />
                             <Route path="/" component={Base} />
