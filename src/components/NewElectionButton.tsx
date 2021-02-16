@@ -99,6 +99,7 @@ function NewElectionButton() {
       .then((election) => {
         let path = `/election/${election.id}`;
         history.push(path);
+        setFormData({}); // Clear form after successful submission.
       })
       .catch((x) => {
         console.log(x.response.data);

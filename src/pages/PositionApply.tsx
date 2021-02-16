@@ -13,9 +13,9 @@ import {
   FormGroup,
   Schema,
 } from 'rsuite';
+import { Position } from '../utils/api/ElectionManagement';
 import {
   getPosition,
-  Position,
   PositionApplicationParams,
   submitPositionApplication,
 } from '../utils/api/PositionApplication';
