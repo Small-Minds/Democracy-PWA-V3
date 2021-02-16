@@ -1,6 +1,6 @@
-import { Console } from 'console';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Modal, Button } from 'rsuite';
 
 interface ModalInput {
@@ -9,6 +9,7 @@ interface ModalInput {
   callBackFunc: any;
   isOpen: boolean;
   closeModal: any;
+  redirectLink: string;
 }
 
 export default function ConfirmModal({
@@ -16,17 +17,16 @@ export default function ConfirmModal({
   modalBody,
   callBackFunc,
   isOpen,
-  closeModal
+  closeModal,
 }: ModalInput) {
-
-  const[open, setOpen] = useState<boolean>(false);
-
+  const [open, setOpen] = useState<boolean>(false);
+  const history = useHistory();
   useEffect(() => {
-      if (isOpen){
-          setOpen(true)
-      }else{
-          setOpen(false)
-      }
+    if (isOpen) {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
   });
 
   return (
@@ -36,7 +36,13 @@ export default function ConfirmModal({
       </Modal.Header>
       <Modal.Body>{modalBody}</Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => callBackFunc()} appearance="primary">
+        <Button
+          onClick={() => {
+            callBackFunc();
+            closeModal();
+          }}
+          appearance="primary"
+        >
           Ok
         </Button>
         <Button onClick={() => closeModal()} appearance="subtle">

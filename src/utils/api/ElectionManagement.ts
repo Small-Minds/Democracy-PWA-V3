@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
+import { useHistory } from 'react-router-dom';
 import { api, preRequestRefreshAuth } from '../API';
-
+import { Notification } from 'rsuite';
 const electionURL = `/elections/manage/election/`;
 const electionParticipationURL = `/elections/participate/election/`;
 
@@ -94,14 +95,21 @@ export async function getElection(
   return res.data;
 }
 
-export async function deleteElection(
-  electionId: string
-): Promise<AxiosResponse> {
+export async function deleteElection(electionId: string): Promise<Number> {
   const token = await preRequestRefreshAuth();
-  const res: AxiosResponse = await api.delete(electionURL + electionId, {
-    headers: { Authorization: `JWT ${token}` },
-  });
-  return res.data
+  return api
+    .delete(electionURL + electionId, {
+      headers: { Authorization: `JWT ${token}` },
+    })
+    .then((res) => {
+      if (res.status == 204) {
+        Notification['success']({
+          title: 'Success',
+          description: 'The election is deleted successfully',
+        });
+      }
+      return res.status;
+    });
 }
 /**
  * CANDIDATES

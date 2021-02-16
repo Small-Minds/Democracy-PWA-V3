@@ -27,7 +27,11 @@ import {
 import AddPositionModal from '../components/AddPositionModal';
 import ConfirmModal from '../components/ConfirmModal';
 import PositionList from '../components/PositionList';
-import { getElection, ElectionDetails, deleteElection } from '../utils/api/ElectionManagement';
+import {
+  getElection,
+  ElectionDetails,
+  deleteElection,
+} from '../utils/api/ElectionManagement';
 import { User, UserDataInterface } from '../utils/api/User';
 import Loading from './Loading';
 
@@ -48,12 +52,12 @@ const ManagementTools: FC<ElectionSubpage> = ({
   const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
   const [deleteElectionOpen, setDeleteElectionOpen] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  function closeModal(){
-    setIsOpen(false)
+  function closeModal() {
+    setIsOpen(false);
   }
   if (!id) return null;
   if (!election || election === undefined) return null;
-  
+
   return (
     <Fragment>
       <h5 style={{ marginBottom: 10 }}>Management Tools</h5>
@@ -69,7 +73,9 @@ const ManagementTools: FC<ElectionSubpage> = ({
           appearance="primary"
           icon={<Icon icon="trash" />}
           color="red"
-          onClick={()=>{setIsOpen(true)}}
+          onClick={() => {
+            setIsOpen(true);
+          }}
         >
           Delete Election
         </IconButton>
@@ -77,9 +83,10 @@ const ManagementTools: FC<ElectionSubpage> = ({
       <ConfirmModal
         modalTitle="Delete Election"
         modalBody="Do you want to delete this election?"
-        callBackFunc = {()=>deleteElection(id)}
-        isOpen = {isOpen}
-        closeModal = {()=>closeModal()}   
+        callBackFunc={() => deleteElection(id)}
+        isOpen={isOpen}
+        closeModal={() => closeModal()}
+        redirectLink="/"
       />
       {/* TODO: Add configure times modal. */}
       <AddPositionModal
