@@ -86,7 +86,6 @@ const ManagementTools: FC<ElectionSubpage> = ({
         callBackFunc={() => deleteElection(id)}
         isOpen={isOpen}
         closeModal={() => closeModal()}
-        redirectLink="/"
       />
       {/* TODO: Add configure times modal. */}
       <AddPositionModal

@@ -9,7 +9,6 @@ interface ModalInput {
   callBackFunc: any;
   isOpen: boolean;
   closeModal: any;
-  redirectLink: string;
 }
 
 export default function ConfirmModal({
