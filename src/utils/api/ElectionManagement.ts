@@ -4,6 +4,7 @@ import { api, preRequestRefreshAuth } from '../API';
 import { Notification } from 'rsuite';
 import { UserInfo } from './User';
 const electionURL = `/elections/manage/election/`;
+const electionPositionURL = `/elections/manage/position/`;
 const electionParticipationURL = `/elections/participate/election/`;
 const electionParticipationPositionURL = `/elections/participate/position/`;
 
@@ -112,12 +113,28 @@ export async function getElection(
   return res.data;
 }
 
-
 export async function deleteElection(electionId: string): Promise<Number> {
   const token = await preRequestRefreshAuth();
   return api
     .delete(electionURL + electionId, {
       headers: { Authorization: `JWT ${token}` },
+    })
+    .then((res) => {
+      if (res.status == 204) {
+        Notification['success']({
+          title: 'Success',
+          description: 'The election is deleted successfully',
+        });
+      }
+      return res.status;
+    });
+}
+
+export async function deletePosition(positionId: string): Promise<Number> {
+  const token = await preRequestRefreshAuth();
+  return api
+    .delete(electionPositionURL + positionId, {
+      headers: { Authorization: `JWT  ${token}` },
     })
     .then((res) => {
       if (res.status == 204) {
@@ -143,7 +160,6 @@ export async function getPositionDetails(
   );
   return res.data;
 }
-
 
 /**
  * CANDIDATES

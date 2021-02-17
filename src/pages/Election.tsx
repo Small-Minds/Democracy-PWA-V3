@@ -48,8 +48,13 @@ const ManagementTools: FC<ElectionSubpage> = ({
     isDeleteElectionModalOpen,
     setIsDeleteElectionModalOpen,
   ] = useState<boolean>(false);
+  const history = useHistory();
+
   function closeDeleteElectionModal() {
     setIsDeleteElectionModalOpen(false);
+  }
+  function redirectToHome() {
+    history.push(`/`);
   }
   if (!id) return null;
   if (!election || election === undefined) return null;
@@ -82,7 +87,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
         callBackFunc={() => deleteElection(id)}
         isOpen={isDeleteElectionModalOpen}
         closeModal={() => closeDeleteElectionModal()}
-        redirectPath={`/`}
+        cleanUpFunc={() => redirectToHome()}
       />
       {/* TODO: Add configure times modal. */}
       <AddPositionModal

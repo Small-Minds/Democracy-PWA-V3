@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 import { Modal, Button } from 'rsuite';
 
 interface ModalInput {
@@ -8,7 +7,7 @@ interface ModalInput {
   callBackFunc: any;
   isOpen: boolean;
   closeModal: any;
-  redirectPath: string;
+  cleanUpFunc: any;
 }
 
 export default function ConfirmModal({
@@ -17,10 +16,8 @@ export default function ConfirmModal({
   callBackFunc,
   isOpen,
   closeModal,
-  redirectPath,
+  cleanUpFunc,
 }: ModalInput) {
-  const history = useHistory();
-
   return (
     <Modal backdrop={false} show={isOpen} onHide={() => closeModal()}>
       <Modal.Header>
@@ -35,7 +32,7 @@ export default function ConfirmModal({
                 closeModal();
               })
               .then(() => {
-                history.push(redirectPath);
+                cleanUpFunc();
               });
             closeModal();
           }}
