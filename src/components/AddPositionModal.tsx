@@ -77,6 +77,7 @@ const AddPositionModal: FC<APMProps> = ({
     })
       .then((position) => {
         onCreate(position);
+        setFormData({}); // Clear form data after successful submission.
       })
       .catch((x) => {
         console.error(x);
