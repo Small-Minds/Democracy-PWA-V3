@@ -6,7 +6,6 @@ import React, {
   useContext,
   Dispatch,
   SetStateAction,
-  useRef,
 } from 'react';
 import {
   RouteComponentProps,
@@ -51,9 +50,12 @@ const ManagementTools: FC<ElectionSubpage> = ({
   const [setTimelineOpen, setSetTimelineOpen] = useState<boolean>(false);
   const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
   const [deleteElectionOpen, setDeleteElectionOpen] = useState<boolean>(false);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  function closeModal() {
-    setIsOpen(false);
+  const [
+    isDeleteElectionModalOpen,
+    setIsDeleteElectionModalOpen,
+  ] = useState<boolean>(false);
+  function closeDeleteElectionModal() {
+    setIsDeleteElectionModalOpen(false);
   }
   if (!id) return null;
   if (!election || election === undefined) return null;
@@ -74,7 +76,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
           icon={<Icon icon="trash" />}
           color="red"
           onClick={() => {
-            setIsOpen(true);
+            setIsDeleteElectionModalOpen(true);
           }}
         >
           Delete Election
@@ -84,8 +86,9 @@ const ManagementTools: FC<ElectionSubpage> = ({
         modalTitle="Delete Election"
         modalBody="Do you want to delete this election?"
         callBackFunc={() => deleteElection(id)}
-        isOpen={isOpen}
-        closeModal={() => closeModal()}
+        isOpen={isDeleteElectionModalOpen}
+        closeModal={() => closeDeleteElectionModal()}
+        redirectPath={`/`}
       />
       {/* TODO: Add configure times modal. */}
       <AddPositionModal
