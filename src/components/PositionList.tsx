@@ -59,8 +59,8 @@ const PositionList: FC<PLProps> = ({ election }) => {
                       Delete
                     </Button>
                     <ConfirmModal
-                      modalTitle="Delete Election"
-                      modalBody="Do you want to delete this election?"
+                      modalTitle="Delete Position"
+                      modalBody="Do you want to delete this Position?"
                       callBackFunc={() => deletePosition(position.id)}
                       isOpen={isDeletePositionModalOpen}
                       closeModal={() => closeDeletePositionModal()}
