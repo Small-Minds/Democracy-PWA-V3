@@ -66,9 +66,15 @@ export default function Vote() {
       </Fragment>
     );
 
+  /**
+   * validate: Checks for each position as a key in the form data.
+   * @param newErrors Errors already passed by the rsuite form.
+   */
   const validate = (newErrors: Record<string, any>): boolean => {
     if (!ballot || !formData || !formErrors) return false;
     const formDataKeys = Object.keys(formData);
+
+    // Place all missing keys into an array.
     const missingPositions: PositionDetails[] = [];
     ballot.positions.forEach((position) => {
       if (formDataKeys.indexOf(position.id) === -1) {
@@ -76,6 +82,7 @@ export default function Vote() {
       }
     });
 
+    // Add all missing keys to the form errors.
     if (missingPositions.length !== 0) {
       const errors: any = {};
       missingPositions.forEach((position) => {
@@ -84,12 +91,13 @@ export default function Vote() {
       setFormErrors({ ...newErrors, ...errors });
       return false;
     }
+
+    // If validation was successful, return true.
     return true;
   };
 
   const submitBallot = () => {
     console.log(formData);
-    // Remove errors and set button to loading state.
 
     // First, check the form for errors.
     if (!form.check()) {
