@@ -21,7 +21,10 @@ import {
   Col,
   RadioGroup,
   Radio,
+  Modal,
 } from 'rsuite';
+import CandidateInfo from '../components/CandidateInfo';
+import CandidateInfoModal from '../components/CandidateInfo';
 import { Position } from '../utils/api/ElectionManagement';
 import {
   getPosition,
@@ -61,7 +64,7 @@ export default function Vote() {
       setBallot(value);
     });
   }, []);
-
+  
   // While we fetch the ballot, show the spinner.
   if (!ballot)
     return (
@@ -92,24 +95,7 @@ export default function Vote() {
             <FlexboxGrid justify="space-around">
               {pos.candidates.map((candidate) => (
                 <FlexboxGrid.Item>
-                  <Avatar
-                    size="lg"
-                    style={{
-                      display: 'block',
-                      marginLeft: 'auto',
-                      marginRight: 'auto',
-                      marginTop: 20,
-                    }}
-                  >
-                    <Gravatar
-                      email={candidate.user.email}
-                      size={100}
-                      rating="pg"
-                    />
-                  </Avatar>
-                  <h5 style={{ marginTop: 5, textAlign: 'center' }}>
-                    {candidate.user.name}
-                  </h5>
+                  <CandidateInfo candidate={candidate} />
                 </FlexboxGrid.Item>
               ))}
             </FlexboxGrid>

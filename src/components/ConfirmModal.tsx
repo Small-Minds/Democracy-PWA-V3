@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'rsuite';
 
-interface ModalInput {
+interface ConfirmModalInput {
   modalTitle: string;
   modalBody: string;
   callBackFunc: any;
@@ -17,7 +17,7 @@ export default function ConfirmModal({
   isOpen,
   closeModal,
   cleanUpFunc,
-}: ModalInput) {
+}: ConfirmModalInput) {
   return (
     <Modal backdrop="static" show={isOpen} onHide={() => closeModal()}>
       <Modal.Header>
