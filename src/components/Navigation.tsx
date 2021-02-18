@@ -15,6 +15,7 @@ import { clearTokens } from '../utils/API';
 import { getUserInfo, User, UserInfo } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';
 import LanguagePicker from './LanguagePicker';
+import Gravatar from 'react-gravatar';
 
 function AccountMenu() {
   const ctx = useContext(Credentials);
@@ -44,7 +45,10 @@ function AccountMenu() {
       renderTitle={() => (
         <Avatar style={{ margin: 7, marginLeft: 2, marginRight: 2 }}>
           {/** Render initials or avatar as fallback */}
-          <b>{initials() || <Icon icon="avatar" />}</b>
+          <b>
+            {<Gravatar email={user?.user.email} size={40} rating="pg" /> ||
+              initials() || <Icon icon="avatar" />}
+          </b>
         </Avatar>
       )}
     >

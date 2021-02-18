@@ -19,7 +19,7 @@ export default function ConfirmModal({
   cleanUpFunc,
 }: ModalInput) {
   return (
-    <Modal backdrop="static" show={isOpen}  onHide={() => closeModal()}>
+    <Modal backdrop="static" show={isOpen} onHide={() => closeModal()}>
       <Modal.Header>
         <Modal.Title>{modalTitle}</Modal.Title>
       </Modal.Header>
