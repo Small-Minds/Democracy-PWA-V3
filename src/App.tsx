@@ -119,10 +119,7 @@ function App() {
                               path="/election/:id/platforms/:platformId"
                               component={EmptyPage}
                             />
-                            <Route
-                              path="/election/:id/vote"
-                              component={Vote}
-                            />
+                            <Route path="/election/:id/vote" component={Vote} />
                             <Route path="/election/:id" component={Election} />
                             <Route path="/account" component={ManageAccount} />
                             <Route path="/vote" component={HomeVote} />

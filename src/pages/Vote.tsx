@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
+import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import {
@@ -12,6 +13,14 @@ import {
   FormControl,
   FormGroup,
   Schema,
+  List,
+  Divider,
+  Avatar,
+  FlexboxGrid,
+  Grid,
+  Col,
+  RadioGroup,
+  Radio,
 } from 'rsuite';
 import { Position } from '../utils/api/ElectionManagement';
 import {
@@ -68,9 +77,61 @@ export default function Vote() {
         Elect a candidate for{' '}
         {ballot.positions.map((pos) => pos.title).join(', ')}.
       </p>
-      <code>
-        <pre>{JSON.stringify(ballot, null, 2)}</pre>
-      </code>
+      <br />
+      <Form>
+        {ballot.positions.map((pos) => (
+          <FormGroup>
+            <Divider>
+              <h3>{pos.title}</h3>
+            </Divider>
+            <br />
+            <h5>Position Description:</h5>
+            <p>{pos.description}</p>
+            <br />
+            <h5>Candidates:</h5>
+            <FlexboxGrid justify="space-around">
+              {pos.candidates.map((candidate) => (
+                <FlexboxGrid.Item>
+                  <Avatar
+                    size="lg"
+                    style={{
+                      display: 'block',
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                      marginTop: 20,
+                    }}
+                  >
+                    <Gravatar
+                      email={candidate.user.email}
+                      size={100}
+                      rating="pg"
+                    />
+                  </Avatar>
+                  <h5 style={{ marginTop: 5, textAlign: 'center' }}>
+                    {candidate.user.name}
+                  </h5>
+                </FlexboxGrid.Item>
+              ))}
+            </FlexboxGrid>
+            <br />
+            <h5>Choose the candidate: </h5>
+            <FormControl accepter={RadioGroup}>
+              <RadioGroup inline>
+                {pos.candidates.map((candidate) => (
+                  <Radio value={candidate.id}>{candidate.user.name}</Radio>
+                ))}
+              </RadioGroup>
+            </FormControl>
+          </FormGroup>
+        ))}
+        <ButtonToolbar>
+          <Divider />
+          <Button appearance="primary" type="submit">
+            Submit
+          </Button>
+          <Button>Cancel</Button>
+        </ButtonToolbar>
+      </Form>
     </div>
   );
 }
