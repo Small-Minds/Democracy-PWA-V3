@@ -1,9 +1,13 @@
 import React, { useEffect, useContext, useState, FC } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Col, FlexboxGrid, Icon, List } from 'rsuite';
-import { ElectionDetails } from '../utils/api/ElectionManagement';
+import {
+  deletePosition,
+  ElectionDetails,
+} from '../utils/api/ElectionManagement';
 import { User } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';
+import ConfirmModal from './ConfirmModal';
 
 interface PLProps {
   election: ElectionDetails;
@@ -13,10 +17,19 @@ const PositionList: FC<PLProps> = ({ election }) => {
   const ctx = useContext(Credentials);
   const user = useContext(User);
   const history = useHistory();
+  const [
+    isDeletePositionModalOpen,
+    setIsDeletePositionModalOpen,
+  ] = useState<boolean>(false);
+  function closeDeletePositionModal() {
+    setIsDeletePositionModalOpen(false);
+  }
   if (!user || !ctx) return null;
 
   const showDelete = user.user.id === election.manager;
-
+  function refreshPage() {
+    history.go(0);
+  }
   return (
     <div>
       {election.positions.length !== 0 ? (
@@ -38,11 +51,21 @@ const PositionList: FC<PLProps> = ({ election }) => {
                     <Button
                       appearance="primary"
                       color="red"
-                      onClick={() => {}}
+                      onClick={() => {
+                        setIsDeletePositionModalOpen(true);
+                      }}
                       block
                     >
                       Delete
                     </Button>
+                    <ConfirmModal
+                      modalTitle="Delete Position"
+                      modalBody="Do you want to delete this Position?"
+                      callBackFunc={() => deletePosition(position.id)}
+                      isOpen={isDeletePositionModalOpen}
+                      closeModal={() => closeDeletePositionModal()}
+                      cleanUpFunc={() => refreshPage()}
+                    />
                   </FlexboxGrid.Item>
                 )}
                 <FlexboxGrid.Item

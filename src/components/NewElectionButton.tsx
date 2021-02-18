@@ -1,8 +1,13 @@
+import moment from 'moment';
 import React, { Fragment, useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
+  Col,
   ControlLabel,
   Drawer,
+  FlexboxGrid,
   Form,
   FormControl,
   FormGroup,
@@ -10,14 +15,9 @@ import {
   Radio,
   RadioGroup,
   Schema,
-  FlexboxGrid,
-  Container,
-  Col,
 } from 'rsuite';
-import { Credentials } from '../utils/Authentication';
 import { create } from '../utils/api/ElectionManagement';
-import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { Credentials } from '../utils/Authentication';
 
 /**
  * Reminder to self:
@@ -76,8 +76,13 @@ function NewElectionButton() {
     // Otherwise, start loading animations.
     setLoading(true);
 
-    // Use a fake date until the form is implemented.
-    const d = new Date();
+    // By default, use two one-week periods to run the election.
+    // Attempts to set time to 9AM to 5pm
+    const a = moment().add(7, 'days').hours(9).startOf('hour');
+    const b = moment().add(14, 'days').hours(17).startOf('hour');
+    const c = moment().add(21, 'days').hours(9).startOf('hour');
+    const d = moment().add(28, 'days').hours(17).startOf('hour');
+
     // Process form input, check for form errors
     if (!form.check()) {
       console.log('New election form has errors.');
@@ -91,14 +96,15 @@ function NewElectionButton() {
       description: electionDetails.description,
       election_email_domain: electionDetails.election_email_domain,
       enable_multiple_submissions: electionDetails.enable_multiple_submissions,
-      submission_end_time: d,
-      submission_start_time: d,
-      voting_end_time: d,
-      voting_start_time: d,
+      submission_start_time: a.toDate(),
+      submission_end_time: b.toDate(),
+      voting_start_time: c.toDate(),
+      voting_end_time: d.toDate(),
     })
       .then((election) => {
         let path = `/election/${election.id}`;
         history.push(path);
+        setFormData({}); // Clear form after successful submission.
       })
       .catch((x) => {
         console.log(x.response.data);

@@ -2,8 +2,11 @@ import { AxiosResponse } from 'axios';
 import { useHistory } from 'react-router-dom';
 import { api, preRequestRefreshAuth } from '../API';
 import { Notification } from 'rsuite';
+import { UserInfo } from './User';
 const electionURL = `/elections/manage/election/`;
+const electionPositionURL = `/elections/manage/position/`;
 const electionParticipationURL = `/elections/participate/election/`;
+const electionParticipationPositionURL = `/elections/participate/position/`;
 
 export type EmptyElection = {
   id: string;
@@ -40,6 +43,21 @@ export type ElectionDetails = {
   title: string;
   voting_end_time: string;
   voting_start_time: string;
+};
+
+export type CandidateWithUserDetails = {
+  id: string;
+  user: UserInfo;
+  platform: string;
+  position: string;
+};
+
+export type PositionDetails = {
+  id: string;
+  candidates: CandidateWithUserDetails[];
+  title: string;
+  description: string;
+  election: string;
 };
 
 export type CreateElectionParams = {
@@ -111,6 +129,38 @@ export async function deleteElection(electionId: string): Promise<Number> {
       return res.status;
     });
 }
+
+export async function deletePosition(positionId: string): Promise<Number> {
+  const token = await preRequestRefreshAuth();
+  return api
+    .delete(electionPositionURL + positionId, {
+      headers: { Authorization: `JWT  ${token}` },
+    })
+    .then((res) => {
+      if (res.status == 204) {
+        Notification['success']({
+          title: 'Success',
+          description: 'The election is deleted successfully',
+        });
+      }
+      return res.status;
+    });
+}
+
+export async function getPositionDetails(
+  positionId: string
+): Promise<PositionDetails> {
+  const token = await preRequestRefreshAuth();
+  let config = {
+    headers: { Authorization: `JWT ${token}` },
+  };
+  const res: AxiosResponse = await api.get(
+    electionParticipationPositionURL + positionId,
+    config
+  );
+  return res.data;
+}
+
 /**
  * CANDIDATES
  */
@@ -155,3 +205,5 @@ export async function createPosition(
       return p;
     });
 }
+
+// 83962581-34d5-473f-a398-8c2b0c91af44

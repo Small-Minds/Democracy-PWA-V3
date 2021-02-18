@@ -14,18 +14,12 @@ import {
   Switch,
   Route,
   useHistory,
-  Link,
 } from 'react-router-dom';
-import {
-  Button,
-  ButtonGroup,
-  ButtonToolbar,
-  FlexboxGrid,
-  Icon,
-  IconButton,
-} from 'rsuite';
+import { ButtonToolbar, Icon, IconButton } from 'rsuite';
 import AddPositionModal from '../components/AddPositionModal';
 import ConfirmModal from '../components/ConfirmModal';
+import ElectionTimeline from '../components/ElectionTimeline';
+import PlatformList from '../components/PlatformList';
 import PositionList from '../components/PositionList';
 import {
   getElection,
@@ -51,9 +45,17 @@ const ManagementTools: FC<ElectionSubpage> = ({
   const [setTimelineOpen, setSetTimelineOpen] = useState<boolean>(false);
   const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
   const [deleteElectionOpen, setDeleteElectionOpen] = useState<boolean>(false);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  function closeModal() {
-    setIsOpen(false);
+  const [
+    isDeleteElectionModalOpen,
+    setIsDeleteElectionModalOpen,
+  ] = useState<boolean>(false);
+  const history = useHistory();
+
+  function closeDeleteElectionModal() {
+    setIsDeleteElectionModalOpen(false);
+  }
+  function redirectToHome() {
+    history.push(`/`);
   }
   if (!id) return null;
   if (!election || election === undefined) return null;
@@ -74,7 +76,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
           icon={<Icon icon="trash" />}
           color="red"
           onClick={() => {
-            setIsOpen(true);
+            setIsDeleteElectionModalOpen(true);
           }}
         >
           Delete Election
@@ -84,8 +86,9 @@ const ManagementTools: FC<ElectionSubpage> = ({
         modalTitle="Delete Election"
         modalBody="Do you want to delete this election?"
         callBackFunc={() => deleteElection(id)}
-        isOpen={isOpen}
-        closeModal={() => closeModal()}
+        isOpen={isDeleteElectionModalOpen}
+        closeModal={() => closeDeleteElectionModal()}
+        cleanUpFunc={() => redirectToHome()}
       />
       {/* TODO: Add configure times modal. */}
       <AddPositionModal
@@ -106,6 +109,8 @@ const Information: FC<ElectionSubpage> = ({ id, election }) => {
   return (
     <Fragment>
       <h3>Information</h3>
+      <br />
+      <ElectionTimeline election={election} />
       <br />
       <h4>Positions</h4>
       <br />
@@ -130,11 +135,12 @@ const Positions: FC<ElectionSubpage> = ({ id, election }) => {
   );
 };
 
-const Platforms: FC<ElectionSubpage> = ({ id }) => {
-  if (!id) return null;
+const Platforms: FC<ElectionSubpage> = ({ id, election }) => {
+  if (!id || !election) return null;
   return (
     <Fragment>
-      <h3>Platforms for {id}</h3>
+      <h3>Candidate Platforms</h3>
+      <PlatformList election={election} />
     </Fragment>
   );
 };
