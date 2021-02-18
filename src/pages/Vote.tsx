@@ -42,16 +42,9 @@ export default function Vote() {
   const ctx = useContext(Credentials);
   //set up required variable for rsuite forms.
   let form: any = undefined;
-  const msg_required = 'This field is required';
-  const model = Schema.Model({
-    personalStatement: Schema.Types.StringType()
-      .isRequired(msg_required)
-      .minLength(1, msg_required),
-  });
+
   //form data setup
-  const [formData, setFormData] = useState<Record<string, any>>({
-    personalStatement: '',
-  });
+  const [formData, setFormData] = useState<Record<string, any>>({});
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
 
   const [ballot, setBallot] = useState<EmptyBallot>();
@@ -62,7 +55,7 @@ export default function Vote() {
     //If logged in, attempt to get the position details
     getEmptyBallot(id).then((value: EmptyBallot) => {
       setBallot(value);
-    })
+    });
   }, []);
 
   // While we fetch the ballot, show the spinner.
@@ -72,10 +65,39 @@ export default function Vote() {
         <Loading />
       </Fragment>
     );
-  
+
+  const validate = (newErrors: Record<string, any>): boolean => {
+    if (!ballot || !formData || !formErrors) return false;
+    const formDataKeys = Object.keys(formData);
+    const missingPositions: PositionDetails[] = [];
+    ballot.positions.forEach((position) => {
+      if (formDataKeys.indexOf(position.id) === -1) {
+        missingPositions.push(position);
+      }
+    });
+
+    if (missingPositions.length !== 0) {
+      const errors: any = {};
+      missingPositions.forEach((position) => {
+        errors[position.id] = 'Required.';
+      });
+      setFormErrors({ ...newErrors, ...errors });
+      return false;
+    }
+    return true;
+  };
+
   const submitBallot = () => {
-    console.log(ballot);
-  }
+    console.log(formData);
+    // Remove errors and set button to loading state.
+
+    // First, check the form for errors.
+    if (!form.check()) {
+      console.log('Form has errors.');
+      console.log(formErrors);
+      return;
+    }
+  };
 
   return (
     <div>
@@ -85,7 +107,14 @@ export default function Vote() {
         {ballot.positions.map((pos) => pos.title).join(', ')}.
       </p>
       <br />
-      <Form>
+      <Form
+        onChange={(newData) => setFormData(newData)}
+        onCheck={(newErrors) => validate(newErrors)}
+        formValue={formData}
+        formError={formErrors}
+        ref={(ref: any) => (form = ref)}
+        fluid
+      >
         {ballot.positions.map((pos, index) => (
           <FormGroup key={index}>
             <Divider>
@@ -105,7 +134,7 @@ export default function Vote() {
             </FlexboxGrid>
             <br />
             <h5>Choose the candidate: </h5>
-            <FormControl accepter={RadioGroup} required>
+            <FormControl name={pos.id} accepter={RadioGroup} required>
               <FlexboxGrid justify="space-around">
                 {pos.candidates.map((candidate, index) => (
                   <FlexboxGrid.Item key={index}>
@@ -113,7 +142,7 @@ export default function Vote() {
                   </FlexboxGrid.Item>
                 ))}
                 <FlexboxGrid.Item>
-                  <Radio value="">abstain</Radio>
+                  <Radio value={`abstain`}>abstain</Radio>
                 </FlexboxGrid.Item>
               </FlexboxGrid>
             </FormControl>
@@ -121,7 +150,11 @@ export default function Vote() {
         ))}
         <ButtonToolbar>
           <Divider />
-          <Button appearance="primary" type="submit" onClick={() => submitBallot()}>
+          <Button
+            appearance="primary"
+            type="submit"
+            onClick={() => submitBallot()}
+          >
             Submit
           </Button>
           <Button>Cancel</Button>
