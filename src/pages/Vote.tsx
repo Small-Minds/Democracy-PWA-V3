@@ -72,6 +72,10 @@ export default function Vote() {
         <Loading />
       </Fragment>
     );
+  
+  const submitBallot = () => {
+    console.log(ballot);
+  }
 
   return (
     <div>
@@ -82,8 +86,8 @@ export default function Vote() {
       </p>
       <br />
       <Form>
-        {ballot.positions.map((pos) => (
-          <FormGroup>
+        {ballot.positions.map((pos, index) => (
+          <FormGroup key={index}>
             <Divider>
               <h3>{pos.title}</h3>
             </Divider>
@@ -93,8 +97,8 @@ export default function Vote() {
             <br />
             <h5>Candidates:</h5>
             <FlexboxGrid justify="space-around">
-              {pos.candidates.map((candidate) => (
-                <FlexboxGrid.Item>
+              {pos.candidates.map((candidate, index) => (
+                <FlexboxGrid.Item key={index}>
                   <CandidateInfo candidate={candidate} />
                 </FlexboxGrid.Item>
               ))}
@@ -103,8 +107,8 @@ export default function Vote() {
             <h5>Choose the candidate: </h5>
             <FormControl accepter={RadioGroup} required>
               <FlexboxGrid justify="space-around">
-                {pos.candidates.map((candidate) => (
-                  <FlexboxGrid.Item>
+                {pos.candidates.map((candidate, index) => (
+                  <FlexboxGrid.Item key={index}>
                     <Radio value={candidate.id}>{candidate.user.name}</Radio>
                   </FlexboxGrid.Item>
                 ))}
@@ -117,7 +121,7 @@ export default function Vote() {
         ))}
         <ButtonToolbar>
           <Divider />
-          <Button appearance="primary" type="submit">
+          <Button appearance="primary" type="submit" onClick={() => submitBallot()}>
             Submit
           </Button>
           <Button>Cancel</Button>
