@@ -25,7 +25,7 @@ import {
 } from 'rsuite';
 import CandidateInfo from '../components/CandidateInfo';
 import CandidateInfoModal from '../components/CandidateInfo';
-import { Position } from '../utils/api/ElectionManagement';
+import { Position, PositionDetails } from '../utils/api/ElectionManagement';
 import {
   getPosition,
   PositionApplicationParams,
@@ -62,9 +62,9 @@ export default function Vote() {
     //If logged in, attempt to get the position details
     getEmptyBallot(id).then((value: EmptyBallot) => {
       setBallot(value);
-    });
+    })
   }, []);
-  
+
   // While we fetch the ballot, show the spinner.
   if (!ballot)
     return (
@@ -101,12 +101,17 @@ export default function Vote() {
             </FlexboxGrid>
             <br />
             <h5>Choose the candidate: </h5>
-            <FormControl accepter={RadioGroup}>
-              <RadioGroup inline>
+            <FormControl accepter={RadioGroup} required>
+              <FlexboxGrid justify="space-around">
                 {pos.candidates.map((candidate) => (
-                  <Radio value={candidate.id}>{candidate.user.name}</Radio>
+                  <FlexboxGrid.Item>
+                    <Radio value={candidate.id}>{candidate.user.name}</Radio>
+                  </FlexboxGrid.Item>
                 ))}
-              </RadioGroup>
+                <FlexboxGrid.Item>
+                  <Radio value="">abstain</Radio>
+                </FlexboxGrid.Item>
+              </FlexboxGrid>
             </FormControl>
           </FormGroup>
         ))}
