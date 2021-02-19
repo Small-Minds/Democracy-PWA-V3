@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -14,7 +15,7 @@ import {
   InputGroup,
   Modal,
   Schema,
-Notification
+  Notification,
 } from 'rsuite';
 import {
   ElectionDetails,
@@ -65,18 +66,24 @@ export default function SetTimelineModal({
   });
   //formData setup
   const [formData, setFormData] = useState<Record<string, any>>({
-    submission_start_time: election.submission_start_time,
-    submission_end_time: election.submission_end_time,
-    voting_start_time: election.voting_start_time,
-    voting_end_time: election.voting_end_time,
+    submission_start_time: moment(election.submission_start_time).toDate(),
+    submission_end_time: moment(election.submission_end_time).toDate(),
+    voting_start_time: moment(election.voting_start_time).toDate(),
+    voting_end_time: moment(election.voting_end_time).toDate(),
   });
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
   const [isUpdated, setIsUpdated] = useState<boolean>(false);
+  const timeformat = 'YYYY-MM-DD HH:mm';
 
   function updateElection(
     election: ElectionDetails,
     formData: Record<string, any>
   ) {
+    if (!form.check()) {
+      console.log('New election form has errors.');
+      console.log(formErrors);
+      return;
+    }
     const newElectionDetails: ElectionDetails = {
       ...election,
       submission_end_time: formData.submission_end_time,
@@ -84,45 +91,43 @@ export default function SetTimelineModal({
       voting_start_time: formData.voting_start_time,
       voting_end_time: formData.voting_end_time,
     };
-    updateOldElection(newElectionDetails)
-      .then((res) => {
-        if(res != 200){
-            closeModal();
-            Notification['error']({
-                title: 'Failed',
-                description: 'Failed to update the election timelines',
-              });
-        }else{
-          setIsUpdated(true)  
-        } 
-        })
+    updateOldElection(newElectionDetails).then((res) => {
+      if (res != 200) {
+        closeModal();
+        Notification['error']({
+          title: 'Failed',
+          description: 'Failed to update the election timelines',
+        });
+      } else {
+        setIsUpdated(true);
+      }
+    });
   }
 
-  function cleanUpFunc (){
-      closeModal();
-      history.go(0);
+  function cleanUpFunc() {
+    closeModal();
+    history.go(0);
   }
-  if(isUpdated){
+  if (isUpdated) {
     return (
-        <Modal backdrop="static" show={isOpen} onHide={() => cleanUpFunc()}>
-            <Modal.Header>Success</Modal.Header>
-            <Modal.Body>The election timelines has been updated successfully!</Modal.Body>
-            <Modal.Footer>
-            <FlexboxGrid justify="end">
+      <Modal backdrop="static" show={isOpen} onHide={() => cleanUpFunc()}>
+        <Modal.Header>Success</Modal.Header>
+        <Modal.Body>
+          The election timelines has been updated successfully!
+        </Modal.Body>
+        <Modal.Footer>
+          <FlexboxGrid justify="end">
             <FlexboxGrid.Item>
               <ButtonToolbar>
-                <Button
-                  appearance="primary"
-                  onClick={() => cleanUpFunc()}
-                >
+                <Button appearance="primary" onClick={() => cleanUpFunc()}>
                   OK
                 </Button>
               </ButtonToolbar>
             </FlexboxGrid.Item>
           </FlexboxGrid>
-            </Modal.Footer>
-        </Modal>
-    )
+        </Modal.Footer>
+      </Modal>
+    );
   }
 
   return (
@@ -139,77 +144,48 @@ export default function SetTimelineModal({
           fluid
         >
           <FormGroup>
-            <ControlLabel>Application starting date and deadline</ControlLabel>
-            <InputGroup style={{ width: 460 }}>
-              <FormControl
-                accepter={DatePicker}
-                format="YYYY-MM-DD HH:mm:ss"
-                block
-                appearance="subtle"
-                placement="bottomStart"
-                name="submission_start_time"
-              >
-                <DatePicker
-                  format="YYYY-MM-DD HH:mm:ss"
-                  block
-                  appearance="subtle"
+            <ControlLabel>Application starting time and deadline</ControlLabel>
+            <FlexboxGrid justify="start" align="middle">
+              <FlexboxGrid.Item>
+                <FormControl
+                  accepter={DatePicker}
+                  name="submission_start_time"
+                  format={timeformat}
                   placement="bottomStart"
-                />
-              </FormControl>
-              <InputGroup.Addon>To</InputGroup.Addon>
-              <FormControl
-                accepter={DatePicker}
-                format="YYYY-MM-DD HH:mm:ss"
-                block
-                appearance="subtle"
-                placement="bottomStart"
-                name="submission_end_time"
-              >
-                <DatePicker
-                  format="YYYY-MM-DD HH:mm:ss"
-                  block
-                  appearance="subtle"
+                ></FormControl>
+              </FlexboxGrid.Item>
+              <FlexboxGrid.Item style={{ padding: 10 }}>to</FlexboxGrid.Item>
+              <FlexboxGrid.Item>
+                <FormControl
+                  accepter={DatePicker}
+                  name="submission_end_time"
+                  format={timeformat}
                   placement="bottomStart"
-                />
-              </FormControl>
-            </InputGroup>
+                ></FormControl>
+              </FlexboxGrid.Item>
+            </FlexboxGrid>
           </FormGroup>
-          <Divider />
           <FormGroup>
-            <ControlLabel>Voting starting date and deadline</ControlLabel>
-            <InputGroup style={{ width: 460 }}>
-              <FormControl
-                accepter={DatePicker}
-                format="YYYY-MM-DD HH:mm:ss"
-                block
-                appearance="subtle"
-                placement="bottomStart"
-                name="voting_start_time"
-              >
-                <DatePicker
-                  format="YYYY-MM-DD HH:mm:ss"
-                  block
-                  appearance="subtle"
+            <ControlLabel>Voting starting time and deadline</ControlLabel>
+            <FlexboxGrid justify="start" align="middle">
+              <FlexboxGrid.Item>
+                <FormControl
+                  accepter={DatePicker}
+                  name="voting_start_time"
+                  format={timeformat}
                   placement="bottomStart"
-                />
-              </FormControl>
-              <InputGroup.Addon>To</InputGroup.Addon>
-              <FormControl
-                accepter={DatePicker}
-                format="YYYY-MM-DD HH:mm:ss"
-                block
-                appearance="subtle"
-                placement="bottomStart"
-                name="voting_end_time"
-              >
-                <DatePicker
-                  format="YYYY-MM-DD HH:mm:ss"
-                  block
-                  appearance="subtle"
+                ></FormControl>
+              </FlexboxGrid.Item>
+              <FlexboxGrid.Item style={{ padding: 10 }}>to</FlexboxGrid.Item>
+              <FlexboxGrid.Item>
+                <FormControl
+                  accepter={DatePicker}
+                  name="voting_end_time"
+                  format={timeformat}
                   placement="bottomStart"
-                />
-              </FormControl>
-            </InputGroup>
+                ></FormControl>
+              </FlexboxGrid.Item>
+            </FlexboxGrid>
           </FormGroup>
           <Divider />
           <FlexboxGrid justify="end">
