@@ -131,6 +131,25 @@ export async function deleteElection(electionId: string): Promise<Number> {
     });
 }
 
+export async function updateOldElection(
+  newElectionDetails: ElectionDetails
+): Promise<Number> {
+  const token = await preRequestRefreshAuth();
+  return api
+    .patch(electionURL + newElectionDetails.id + `/`, newElectionDetails, {
+      headers: { Authorization: `JWT ${token}` },
+    })
+    .then((res) => {
+      if (res.status == 200) {
+        Notification['success']({
+          title: 'Success',
+          description: 'The election is updated successfully',
+        });
+      }
+      return res.status;
+    });
+}
+
 export async function deletePosition(positionId: string): Promise<Number> {
   const token = await preRequestRefreshAuth();
   return api

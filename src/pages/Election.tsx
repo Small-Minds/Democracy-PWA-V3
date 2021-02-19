@@ -62,9 +62,12 @@ const ManagementTools: FC<ElectionSubpage> = ({
     <Fragment>
       <h5 style={{ marginBottom: 10 }}>Management Tools</h5>
       <ButtonToolbar>
-        <IconButton icon={<Icon icon="clock-o" />}
-          onClick={()=>setSetTimelineOpen(true)}
-        >Set Timeline</IconButton>
+        <IconButton
+          icon={<Icon icon="clock-o" />}
+          onClick={() => setSetTimelineOpen(true)}
+        >
+          Set Timeline
+        </IconButton>
         <IconButton
           icon={<Icon icon="plus" />}
           onClick={() => setAddPositionOpen(true)}
@@ -90,10 +93,10 @@ const ManagementTools: FC<ElectionSubpage> = ({
         closeModal={() => closeDeleteElectionModal()}
         cleanUpFunc={() => redirectToHome()}
       />
-      <SetTimelineModal 
+      <SetTimelineModal
         election={election}
         isOpen={setTimelineOpen}
-        closeModal={()=>setSetTimelineOpen(false)}
+        closeModal={() => setSetTimelineOpen(false)}
       />
       <AddPositionModal
         open={addPositionOpen}

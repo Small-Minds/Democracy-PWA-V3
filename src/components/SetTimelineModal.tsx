@@ -14,7 +14,11 @@ import {
   Modal,
   Schema,
 } from 'rsuite';
-import { ElectionDetails } from '../utils/api/ElectionManagement';
+import { updateModuleDeclaration } from 'typescript';
+import {
+  ElectionDetails,
+  updateOldElection,
+} from '../utils/api/ElectionManagement';
 interface setTimelineModalInput {
   election: ElectionDetails;
   isOpen: boolean;
@@ -29,7 +33,7 @@ export default function SetTimelineModal({
   //set up required variable for rsuite forms.
   let form: any = undefined;
   //form model setup
-  const msg_required = "This field is required";
+  const msg_required = 'This field is required';
   const model = Schema.Model({
     submission_start_time: Schema.Types.DateType().isRequired(msg_required),
     submission_end_time: Schema.Types.DateType()
@@ -58,25 +62,39 @@ export default function SetTimelineModal({
       }, 'The voting deadline must be after the voting start date!'),
   });
   //formData setup
-  const [formData, setFormData] = useState<Record<string,any>>({
+  const [formData, setFormData] = useState<Record<string, any>>({
     submission_start_time: election.submission_start_time,
     submission_end_time: election.submission_end_time,
     voting_start_time: election.voting_start_time,
     voting_end_time: election.voting_end_time,
   });
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
+  function updateElection(
+    election: ElectionDetails,
+    formData: Record<string, any>
+  ) {
+    const newElectionDetails: ElectionDetails = {
+      ...election,
+      submission_end_time: formData.submission_end_time,
+      submission_start_time: formData.submission_start_time,
+      voting_start_time: formData.voting_start_time,
+      voting_end_time: formData.voting_end_time,
+    };
+    updateOldElection(newElectionDetails);
+  }
+
   return (
     <Modal backdrop="static" show={isOpen} onHide={() => closeModal()}>
       <Modal.Header>election Timeline Setup</Modal.Header>
       <Modal.Body>
         <Form
-            onChange={(newData) => setFormData(newData)}
-            onCheck={(newErrors) => setFormErrors(newErrors)}
-            formValue={formData}
-            formError={formErrors}
-            model={model}
-            ref={(ref: any) => (form = ref)}
-            fluid
+          onChange={(newData) => setFormData(newData)}
+          onCheck={(newErrors) => setFormErrors(newErrors)}
+          formValue={formData}
+          formError={formErrors}
+          model={model}
+          ref={(ref: any) => (form = ref)}
+          fluid
         >
           <FormGroup>
             <ControlLabel>Application starting date and deadline</ControlLabel>
@@ -155,7 +173,15 @@ export default function SetTimelineModal({
           <FlexboxGrid justify="end">
             <FlexboxGrid.Item>
               <ButtonToolbar>
-                <Button appearance="primary">Submit</Button>
+                <Button
+                  appearance="primary"
+                  type="submit"
+                  onClick={() => {
+                    updateElection(election, formData);
+                  }}
+                >
+                  Submit
+                </Button>
                 <Button onClick={() => closeModal()}>Cancel</Button>
               </ButtonToolbar>
             </FlexboxGrid.Item>
