@@ -6,11 +6,13 @@ import {
   Button,
   Col,
   ControlLabel,
+  DatePicker,
   Drawer,
   FlexboxGrid,
   Form,
   FormControl,
   FormGroup,
+  InputGroup,
   Notification,
   Radio,
   RadioGroup,
@@ -51,6 +53,31 @@ function NewElectionButton() {
         /^(?!:\/\/)([a-zA-Z0-9-]+\.){0,5}[a-zA-Z0-9-][a-zA-Z0-9-]+\.[a-zA-Z]{2,64}?$/,
         msg_ivalid_format
       ),
+    submission_start_time: Schema.Types.DateType().isRequired(msg_required),
+    submission_end_time: Schema.Types.DateType()
+      .isRequired(msg_required)
+      .addRule((value, data) => {
+        if (value < data.submission_start_time) {
+          return false;
+        }
+        return true;
+      }, 'The application deadline must be after the start date!'),
+    voting_start_time: Schema.Types.DateType()
+      .isRequired(msg_required)
+      .addRule((value, data) => {
+        if (value < data.submission_end_time) {
+          return false;
+        }
+        return true;
+      }, 'The voting start date must be after the application deadline date!'),
+    voting_end_time: Schema.Types.DateType()
+      .isRequired(msg_required)
+      .addRule((value, data) => {
+        if (value < data.voting_start_time) {
+          return false;
+        }
+        return true;
+      }, 'The voting deadline must be after the voting start date!'),
   });
   //form data setup
   const [formData, setFormData] = useState<Record<string, any>>({
@@ -78,10 +105,10 @@ function NewElectionButton() {
 
     // By default, use two one-week periods to run the election.
     // Attempts to set time to 9AM to 5pm
-    const a = moment().add(7, 'days').hours(9).startOf('hour');
+    /*const a = moment().add(7, 'days').hours(9).startOf('hour');
     const b = moment().add(14, 'days').hours(17).startOf('hour');
     const c = moment().add(21, 'days').hours(9).startOf('hour');
-    const d = moment().add(28, 'days').hours(17).startOf('hour');
+    const d = moment().add(28, 'days').hours(17).startOf('hour');*/
 
     // Process form input, check for form errors
     if (!form.check()) {
@@ -96,10 +123,10 @@ function NewElectionButton() {
       description: electionDetails.description,
       election_email_domain: electionDetails.election_email_domain,
       enable_multiple_submissions: electionDetails.enable_multiple_submissions,
-      submission_start_time: a.toDate(),
-      submission_end_time: b.toDate(),
-      voting_start_time: c.toDate(),
-      voting_end_time: d.toDate(),
+      submission_start_time: electionDetails.submission_start_time,
+      submission_end_time: electionDetails.submission_end_time,
+      voting_start_time: electionDetails.voting_start_time,
+      voting_end_time: electionDetails.voting_end_time,
     })
       .then((election) => {
         let path = `/election/${election.id}`;
@@ -196,8 +223,69 @@ function NewElectionButton() {
                   </ControlLabel>
                   <FormControl name="election_email_domain"></FormControl>
                 </FormGroup>
+                <FormGroup>
+                  <ControlLabel>
+                    Application starting time and deadline
+                  </ControlLabel>
+                  <InputGroup style={{ width: 460 }}>
+                    <FormControl
+                      accepter={DatePicker}
+                      name="submission_start_time"
+                      format="YYYY-MM-DD HH:mm:ss"
+                      placement="topStart"
+                    >
+                      <DatePicker
+                        format="YYYY-MM-DD HH:mm:ss"
+                        block
+                        appearance="subtle"
+                      />
+                    </FormControl>
+                    <InputGroup.Addon>to</InputGroup.Addon>
+                    <FormControl
+                      accepter={DatePicker}
+                      name="submission_end_time"
+                      format="YYYY-MM-DD HH:mm:ss"
+                      placement="topStart"
+                    >
+                      <DatePicker
+                        format="YYYY-MM-DD HH:mm:ss"
+                        block
+                        appearance="subtle"
+                      />
+                    </FormControl>
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup>
+                  <ControlLabel>Voting starting time and deadline</ControlLabel>
+                  <InputGroup style={{ width: 460 }}>
+                    <FormControl
+                      accepter={DatePicker}
+                      name="voting_start_time"
+                      format="YYYY-MM-DD HH:mm:ss"
+                      placement="topStart"
+                    >
+                      <DatePicker
+                        format="YYYY-MM-DD HH:mm:ss"
+                        block
+                        appearance="subtle"
+                      />
+                    </FormControl>
+                    <InputGroup.Addon>to</InputGroup.Addon>
+                    <FormControl
+                      accepter={DatePicker}
+                      name="voting_end_time"
+                      format="YYYY-MM-DD HH:mm:ss"
+                      placement="topStart"
+                    >
+                      <DatePicker
+                        format="YYYY-MM-DD HH:mm:ss"
+                        block
+                        appearance="subtle"
+                      />
+                    </FormControl>
+                  </InputGroup>
+                </FormGroup>
               </Form>
-              <FlexboxGrid></FlexboxGrid>
             </Drawer.Body>
             <Drawer.Footer style={{ paddingBottom: 10 }}>
               <Button

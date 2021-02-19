@@ -1,8 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { api, preRequestRefreshAuth } from '../API';
-import {
-  PositionDetails,
-} from './ElectionManagement';
+import { PositionDetails } from './ElectionManagement';
 
 type VoteParams = {
   position: string;
@@ -46,9 +44,7 @@ export type EmptyBallot = {
 
 const emptyBallotUrl = '/elections/emptyballot/';
 
-export async function getEmptyBallot(
-  electionId: string
-): Promise<EmptyBallot> {
+export async function getEmptyBallot(electionId: string): Promise<EmptyBallot> {
   const token = await preRequestRefreshAuth();
   let config = {
     headers: { Authorization: `JWT ${token}` },
