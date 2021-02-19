@@ -37,13 +37,13 @@ export default function SetTimelineModal({
                 format="YYYY-MM-DD HH:mm:ss"
                 block
                 appearance="subtle"
-                placement="topStart"
+                placement="bottomStart"
               >
                 <DatePicker
                   format="YYYY-MM-DD HH:mm:ss"
                   block
                   appearance="subtle"
-                  placement="topStart"
+                  placement="bottomStart"
                 />
               </FormControl>
               <InputGroup.Addon>To</InputGroup.Addon>
@@ -52,13 +52,13 @@ export default function SetTimelineModal({
                 format="YYYY-MM-DD HH:mm:ss"
                 block
                 appearance="subtle"
-                placement="topStart"
+                placement="bottomStart"
               >
                 <DatePicker
                   format="YYYY-MM-DD HH:mm:ss"
                   block
                   appearance="subtle"
-                  placement="topStart"
+                  placement="bottomStart"
                 />
               </FormControl>
             </InputGroup>
@@ -72,13 +72,13 @@ export default function SetTimelineModal({
                 format="YYYY-MM-DD HH:mm:ss"
                 block
                 appearance="subtle"
-                placement="topStart"
+                placement="bottomStart"
               >
                 <DatePicker
                   format="YYYY-MM-DD HH:mm:ss"
                   block
                   appearance="subtle"
-                  placement="topStart"
+                  placement="bottomStart"
                 />
               </FormControl>
               <InputGroup.Addon>To</InputGroup.Addon>
@@ -87,13 +87,13 @@ export default function SetTimelineModal({
                 format="YYYY-MM-DD HH:mm:ss"
                 block
                 appearance="subtle"
-                placement="topStart"
+                placement="bottomStart"
               >
                 <DatePicker
                   format="YYYY-MM-DD HH:mm:ss"
                   block
                   appearance="subtle"
-                  placement="topStart"
+                  placement="bottomStart"
                 />
               </FormControl>
             </InputGroup>
@@ -102,7 +102,7 @@ export default function SetTimelineModal({
           <FlexboxGrid justify="end">
             <FlexboxGrid.Item>
               <ButtonToolbar>
-                <Button>Submit</Button>
+                <Button appearance="primary">Submit</Button>
                 <Button onClick={() => closeModal()}>Cancel</Button>
               </ButtonToolbar>
             </FlexboxGrid.Item>
