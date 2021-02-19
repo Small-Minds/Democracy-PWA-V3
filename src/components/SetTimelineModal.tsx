@@ -111,7 +111,9 @@ export default function SetTimelineModal({
   if (isUpdated) {
     return (
       <Modal backdrop="static" show={isOpen} onHide={() => cleanUpFunc()}>
-        <Modal.Header>Success</Modal.Header>
+        <Modal.Header>
+          <h4>Success</h4>
+        </Modal.Header>
         <Modal.Body>
           The election timelines has been updated successfully!
         </Modal.Body>
@@ -137,7 +139,9 @@ export default function SetTimelineModal({
       onHide={() => closeModal()}
       size="lg"
     >
-      <Modal.Header>election Timeline Setup</Modal.Header>
+      <Modal.Header>
+        <h4>Election Timeline Setup</h4>
+      </Modal.Header>
       <Modal.Body>
         <Form
           onChange={(newData) => setFormData(newData)}
@@ -149,8 +153,10 @@ export default function SetTimelineModal({
           fluid
         >
           <FormGroup>
-            <ControlLabel>Application starting time and deadline</ControlLabel>
-            <FlexboxGrid justify="center" align="middle">
+            <ControlLabel>
+              <h5>Application starting time and deadline</h5>
+            </ControlLabel>
+            <FlexboxGrid justify="start" align="middle">
               <FlexboxGrid.Item>
                 <FormControl
                   accepter={DatePicker}
@@ -171,8 +177,10 @@ export default function SetTimelineModal({
             </FlexboxGrid>
           </FormGroup>
           <FormGroup>
-            <ControlLabel>Voting starting time and deadline</ControlLabel>
-            <FlexboxGrid justify="center" align="middle">
+            <ControlLabel>
+              <h5>Voting starting time and deadline</h5>
+            </ControlLabel>
+            <FlexboxGrid justify="start" align="middle">
               <FlexboxGrid.Item>
                 <FormControl
                   accepter={DatePicker}
