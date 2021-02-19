@@ -14,9 +14,8 @@ import {
   InputGroup,
   Modal,
   Schema,
-  Notification
+Notification
 } from 'rsuite';
-import { updateModuleDeclaration } from 'typescript';
 import {
   ElectionDetails,
   updateOldElection,
@@ -86,7 +85,17 @@ export default function SetTimelineModal({
       voting_end_time: formData.voting_end_time,
     };
     updateOldElection(newElectionDetails)
-      .then(() => setIsUpdated(true))
+      .then((res) => {
+        if(res != 200){
+            closeModal();
+            Notification['error']({
+                title: 'Failed',
+                description: 'Failed to update the election timelines',
+              });
+        }else{
+          setIsUpdated(true)  
+        } 
+        })
   }
 
   function cleanUpFunc (){
