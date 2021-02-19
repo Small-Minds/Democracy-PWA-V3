@@ -2,17 +2,17 @@ import { AxiosResponse } from 'axios';
 import { api, preRequestRefreshAuth } from '../API';
 import { PositionDetails } from './ElectionManagement';
 
-type VoteParams = {
+export type VoteParams = {
   position: string;
   candidate: string;
 };
 
-type SubmitBallotParams = {
+export type SubmitBallotParams = {
   election: string;
   votes: VoteParams[];
 };
 
-const ballotURL = `/elections/vote`;
+const ballotURL = `/elections/vote/`;
 
 export async function submitBallot(
   formData: SubmitBallotParams

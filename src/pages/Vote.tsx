@@ -1,38 +1,26 @@
-import React, { Fragment, useCallback, useEffect } from 'react';
-import { useState } from 'react';
-import { useContext } from 'react';
-import Gravatar from 'react-gravatar';
+import { AxiosResponse } from 'axios';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import {
   Button,
   ButtonToolbar,
-  Notification,
-  ControlLabel,
+  Divider,
+  FlexboxGrid,
   Form,
   FormControl,
   FormGroup,
-  Schema,
-  List,
-  Divider,
-  Avatar,
-  FlexboxGrid,
-  Grid,
-  Col,
-  RadioGroup,
   Radio,
-  Modal,
-  Checkbox,
+  RadioGroup,
 } from 'rsuite';
 import CandidateInfo from '../components/CandidateInfo';
-import CandidateInfoModal from '../components/CandidateInfo';
-import { Position, PositionDetails } from '../utils/api/ElectionManagement';
+import { PositionDetails } from '../utils/api/ElectionManagement';
 import {
-  getPosition,
-  PositionApplicationParams,
-  submitPositionApplication,
-} from '../utils/api/PositionApplication';
-import { EmptyBallot, getEmptyBallot } from '../utils/api/Voting';
+  EmptyBallot,
+  getEmptyBallot,
+  submitBallot,
+  VoteParams,
+} from '../utils/api/Voting';
 import { Credentials } from '../utils/Authentication';
 import Loading from './Loading';
 
@@ -61,7 +49,7 @@ export default function Vote() {
     });
   }, []);
 
-  const submitBallot = () => {
+  const submit = () => {
     // First, check the form for errors.
     if (!ballot) return;
     const formDataKeys = Object.keys(formData);
@@ -97,6 +85,26 @@ export default function Vote() {
     }
 
     console.log('Form has NO ERRORS, submitting...');
+    const votes: VoteParams[] = [];
+    ballot.positions.forEach((position) => {
+      const choice = formData[position.id];
+      if (choice === 'abstain') return;
+      votes.push({
+        position: position.id,
+        candidate: choice,
+      });
+    });
+    console.log(votes);
+    submitBallot({
+      election: ballot.id,
+      votes: votes,
+    })
+      .then((res: AxiosResponse) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // While we fetch the ballot, show the spinner.
@@ -165,7 +173,7 @@ export default function Vote() {
                   appearance="primary"
                   size="lg"
                   type="submit"
-                  onClick={() => submitBallot()}
+                  onClick={() => submit()}
                 >
                   Submit
                 </Button>
