@@ -131,7 +131,12 @@ export default function SetTimelineModal({
   }
 
   return (
-    <Modal backdrop="static" show={isOpen} onHide={() => closeModal()}>
+    <Modal
+      backdrop="static"
+      show={isOpen}
+      onHide={() => closeModal()}
+      size="lg"
+    >
       <Modal.Header>election Timeline Setup</Modal.Header>
       <Modal.Body>
         <Form
@@ -145,7 +150,7 @@ export default function SetTimelineModal({
         >
           <FormGroup>
             <ControlLabel>Application starting time and deadline</ControlLabel>
-            <FlexboxGrid justify="start" align="middle">
+            <FlexboxGrid justify="center" align="middle">
               <FlexboxGrid.Item>
                 <FormControl
                   accepter={DatePicker}
@@ -167,7 +172,7 @@ export default function SetTimelineModal({
           </FormGroup>
           <FormGroup>
             <ControlLabel>Voting starting time and deadline</ControlLabel>
-            <FlexboxGrid justify="start" align="middle">
+            <FlexboxGrid justify="center" align="middle">
               <FlexboxGrid.Item>
                 <FormControl
                   accepter={DatePicker}
