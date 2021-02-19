@@ -140,10 +140,10 @@ export async function updateOldElection(
       headers: { Authorization: `JWT ${token}` },
     })
     .then((res) => {
-      if (res.status == 200) {
-        Notification['success']({
-          title: 'Success',
-          description: 'The election is updated successfully',
+      if (res.status != 200) {
+        Notification['error']({
+          title: 'Failed',
+          description: 'Failed to update the election',
         });
       }
       return res.status;

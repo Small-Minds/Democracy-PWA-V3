@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   ButtonToolbar,
@@ -13,6 +14,7 @@ import {
   InputGroup,
   Modal,
   Schema,
+  Notification
 } from 'rsuite';
 import { updateModuleDeclaration } from 'typescript';
 import {
@@ -30,6 +32,7 @@ export default function SetTimelineModal({
   isOpen,
   closeModal,
 }: setTimelineModalInput) {
+  const history = useHistory();
   //set up required variable for rsuite forms.
   let form: any = undefined;
   //form model setup
@@ -69,6 +72,8 @@ export default function SetTimelineModal({
     voting_end_time: election.voting_end_time,
   });
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
+  const [isUpdated, setIsUpdated] = useState<boolean>(false);
+
   function updateElection(
     election: ElectionDetails,
     formData: Record<string, any>
@@ -80,7 +85,35 @@ export default function SetTimelineModal({
       voting_start_time: formData.voting_start_time,
       voting_end_time: formData.voting_end_time,
     };
-    updateOldElection(newElectionDetails);
+    updateOldElection(newElectionDetails)
+      .then(() => setIsUpdated(true))
+  }
+
+  function cleanUpFunc (){
+      closeModal();
+      history.go(0);
+  }
+  if(isUpdated){
+    return (
+        <Modal backdrop="static" show={isOpen} onHide={() => cleanUpFunc()}>
+            <Modal.Header>Success</Modal.Header>
+            <Modal.Body>The election timelines has been updated successfully!</Modal.Body>
+            <Modal.Footer>
+            <FlexboxGrid justify="end">
+            <FlexboxGrid.Item>
+              <ButtonToolbar>
+                <Button
+                  appearance="primary"
+                  onClick={() => cleanUpFunc()}
+                >
+                  OK
+                </Button>
+              </ButtonToolbar>
+            </FlexboxGrid.Item>
+          </FlexboxGrid>
+            </Modal.Footer>
+        </Modal>
+    )
   }
 
   return (
