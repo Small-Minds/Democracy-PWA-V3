@@ -10,6 +10,7 @@ import {
   Form,
   FormControl,
   FormGroup,
+  Notification,
   Radio,
   RadioGroup,
 } from 'rsuite';
@@ -101,6 +102,14 @@ export default function Vote() {
     })
       .then((res: AxiosResponse) => {
         console.log(res);
+        setFormData({});
+        setFormErrors({});
+        history.push(`/election/${ballot.id}/`);
+        Notification['success']({
+          title: 'Submitted',
+          description:
+            'Your ballot is on the way! Check back soon for results.',
+        });
       })
       .catch((err) => {
         console.log(err);
