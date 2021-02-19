@@ -22,6 +22,7 @@ import {
   RadioGroup,
   Radio,
   Modal,
+  Checkbox,
 } from 'rsuite';
 import CandidateInfo from '../components/CandidateInfo';
 import CandidateInfoModal from '../components/CandidateInfo';
@@ -111,6 +112,7 @@ export default function Vote() {
         Elect a candidate for{' '}
         {ballot.positions.map((pos) => pos.title).join(', ')}.
       </p>
+      <p>Click on candidates to view their platform.</p>
       <br />
       <Form
         onChange={(newData) => setFormData(newData)}
@@ -121,49 +123,54 @@ export default function Vote() {
         fluid
       >
         {ballot.positions.map((pos, index) => (
-          <FormGroup key={index}>
+          <FormGroup key={index} style={{ paddingBottom: 30 }}>
             <Divider>
               <h3>{pos.title}</h3>
             </Divider>
             <br />
-            <h5>Position Description:</h5>
+            <h5>Description</h5>
             <p>{pos.description}</p>
             <br />
-            <h5>Candidates:</h5>
-            <FlexboxGrid justify="space-around">
-              {pos.candidates.map((candidate, index) => (
-                <FlexboxGrid.Item key={index}>
-                  <CandidateInfo candidate={candidate} />
-                </FlexboxGrid.Item>
-              ))}
-            </FlexboxGrid>
+            <h5>Candidates</h5>
             <br />
-            <h5>Choose the candidate: </h5>
             <FormControl name={pos.id} accepter={RadioGroup} required>
-              <FlexboxGrid justify="space-around">
+              <FlexboxGrid justify="start" align="middle">
                 {pos.candidates.map((candidate, index) => (
                   <FlexboxGrid.Item key={index}>
-                    <Radio value={candidate.id}>{candidate.user.name}</Radio>
+                    <CandidateInfo candidate={candidate} />
                   </FlexboxGrid.Item>
                 ))}
-                <FlexboxGrid.Item>
-                  <Radio value={`abstain`}>abstain</Radio>
-                </FlexboxGrid.Item>
               </FlexboxGrid>
+              <br />
+              <h5>Select a candidate</h5>
+              <br />
+              <RadioGroup>
+                {pos.candidates.map((candidate, index) => (
+                  <Radio key={index} value={candidate.id}>
+                    {candidate.user.name}
+                  </Radio>
+                ))}
+                <Radio value={`abstain`}>abstain</Radio>
+              </RadioGroup>
             </FormControl>
           </FormGroup>
         ))}
-        <ButtonToolbar>
-          <Divider />
-          <Button
-            appearance="primary"
-            type="submit"
-            onClick={() => submitBallot()}
-          >
-            Submit
-          </Button>
-          <Button>Cancel</Button>
-        </ButtonToolbar>
+        <Divider />
+        <FlexboxGrid justify="end">
+          <FlexboxGrid.Item>
+            <ButtonToolbar>
+              <Button size="lg">Cancel</Button>
+              <Button
+                appearance="primary"
+                size="lg"
+                type="submit"
+                onClick={() => submitBallot()}
+              >
+                Submit
+              </Button>
+            </ButtonToolbar>
+          </FlexboxGrid.Item>
+        </FlexboxGrid>
       </Form>
     </div>
   );

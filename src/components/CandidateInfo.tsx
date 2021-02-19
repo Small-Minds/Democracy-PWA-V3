@@ -18,14 +18,14 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
         onClick={() => {
           setOpen(true);
         }}
+        style={{ marginRight: 8, marginBottom: 8 }}
       >
         <Avatar
           size="lg"
           style={{
             display: 'block',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            marginTop: 20,
+            margin: 'auto',
+            marginTop: 10,
           }}
         >
           <Gravatar email={candidate.user.email} size={60} rating="pg" />
