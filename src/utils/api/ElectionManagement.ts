@@ -42,6 +42,8 @@ export type ElectionDetails = {
   title: string;
   voting_end_time: string;
   voting_start_time: string;
+  voting_open: boolean;
+  applications_open: boolean;
 };
 
 export type CandidateWithUserDetails = {

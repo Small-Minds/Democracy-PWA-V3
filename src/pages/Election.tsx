@@ -56,9 +56,8 @@ const ManagementTools: FC<ElectionSubpage> = ({
   function redirectToHome() {
     history.push(`/`);
   }
-  if (!id) return null;
-  if (!election || election === undefined) return null;
 
+  if (!id || !election || election === undefined) return null;
   return (
     <Fragment>
       <h5 style={{ marginBottom: 10 }}>Management Tools</h5>
@@ -177,86 +176,89 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
     return null;
   }
 
+  if (!id || !election || election === undefined)
+    return (
+      <Fragment>
+        <Loading />
+      </Fragment>
+    );
+
   return (
     <Fragment>
-      {election ? (
+      <h1>{election.title}</h1>
+      <p>
+        <b>@{election.election_email_domain}</b>
+        &nbsp;&middot;&nbsp;
+        <span>{election.description}</span>
+      </p>
+      <br />
+      <Fragment>
+        <ButtonToolbar>
+          <IconButton
+            appearance="primary"
+            icon={<Icon icon="check2" />}
+            onClick={() => history.push(`${match.url}/vote`)}
+            disabled={!election.voting_open}
+          >
+            Vote
+          </IconButton>
+          <IconButton
+            appearance="primary"
+            icon={<Icon icon="list" />}
+            onClick={() => history.push(`${match.url}/positions`)}
+            color="green"
+            disabled={!election.applications_open}
+          >
+            Apply Now
+          </IconButton>
+          <IconButton
+            icon={<Icon icon="info" />}
+            onClick={() => history.push(match.url)}
+          >
+            Information
+          </IconButton>
+          <IconButton
+            icon={<Icon icon="cubes" />}
+            onClick={() => history.push(`${match.url}/positions`)}
+          >
+            Open Positions
+          </IconButton>
+          <IconButton
+            icon={<Icon icon="speaker" />}
+            onClick={() => history.push(`${match.url}/platforms`)}
+          >
+            Candidate Platforms
+          </IconButton>
+        </ButtonToolbar>
+      </Fragment>
+      <br />
+      {showTools && (
         <Fragment>
-          <h1>{election.title}</h1>
-          <p>
-            <b>@{election.election_email_domain}</b>
-            &nbsp;&middot;&nbsp;
-            <span>{election.description}</span>
-          </p>
           <br />
-          <Fragment>
-            <ButtonToolbar>
-              <IconButton
-                appearance="primary"
-                icon={<Icon icon="check2" />}
-                onClick={() => history.push(`${match.url}/vote`)}
-              >
-                Vote
-              </IconButton>
-              <IconButton
-                appearance="primary"
-                icon={<Icon icon="list" />}
-                onClick={() => history.push(`${match.url}/positions`)}
-                color="green"
-              >
-                Apply Now
-              </IconButton>
-              <IconButton
-                icon={<Icon icon="info" />}
-                onClick={() => history.push(match.url)}
-              >
-                Information
-              </IconButton>
-              <IconButton
-                icon={<Icon icon="cubes" />}
-                onClick={() => history.push(`${match.url}/positions`)}
-              >
-                Open Positions
-              </IconButton>
-              <IconButton
-                icon={<Icon icon="speaker" />}
-                onClick={() => history.push(`${match.url}/platforms`)}
-              >
-                Candidate Platforms
-              </IconButton>
-            </ButtonToolbar>
-          </Fragment>
+          <ManagementTools
+            id={id}
+            election={election}
+            user={user}
+            updateElection={updateElection}
+          />
           <br />
-          {showTools && (
-            <Fragment>
-              <br />
-              <ManagementTools
-                id={id}
-                election={election}
-                user={user}
-                updateElection={updateElection}
-              />
-              <br />
-            </Fragment>
-          )}
-          <br />
-          <Switch>
-            {/* Positions*/}
-            <Route path={`${match.url}/positions`}>
-              <Positions id={id} election={election} user={user} />
-            </Route>
-            {/* Platforms */}
-            <Route path={`${match.url}/platforms`}>
-              <Platforms id={id} election={election} user={user} />
-            </Route>
-            {/* Info */}
-            <Route path={match.url}>
-              <Information id={id} election={election} user={user} />
-            </Route>
-          </Switch>
         </Fragment>
-      ) : (
-        <Loading />
       )}
+      <br />
+      <Switch>
+        {/* Positions*/}
+        <Route path={`${match.url}/positions`}>
+          <Positions id={id} election={election} user={user} />
+        </Route>
+        {/* Platforms */}
+        <Route path={`${match.url}/platforms`}>
+          <Platforms id={id} election={election} user={user} />
+        </Route>
+        {/* Info */}
+        <Route path={match.url}>
+          <Information id={id} election={election} user={user} />
+        </Route>
+      </Switch>
     </Fragment>
   );
 };
