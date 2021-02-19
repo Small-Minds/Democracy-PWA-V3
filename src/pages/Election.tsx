@@ -43,7 +43,6 @@ const ManagementTools: FC<ElectionSubpage> = ({
 }) => {
   const [setTimelineOpen, setSetTimelineOpen] = useState<boolean>(false);
   const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
-  const [deleteElectionOpen, setDeleteElectionOpen] = useState<boolean>(false);
   const [
     isDeleteElectionModalOpen,
     setIsDeleteElectionModalOpen,
