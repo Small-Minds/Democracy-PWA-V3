@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useCallback, useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import Gravatar from 'react-gravatar';
@@ -50,28 +50,19 @@ export default function Vote() {
   const [ballot, setBallot] = useState<EmptyBallot>();
 
   useEffect(() => {
+    console.log('Getting ballot...');
     //Return early if no context is provided.
     if (!ctx || !ctx.credentials.authenticated) return;
+    if (ballot) return;
     //If logged in, attempt to get the position details
     getEmptyBallot(id).then((value: EmptyBallot) => {
       setBallot(value);
     });
   }, []);
 
-  // While we fetch the ballot, show the spinner.
-  if (!ballot)
-    return (
-      <Fragment>
-        <Loading />
-      </Fragment>
-    );
-
-  /**
-   * validate: Checks for each position as a key in the form data.
-   * @param newErrors Errors already passed by the rsuite form.
-   */
-  const validate = (newErrors: Record<string, any>): boolean => {
-    if (!ballot || !formData || !formErrors) return false;
+  const submitBallot = () => {
+    // First, check the form for errors.
+    if (!ballot) return;
     const formDataKeys = Object.keys(formData);
 
     // Place all missing keys into an array.
@@ -84,28 +75,34 @@ export default function Vote() {
 
     // Add all missing keys to the form errors.
     if (missingPositions.length !== 0) {
+      console.log('Missing positions detected.');
       const errors: any = {};
       missingPositions.forEach((position) => {
         errors[position.id] = 'Required.';
       });
-      setFormErrors({ ...newErrors, ...errors });
-      return false;
+      setFormErrors(errors);
+      console.log('Form is missing election fields.');
+      return;
+    } else {
+      setFormErrors({});
     }
 
-    // If validation was successful, return true.
-    return true;
-  };
-
-  const submitBallot = () => {
-    console.log(formData);
-
-    // First, check the form for errors.
     if (!form.check()) {
       console.log('Form has errors.');
       console.log(formErrors);
       return;
     }
+
+    console.log('Form has NO ERRORS, submitting...');
   };
+
+  // While we fetch the ballot, show the spinner.
+  if (!ballot)
+    return (
+      <Fragment>
+        <Loading />
+      </Fragment>
+    );
 
   return (
     <div>
@@ -117,7 +114,7 @@ export default function Vote() {
       <br />
       <Form
         onChange={(newData) => setFormData(newData)}
-        onCheck={(newErrors) => validate(newErrors)}
+        checkTrigger="none"
         formValue={formData}
         formError={formErrors}
         ref={(ref: any) => (form = ref)}
