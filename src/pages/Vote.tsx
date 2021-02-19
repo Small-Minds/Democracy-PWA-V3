@@ -104,7 +104,7 @@ export default function Vote() {
         console.log(res);
         setFormData({});
         setFormErrors({});
-        history.push(`/election/${ballot.id}/`);
+        history.push(`/election/${ballot.id}`);
         Notification['success']({
           title: 'Submitted',
           description:
