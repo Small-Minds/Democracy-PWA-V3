@@ -65,6 +65,7 @@ export default function Vote() {
     // First, check the form for errors.
     if (!ballot) return;
     const formDataKeys = Object.keys(formData);
+    console.log(formData);
 
     // Place all missing keys into an array.
     const missingPositions: PositionDetails[] = [];
@@ -83,6 +84,7 @@ export default function Vote() {
       });
       setFormErrors(errors);
       console.log('Form is missing election fields.');
+      console.log(errors);
       return;
     } else {
       setFormErrors({});
@@ -122,18 +124,18 @@ export default function Vote() {
         ref={(ref: any) => (form = ref)}
         fluid
       >
-        {ballot.positions.map((pos, index) => (
-          <FormGroup key={index} style={{ paddingBottom: 30 }}>
-            <Divider>
-              <h3>{pos.title}</h3>
-            </Divider>
-            <br />
-            <h5>Description</h5>
-            <p>{pos.description}</p>
-            <br />
-            <h5>Candidates</h5>
-            <br />
-            <FormControl name={pos.id} accepter={RadioGroup} required>
+        <FormGroup>
+          {ballot.positions.map((pos, index) => (
+            <div key={index}>
+              <Divider>
+                <h3>{pos.title}</h3>
+              </Divider>
+              <br />
+              <h5>Description</h5>
+              <p>{pos.description}</p>
+              <br />
+              <h5>Candidates</h5>
+              <br />
               <FlexboxGrid justify="start" align="middle">
                 {pos.candidates.map((candidate, index) => (
                   <FlexboxGrid.Item key={index}>
@@ -144,33 +146,33 @@ export default function Vote() {
               <br />
               <h5>Select a candidate</h5>
               <br />
-              <RadioGroup>
+              <FormControl name={pos.id} accepter={RadioGroup} required>
                 {pos.candidates.map((candidate, index) => (
-                  <Radio key={index} value={candidate.id}>
-                    {candidate.user.name}
-                  </Radio>
+                  <div key={index}>
+                    <Radio value={candidate.id}>{candidate.user.name}</Radio>
+                  </div>
                 ))}
                 <Radio value={`abstain`}>abstain</Radio>
-              </RadioGroup>
-            </FormControl>
-          </FormGroup>
-        ))}
-        <Divider />
-        <FlexboxGrid justify="end">
-          <FlexboxGrid.Item>
-            <ButtonToolbar>
-              <Button size="lg">Cancel</Button>
-              <Button
-                appearance="primary"
-                size="lg"
-                type="submit"
-                onClick={() => submitBallot()}
-              >
-                Submit
-              </Button>
-            </ButtonToolbar>
-          </FlexboxGrid.Item>
-        </FlexboxGrid>
+              </FormControl>
+            </div>
+          ))}
+          <Divider />
+          <FlexboxGrid justify="end">
+            <FlexboxGrid.Item>
+              <ButtonToolbar>
+                <Button size="lg">Cancel</Button>
+                <Button
+                  appearance="primary"
+                  size="lg"
+                  type="submit"
+                  onClick={() => submitBallot()}
+                >
+                  Submit
+                </Button>
+              </ButtonToolbar>
+            </FlexboxGrid.Item>
+          </FlexboxGrid>
+        </FormGroup>
       </Form>
     </div>
   );
