@@ -102,7 +102,7 @@ const PlatformList: FC<PLProps> = ({ election }) => {
   // Ensure all prerequisites are met.
   if (!user || !ctx || !election) return null;
 
-  const showDelete = user.user.id === election.manager;
+  const showDelete = user.user.id === election.manager.id;
 
   return (
     <div>

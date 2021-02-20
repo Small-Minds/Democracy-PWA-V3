@@ -40,7 +40,9 @@
       "electionEnableMultiSubs": "Enable Candidates to Apply to Multiple Positions",
       "electionMultiSubsTrue": "Yes",
       "electionMultiSubsFalse": "No",
-      "electionEmailDomain": "Election Email Domain"
+      "electionEmailDomain": "Election Email Domain",
+      "tooManyElectionsErrorTitle": "Too Many Elections",
+      "tooManyElectionsErrorBody": "Accounts can run a limit of three elections at once. Please delete old or unused elections."
     },
     "loggedInInfo": {
       "sectionTitle": "Authentication Data",

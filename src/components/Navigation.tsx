@@ -94,7 +94,14 @@ function Navigation() {
 
   return (
     <Navbar>
-      <Navbar.Body style={{ maxWidth: '800px', margin: '0 auto' }}>
+      <Navbar.Body
+        style={{
+          maxWidth: '800px',
+          margin: '0 auto',
+          paddingLeft: 10,
+          paddingRight: 10,
+        }}
+      >
         {ctx && ctx?.credentials.authenticated && (
           <Nav
             appearance="subtle"

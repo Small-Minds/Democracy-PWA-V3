@@ -13,10 +13,17 @@ export type UserInfo = {
 
 export async function getUserInfo(): Promise<UserInfo> {
   const token: string = await preRequestRefreshAuth();
-  const res: AxiosResponse = await api.get(userUrl, {
-    headers: { Authorization: `JWT ${token}` },
-  });
-  return res.data;
+  return api
+    .get(userUrl, {
+      headers: { Authorization: `JWT ${token}` },
+    })
+    .then((res: AxiosResponse) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.log("Can't get your ME data.");
+      return {};
+    });
 }
 
 export const blankUserInfo: UserInfo = {

@@ -18,7 +18,7 @@ const positionApplicationSubmitUrl = `/elections/participate/candidate/`;
 export async function getPosition(positionId: string): Promise<Position> {
   const token = await preRequestRefreshAuth();
   return api
-    .get(positionManagementUrl + positionId, {
+    .get(`${positionManagementUrl}${positionId}/`, {
       headers: { Authorization: `JWT ${token}` },
     })
     .then((res) => {

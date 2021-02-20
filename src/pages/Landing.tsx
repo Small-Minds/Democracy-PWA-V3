@@ -11,6 +11,8 @@ function Landing() {
 
   // If a user lands on this page, set history to '/'.
   useEffect(() => {
+    console.log('Adding current location to history...');
+    history.push(history.location);
     history.replace('/');
   }, []);
 

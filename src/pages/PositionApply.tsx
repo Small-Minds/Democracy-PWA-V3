@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
@@ -75,8 +76,16 @@ function PositionApply() {
         });
         history.goBack();
       })
-      .catch((x) => {
-        console.log(x.response.data);
+      .catch((x: AxiosError) => {
+        if (x.response && x.response.status === 424) {
+          // If the code is 424,
+          Notification['error']({
+            title: 'Application Limit Reached',
+            description:
+              'You can only apply for one position within this election.',
+          });
+          return;
+        }
         console.error(x);
         Notification['error']({
           title: 'Failed',

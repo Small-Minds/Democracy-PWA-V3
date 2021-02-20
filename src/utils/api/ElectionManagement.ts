@@ -35,7 +35,7 @@ export type ElectionDetails = {
   election_email_domain: string;
   enable_multiple_submissions: boolean;
   id: string;
-  manager: string;
+  manager: UserInfo;
   positions: Array<Position>;
   submission_end_time: string;
   submission_start_time: string;
@@ -44,6 +44,7 @@ export type ElectionDetails = {
   voting_start_time: string;
   voting_open: boolean;
   applications_open: boolean;
+  domain_match: boolean;
 };
 
 export type CandidateWithUserDetails = {
@@ -108,7 +109,21 @@ export async function getElection(
     headers: { Authorization: `JWT ${token}` },
   };
   const res: AxiosResponse = await api.get(
-    electionParticipationURL + electionId,
+    `${electionParticipationURL}${electionId}/`,
+    config
+  );
+  return res.data;
+}
+
+export async function getElectionResult(
+  electionId: string
+): Promise<ElectionDetails> {
+  const token = await preRequestRefreshAuth();
+  let config = {
+    headers: { Authorization: `JWT ${token}` },
+  };
+  const res: AxiosResponse = await api.get(
+    `/elections/results/${electionId}/`,
     config
   );
   return res.data;
@@ -117,7 +132,7 @@ export async function getElection(
 export async function deleteElection(electionId: string): Promise<Number> {
   const token = await preRequestRefreshAuth();
   return api
-    .delete(electionURL + electionId, {
+    .delete(`${electionURL}${electionId}/`, {
       headers: { Authorization: `JWT ${token}` },
     })
     .then((res) => {
@@ -132,10 +147,29 @@ export async function deleteElection(electionId: string): Promise<Number> {
     });
 }
 
+export async function updateOldElection(
+  newElectionDetails: ElectionDetails
+): Promise<Number> {
+  const token = await preRequestRefreshAuth();
+  return api
+    .patch(`${electionURL}${newElectionDetails.id}/`, newElectionDetails, {
+      headers: { Authorization: `JWT ${token}` },
+    })
+    .then((res) => {
+      if (res.status != 200) {
+        Notification['error']({
+          title: 'Failed',
+          description: 'Failed to update the election',
+        });
+      }
+      return res.status;
+    });
+}
+
 export async function deletePosition(positionId: string): Promise<Number> {
   const token = await preRequestRefreshAuth();
   return api
-    .delete(electionPositionURL + positionId, {
+    .delete(`${electionPositionURL}${positionId}/`, {
       headers: { Authorization: `JWT  ${token}` },
     })
     .then((res) => {
@@ -158,7 +192,7 @@ export async function getPositionDetails(
     headers: { Authorization: `JWT ${token}` },
   };
   const res: AxiosResponse = await api.get(
-    electionParticipationPositionURL + positionId,
+    `${electionParticipationPositionURL}${positionId}/`,
     config
   );
   return res.data;
