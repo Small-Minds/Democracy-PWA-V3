@@ -22,7 +22,7 @@ export default function ConfirmModal({
   cleanUpFunc,
   expectedResult,
 }: ConfirmModalInput) {
-  
+
   const [success, setSuccess] = useState<boolean>(false)
   if(success){
     return(
@@ -49,13 +49,13 @@ export default function ConfirmModal({
       <Modal.Footer>
         <Button
           onClick={() => {
+            closeModal();
             callBackFunc()
               .then((res: any) => {
                 if( res == expectedResult){
                   setSuccess(true);
                 }else return;
               })
-            closeModal();
           }}
           appearance="primary"
         >
