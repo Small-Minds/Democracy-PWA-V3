@@ -123,7 +123,7 @@ export async function deleteElection(electionId: string): Promise<Number> {
     .then((res) => {
       return res.status;
     })
-    .catch( (err) =>{
+    .catch((err) => {
       Notification['error']({
         title: 'Error',
         description: 'Failed to delete the election',
@@ -139,16 +139,15 @@ export async function deletePosition(positionId: string): Promise<Number> {
       headers: { Authorization: `JWT  ${token}` },
     })
     .then((res) => {
-      
       return res.status;
     })
-    .catch( (err) =>{
+    .catch((err) => {
       Notification['error']({
         title: 'Error',
         description: 'Failed to delete the position',
       });
       return err.status;
-    });;
+    });
 }
 
 export async function getPositionDetails(
