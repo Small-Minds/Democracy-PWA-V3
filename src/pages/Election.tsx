@@ -86,6 +86,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
         callBackFunc={() => deleteElection(id)}
         isOpen={isDeleteElectionModalOpen}
         closeModal={() => closeDeleteElectionModal()}
+        expectedResult={204}
         cleanUpFunc={() => redirectToHome()}
       />
       {/* TODO: Add configure times modal. */}

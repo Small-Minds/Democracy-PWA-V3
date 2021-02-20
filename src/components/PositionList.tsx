@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState, FC } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Button, Col, FlexboxGrid, Icon, List } from 'rsuite';
+import { Button, Col, FlexboxGrid, Icon, List, Modal, Notification} from 'rsuite';
 import {
   deletePosition,
   ElectionDetails,
@@ -27,9 +27,7 @@ const PositionList: FC<PLProps> = ({ election }) => {
   if (!user || !ctx) return null;
 
   const showDelete = user.user.id === election.manager;
-  function refreshPage() {
-    history.go(0);
-  }
+  
   return (
     <div>
       {election.positions.length !== 0 ? (
@@ -64,7 +62,8 @@ const PositionList: FC<PLProps> = ({ election }) => {
                       callBackFunc={() => deletePosition(position.id)}
                       isOpen={isDeletePositionModalOpen}
                       closeModal={() => closeDeletePositionModal()}
-                      cleanUpFunc={() => refreshPage()}
+                      cleanUpFunc={()=>history.go(0)}
+                      expectedResult = {204}
                     />
                   </FlexboxGrid.Item>
                 )}
