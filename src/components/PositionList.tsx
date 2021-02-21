@@ -35,7 +35,6 @@ const PositionList: FC<PLProps> = ({ election }) => {
   if (!user || !ctx) return null;
 
 
-  const showDelete = user.user.id === election.manager;
   const showDelete = user.user.id === election.manager.id;
   
   function refreshPage() {
