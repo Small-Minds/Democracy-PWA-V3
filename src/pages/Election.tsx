@@ -57,9 +57,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
   function closeDeleteElectionModal() {
     setIsDeleteElectionModalOpen(false);
   }
-  function redirectToHome() {
-    history.push(`/`);
-  }
+  
 
   if (!id || !election || election === undefined) return null;
   return (
@@ -98,7 +96,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
         isOpen={isDeleteElectionModalOpen}
         closeModal={() => closeDeleteElectionModal()}
         expectedResult={204}
-        cleanUpFunc={() => redirectToHome()}
+        cleanUpFunc={() => history.push(`/`)}
       />
       <SetTimelineModal
         election={election}

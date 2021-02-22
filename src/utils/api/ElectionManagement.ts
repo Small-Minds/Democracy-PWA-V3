@@ -136,6 +136,10 @@ export async function deleteElection(electionId: string): Promise<Number> {
       headers: { Authorization: `JWT ${token}` },
     })
     .then((res) => {
+      Notification['success']({
+        title: 'Success',
+        description: 'The election has been successfully deleted',
+      });
       return res.status;
     })
     .catch((err) => {

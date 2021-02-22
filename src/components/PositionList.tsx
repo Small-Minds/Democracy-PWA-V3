@@ -10,7 +10,6 @@ import {
 import {
   deletePosition,
   ElectionDetails,
-  updateOldElection,
 } from '../utils/api/ElectionManagement';
 import { User } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';
