@@ -1,13 +1,10 @@
-import React, { useEffect, useContext, useState, FC } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useContext, useState, FC } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   Col,
   FlexboxGrid,
-  Icon,
   List,
-  Modal,
-  Notification,
 } from 'rsuite';
 
 import {
