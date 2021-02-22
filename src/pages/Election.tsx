@@ -57,7 +57,6 @@ const ManagementTools: FC<ElectionSubpage> = ({
   function closeDeleteElectionModal() {
     setIsDeleteElectionModalOpen(false);
   }
-  
 
   if (!id || !election || election === undefined) return null;
   return (
@@ -322,7 +321,12 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
       <Switch>
         {/* Positions*/}
         <Route path={`${match.url}/positions`}>
-          <Positions id={id} election={election} user={user} updateElection={updateElection}/>
+          <Positions
+            id={id}
+            election={election}
+            user={user}
+            updateElection={updateElection}
+          />
         </Route>
         {/* Platforms */}
         <Route path={`${match.url}/platforms`}>
@@ -330,7 +334,12 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
         </Route>
         {/* Info */}
         <Route path={match.url}>
-          <Information id={id} election={election} user={user} updateElection={updateElection}/>
+          <Information
+            id={id}
+            election={election}
+            user={user}
+            updateElection={updateElection}
+          />
         </Route>
       </Switch>
     </Fragment>

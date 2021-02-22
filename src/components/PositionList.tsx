@@ -1,11 +1,6 @@
 import React, { useContext, useState, FC } from 'react';
 import { useHistory } from 'react-router-dom';
-import {
-  Button,
-  Col,
-  FlexboxGrid,
-  List,
-} from 'rsuite';
+import { Button, Col, FlexboxGrid, List } from 'rsuite';
 
 import {
   deletePosition,
