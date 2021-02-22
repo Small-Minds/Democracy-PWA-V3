@@ -118,9 +118,9 @@ export async function isAuthenticated(): Promise<boolean> {
       throw new Error('Could not fetch new token.');
     }
   }
-  console.log("It's not valid. Not authenticated.");
+  console.log('Refresh token not valid, user is not authenticated.');
   clearTokens();
-  throw new Error('No access token in refresh response.');
+  return false;
 }
 
 export function isAccessTokenValid() {

@@ -9,7 +9,7 @@ body {
 
   /* To prevent jank, always show the scrollbar. */
   overflow-y: scroll;
-  min-width: 320px;
+  min-width: 380px;
 }
 
 /* Apple-System is the strange/blurry font. */
@@ -26,21 +26,6 @@ body {
   .rs-dropdown .rs-btn > .rs-icon,
   .rs-nav-item > .rs-nav-item-content > .rs-icon {
     margin-right: 4px;
-  }
-}
-
-@media (max-width: 350px) {
-  .rs-nav-item-content {
-    padding-right: 2px !important;
-    padding-left: 2px !important;
-  }
-  .rs-navbar-nav .rs-dropdown > .rs-btn.rs-dropdown-toggle {
-    padding-left: 2px !important;
-    padding-right: 30px !important;
-  }
-  .rs-dropdown .rs-btn > .rs-icon,
-  .rs-nav-item > .rs-nav-item-content > .rs-icon {
-    margin-right: 2px;
   }
 }
 

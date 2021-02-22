@@ -95,6 +95,12 @@ function LoginForm() {
           title: t('signInForm.logInSuccessTitle'),
           description: t('signInForm.logInSuccessDescription'),
         });
+
+        console.log(history.length);
+        if (history.length > 1) {
+          console.log('Going back...');
+          history.back();
+        }
       })
       .catch((err) => {
         // If errors occur, set them to display on the form.

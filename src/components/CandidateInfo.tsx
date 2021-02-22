@@ -13,11 +13,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
 
   const userImage = useMemo(() => {
     if (!candidate || !candidate.user || !candidate.user.email) return null;
-    return (
-      <Avatar>
-        <Gravatar email={candidate.user.email} size={60} rating="pg" />
-      </Avatar>
-    );
+    return <Gravatar email={candidate.user.email} size={60} rating="pg" />;
   }, [candidate]);
 
   return (

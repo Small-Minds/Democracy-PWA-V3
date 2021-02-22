@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import moment from 'moment';
 import React, { Fragment, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -135,9 +136,17 @@ function NewElectionButton() {
         history.push(path);
         setFormData({}); // Clear form after successful submission.
       })
-      .catch((x) => {
-        console.log(x.response.data);
+      .catch((x: AxiosError) => {
         console.error(x);
+        if (x.response && x.response.status === 424) {
+          // If the code is 424,
+          Notification['error']({
+            title: t('createElectionBtn.tooManyElectionsErrorTitle'),
+            description: t('createElectionBtn.tooManyElectionsErrorBody'),
+          });
+          return;
+        }
+
         Notification['error']({
           title: t('createElectionBtn.failMsgTitle'),
           description: t('createElectionBtn.failMsg'),
@@ -246,7 +255,7 @@ function NewElectionButton() {
                         accepter={DatePicker}
                         name="submission_end_time"
                         format={timeformat}
-                        placement="topStart"
+                        placement="topEnd"
                       ></FormControl>
                     </FlexboxGrid.Item>
                   </FlexboxGrid>
@@ -270,7 +279,7 @@ function NewElectionButton() {
                         accepter={DatePicker}
                         name="voting_end_time"
                         format={timeformat}
-                        placement="topStart"
+                        placement="topEnd"
                       ></FormControl>
                     </FlexboxGrid.Item>
                   </FlexboxGrid>

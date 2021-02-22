@@ -49,6 +49,9 @@ export async function getEmptyBallot(electionId: string): Promise<EmptyBallot> {
   let config = {
     headers: { Authorization: `JWT ${token}` },
   };
-  const res: AxiosResponse = await api.get(emptyBallotUrl + electionId, config);
+  const res: AxiosResponse = await api.get(
+    `${emptyBallotUrl}${electionId}/`,
+    config
+  );
   return res.data;
 }

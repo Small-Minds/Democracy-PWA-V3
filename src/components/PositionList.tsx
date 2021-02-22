@@ -35,8 +35,13 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
   }
   if (!user || !ctx) return null;
 
-  const showDelete = user.user.id === election.manager;
 
+  const showDelete = user.user.id === election.manager.id;
+  
+  function refreshPage() {
+    history.go(0);
+  }
+        
   return (
     <div>
       {election.positions.length !== 0 ? (
@@ -85,7 +90,9 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
                   {/*Navigate to the position application form*/}
                   <Button
                     block
-                    disabled={!election.applications_open}
+                    disabled={
+                      !election.applications_open || !election.domain_match
+                    }
                     onClick={() => {
                       history.push(`/apply/${position.id}`);
                     }}

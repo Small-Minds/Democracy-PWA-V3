@@ -14,12 +14,13 @@ import {
   Route,
   useHistory,
 } from 'react-router-dom';
-import { ButtonToolbar, Icon, IconButton } from 'rsuite';
+import { ButtonToolbar, Icon, IconButton, Message } from 'rsuite';
 import AddPositionModal from '../components/AddPositionModal';
 import ConfirmModal from '../components/ConfirmModal';
 import ElectionTimeline from '../components/ElectionTimeline';
 import PlatformList from '../components/PlatformList';
 import PositionList from '../components/PositionList';
+import SetTimelineModal from '../components/SetTimelineModal';
 import {
   getElection,
   ElectionDetails,
@@ -27,12 +28,16 @@ import {
 } from '../utils/api/ElectionManagement';
 import { User, UserDataInterface } from '../utils/api/User';
 import Loading from './Loading';
+import moment from 'moment';
+import ElectionResults from '../components/ElectionResults';
+import ElectionManager from '../components/ElectionManager';
 
 interface ElectionSubpage {
   id: string | undefined;
   election: ElectionDetails | undefined;
   user: UserDataInterface | null;
   updateElection?: (id: string) => Promise<any>;
+  finished?: boolean;
 }
 
 const ManagementTools: FC<ElectionSubpage> = ({
@@ -40,10 +45,10 @@ const ManagementTools: FC<ElectionSubpage> = ({
   election,
   user,
   updateElection,
+  finished,
 }) => {
   const [setTimelineOpen, setSetTimelineOpen] = useState<boolean>(false);
   const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
-  const [deleteElectionOpen, setDeleteElectionOpen] = useState<boolean>(false);
   const [
     isDeleteElectionModalOpen,
     setIsDeleteElectionModalOpen,
@@ -62,13 +67,20 @@ const ManagementTools: FC<ElectionSubpage> = ({
     <Fragment>
       <h5 style={{ marginBottom: 10 }}>Management Tools</h5>
       <ButtonToolbar>
-        <IconButton icon={<Icon icon="clock-o" />}>Set Timeline</IconButton>
         <IconButton
-          icon={<Icon icon="plus" />}
-          onClick={() => setAddPositionOpen(true)}
+          icon={<Icon icon="clock-o" />}
+          onClick={() => setSetTimelineOpen(true)}
         >
-          Add Position
+          Set Timeline
         </IconButton>
+        {finished !== true && (
+          <IconButton
+            icon={<Icon icon="plus" />}
+            onClick={() => setAddPositionOpen(true)}
+          >
+            Add Position
+          </IconButton>
+        )}
         <IconButton
           appearance="primary"
           icon={<Icon icon="trash" />}
@@ -89,7 +101,11 @@ const ManagementTools: FC<ElectionSubpage> = ({
         expectedResult={204}
         cleanUpFunc={() => redirectToHome()}
       />
-      {/* TODO: Add configure times modal. */}
+      <SetTimelineModal
+        election={election}
+        isOpen={setTimelineOpen}
+        closeModal={() => setSetTimelineOpen(false)}
+      />
       <AddPositionModal
         open={addPositionOpen}
         setOpen={setAddPositionOpen}
@@ -108,6 +124,9 @@ const Information: FC<ElectionSubpage> = ({ id, election, updateElection}) => {
   return (
     <Fragment>
       <h3>Information</h3>
+      <br />
+      <ElectionManager election={election} />
+      <br />
       <br />
       <ElectionTimeline election={election} />
       <br />
@@ -168,7 +187,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
   useEffect(() => {
     if (!id) return;
     if (!election) return;
-    setShowTools(user?.user.id === election.manager);
+    setShowTools(user?.user.id === election.manager.id);
   }, [id, election, user]);
 
   // Return to the previous page if no ID is provided.
@@ -184,6 +203,35 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
       </Fragment>
     );
 
+  if (moment(election.voting_end_time) < moment()) {
+    return (
+      <Fragment>
+        <h1>{election.title}</h1>
+        <p>
+          <b>@{election.election_email_domain}</b>
+          &nbsp;&middot;&nbsp;
+          <span>{election.description}</span>
+        </p>
+        <br />
+        <h2>Results</h2>
+        {showTools && (
+          <Fragment>
+            <br />
+            <ManagementTools
+              id={id}
+              election={election}
+              user={user}
+              updateElection={updateElection}
+              finished={true}
+            />
+            <br />
+          </Fragment>
+        )}
+        <ElectionResults />
+      </Fragment>
+    );
+  }
+
   return (
     <Fragment>
       <h1>{election.title}</h1>
@@ -193,13 +241,26 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
         <span>{election.description}</span>
       </p>
       <br />
+      {election && election.domain_match === false && (
+        <Fragment>
+          <Message
+            type="error"
+            showIcon
+            description={
+              `You cannot participate in this election because your email domain is not` +
+              `  @${election.election_email_domain}`
+            }
+          />
+          <br />
+        </Fragment>
+      )}
       <Fragment>
         <ButtonToolbar>
           <IconButton
             appearance="primary"
             icon={<Icon icon="check2" />}
             onClick={() => history.push(`${match.url}/vote`)}
-            disabled={!election.voting_open}
+            disabled={!election.voting_open || !election.domain_match}
           >
             Vote
           </IconButton>
@@ -208,7 +269,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
             icon={<Icon icon="list" />}
             onClick={() => history.push(`${match.url}/positions`)}
             color="green"
-            disabled={!election.applications_open}
+            disabled={!election.applications_open || !election.domain_match}
           >
             Apply Now
           </IconButton>
@@ -241,6 +302,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
             election={election}
             user={user}
             updateElection={updateElection}
+            finished={false}
           />
           <br />
         </Fragment>
