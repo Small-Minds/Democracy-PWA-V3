@@ -25,8 +25,8 @@ import {
 interface setTimelineModalInput {
   election: ElectionDetails;
   isOpen: boolean;
-  closeModal: ()=>void;
-  cleanupFunc: ()=>void;
+  closeModal: () => void;
+  cleanupFunc: () => void;
 }
 
 export default function SetTimelineModal({
@@ -98,9 +98,8 @@ export default function SetTimelineModal({
     updateOldElection(newElectionDetails).then((res) => {
       if (res == 200) {
         cleanupFunc();
-      } 
+      }
       closeModal();
-      
     });
   }
 

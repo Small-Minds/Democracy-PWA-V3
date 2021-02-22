@@ -104,7 +104,9 @@ const ManagementTools: FC<ElectionSubpage> = ({
         election={election}
         isOpen={setTimelineOpen}
         closeModal={() => setSetTimelineOpen(false)}
-        cleanupFunc={()=> {if (updateElection) updateElection(election.id);}}
+        cleanupFunc={() => {
+          if (updateElection) updateElection(election.id);
+        }}
       />
       <AddPositionModal
         open={addPositionOpen}
