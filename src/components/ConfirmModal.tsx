@@ -22,8 +22,6 @@ export default function ConfirmModal({
   cleanUpFunc,
   expectedResult,
 }: ConfirmModalInput) {
-  
-
   return (
     <Modal backdrop="static" show={isOpen} onHide={() => closeModal()}>
       <Modal.Header>

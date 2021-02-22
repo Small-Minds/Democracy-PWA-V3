@@ -9,9 +9,11 @@ import {
   Modal,
   Notification,
 } from 'rsuite';
+
 import {
   deletePosition,
   ElectionDetails,
+  updateOldElection,
 } from '../utils/api/ElectionManagement';
 import { User } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';
@@ -19,7 +21,7 @@ import ConfirmModal from './ConfirmModal';
 
 interface PLProps {
   election: ElectionDetails;
-  updateElection?: (id: string) => Promise<any>;
+  updateElection: () => void;
 }
 
 const PositionList: FC<PLProps> = ({ election, updateElection }) => {
@@ -35,13 +37,8 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
   }
   if (!user || !ctx) return null;
 
-
   const showDelete = user.user.id === election.manager.id;
-  
-  function refreshPage() {
-    history.go(0);
-  }
-        
+
   return (
     <div>
       {election.positions.length !== 0 ? (
@@ -76,7 +73,9 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
                       callBackFunc={() => deletePosition(position.id)}
                       isOpen={isDeletePositionModalOpen}
                       closeModal={() => closeDeletePositionModal()}
-                      cleanUpFunc={() => updateElection}
+                      cleanUpFunc={() => {
+                        updateElection();
+                      }}
                       expectedResult={204}
                     />
                   </FlexboxGrid.Item>
