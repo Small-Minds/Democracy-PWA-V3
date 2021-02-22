@@ -19,9 +19,10 @@ import ConfirmModal from './ConfirmModal';
 
 interface PLProps {
   election: ElectionDetails;
+  updateElection?: (id: string) => Promise<any>;
 }
 
-const PositionList: FC<PLProps> = ({ election }) => {
+const PositionList: FC<PLProps> = ({ election, updateElection }) => {
   const ctx = useContext(Credentials);
   const user = useContext(User);
   const history = useHistory();
@@ -70,7 +71,7 @@ const PositionList: FC<PLProps> = ({ election }) => {
                       callBackFunc={() => deletePosition(position.id)}
                       isOpen={isDeletePositionModalOpen}
                       closeModal={() => closeDeletePositionModal()}
-                      cleanUpFunc={() => history.go(0)}
+                      cleanUpFunc={() => updateElection}
                       expectedResult={204}
                     />
                   </FlexboxGrid.Item>

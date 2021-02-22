@@ -22,35 +22,7 @@ export default function ConfirmModal({
   cleanUpFunc,
   expectedResult,
 }: ConfirmModalInput) {
-  const [success, setSuccess] = useState<boolean>(false);
-  if (success) {
-    return (
-      <Modal
-        backdrop="static"
-        show={success}
-        onHide={() => {
-          setSuccess(false);
-          cleanUpFunc();
-        }}
-      >
-        <Modal.Header>
-          <Modal.Title>Success</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Successfully Executed</Modal.Body>
-        <Modal.Footer>
-          <Button
-            onClick={() => {
-              setSuccess(false);
-              cleanUpFunc();
-            }}
-            appearance="primary"
-          >
-            OK
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  }
+  
 
   return (
     <Modal backdrop="static" show={isOpen} onHide={() => closeModal()}>
@@ -64,7 +36,7 @@ export default function ConfirmModal({
             closeModal();
             callBackFunc().then((res: any) => {
               if (res == expectedResult) {
-                setSuccess(true);
+                cleanUpFunc();
               } else return;
             });
           }}

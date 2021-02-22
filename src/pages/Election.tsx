@@ -103,7 +103,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
   );
 };
 
-const Information: FC<ElectionSubpage> = ({ id, election }) => {
+const Information: FC<ElectionSubpage> = ({ id, election, updateElection}) => {
   if (!id || !election) return null;
   return (
     <Fragment>
@@ -113,7 +113,7 @@ const Information: FC<ElectionSubpage> = ({ id, election }) => {
       <br />
       <h4>Positions</h4>
       <br />
-      <PositionList election={election} />
+      <PositionList election={election} updateElection={updateElection}/>
       <br />
       <h4>Raw Data</h4>
       <code>
