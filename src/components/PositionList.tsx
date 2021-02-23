@@ -1,6 +1,6 @@
 import React, { useContext, useState, FC } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Col, FlexboxGrid, List } from 'rsuite';
+import { Button, Col, FlexboxGrid, List, Notification} from 'rsuite';
 
 import {
   deletePosition,
@@ -29,6 +29,23 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
   if (!user || !ctx) return null;
 
   const showDelete = user.user.id === election.manager.id;
+
+  function deletePositionHandler(result: number) :void{
+    if (result == 204){
+      setIsDeletePositionModalOpen(false);
+      updateElection();
+      Notification['success']({
+        title: 'Success',
+        description: 'The position has been successfully deleted',
+      });
+    }else{
+      setIsDeletePositionModalOpen(false);
+      Notification['error']({
+        title: 'Error',
+        description: 'Failed to delete the position',
+      });
+    }
+  }
 
   return (
     <div>
@@ -64,10 +81,7 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
                       callBackFunc={() => deletePosition(position.id)}
                       isOpen={isDeletePositionModalOpen}
                       closeModal={() => closeDeletePositionModal()}
-                      cleanUpFunc={() => {
-                        updateElection();
-                      }}
-                      expectedResult={204}
+                      cleanUpFunc={() => deletePositionHandler}
                     />
                   </FlexboxGrid.Item>
                 )}

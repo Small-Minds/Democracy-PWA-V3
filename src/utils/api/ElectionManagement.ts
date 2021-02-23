@@ -184,17 +184,9 @@ export async function deletePosition(positionId: string): Promise<Number> {
       headers: { Authorization: `JWT  ${token}` },
     })
     .then((res) => {
-      Notification['success']({
-        title: 'Success',
-        description: 'The position has been successfully deleted',
-      });
       return res.status;
     })
     .catch((err) => {
-      Notification['error']({
-        title: 'Error',
-        description: 'Failed to delete the position',
-      });
       return err.status;
     });
 }
