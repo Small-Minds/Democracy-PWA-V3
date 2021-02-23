@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { useContext } from 'react';
 import Gravatar from 'react-gravatar';
+import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { Avatar, Button } from 'rsuite';
 import { User } from '../utils/api/User';
@@ -8,10 +9,11 @@ import { User } from '../utils/api/User';
 export default function ManageAccount() {
   const user = useContext(User);
   const history = useHistory();
+  const [t] = useTranslation();
   return (
     <Fragment>
-      <h1>Account</h1>
-      <p>Update or delete your Democracy account.</p>
+      <h1>{t('manageAccountPage.title')}</h1>
+      <p>{t('manageAccountPage.instruction')}</p>
       <br />
       <p>
         In development! Tools will be added here soon to manage your account.
@@ -26,7 +28,7 @@ export default function ManageAccount() {
         }}
         primary
       >
-        Change profile image with Gravatar
+        {t('manageAccountPage.changeProfileBtn')}
       </Button>
     </Fragment>
   );

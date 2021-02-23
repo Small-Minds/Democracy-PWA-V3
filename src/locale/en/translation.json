@@ -105,6 +105,12 @@
       "addPositionBtn": "Add Position",
       "deleteEletionBtn": "Delete Election",
       "managementToolsSectionTitle": "Management Tools"
+    },
+    "manageAccountPage": {
+      "title": "Account",
+      "instruction": "Update or delete your Democracy account.",
+      "changeProfileBtn": "Change profile image with Gravatar"
     }
+    
   }
 }
