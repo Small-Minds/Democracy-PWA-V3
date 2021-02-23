@@ -110,6 +110,20 @@
       "title": "Account",
       "instruction": "Update or delete your Democracy account.",
       "changeProfileBtn": "Change profile image with Gravatar"
+    },
+    "positionApplyPage": {
+      "fieldIsRequiredMsg": "This field is required",
+      "subSuccessModalTitle": "Congrats",
+      "subSuccessModalBody": "You have successfully submit your application",
+      "subLimitationModalTitle": "Application Limit Reached",
+      "subLimitationModalBody": "You can only apply for one position within this election.",
+      "subFailModalTitle": "Failed",
+      "subFailModalBody": "Failed to submit your application",
+      "positionSectionTitle": "Position Description",
+      "posAppFormTitle": "Application Form",
+      "posAppFormPersonalStatement": "Personal Statement",
+      "posAppFormSubBtn": "Submit",
+      "posAppFormCancelBtn": "Cancel"
     }
     
   }
