@@ -132,7 +132,7 @@ export default function Vote() {
 
   return (
     <div>
-      <h2>{`${t('votePage.ballotElectionTitle')} ${ballot.title}`}</h2>
+      <h3>{`${t('votePage.ballotElectionTitle')} ${ballot.title}`}</h3>
       <p>
         {`${t('votePage.ballotPositionTitle')} ${ballot.positions
           .map((pos) => pos.title)
@@ -155,7 +155,7 @@ export default function Vote() {
                 <h3>{pos.title}</h3>
               </Divider>
               <br />
-              <h5>{t('votePage.ballotPosDecriptionTitle')}</h5>
+              <h5>{t('votePage.ballotPosDescriptionTitle')}</h5>
               <p>{pos.description}</p>
               <br />
               <h5>{t('votePage.ballotPosCandidateTitle')}</h5>

@@ -1,6 +1,30 @@
 {
   "translation": {
     "languageName": "English",
+    "compatability": 1.0,
+    "general": {
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "close": "Close",
+      "delete": "Delete",
+      "required": "This field is required.",
+      "returnToLogin": "Return to Login and Signup Page",
+      "app": {
+        "name": "Democracy"
+      }
+    },
+    "mainPage": {
+      "subtitle": "Welcome. Vote, register your candidacy, or configure a new election",
+      "slogan": "Sign up and participate in student elections.",
+      "loginButton": "Log In",
+      "logoutButton": "Log Out",
+      "homeLink": "Home",
+      "voteLink": "Vote",
+      "setupLink": "Setup",
+      "logoutSuccessTitle": "Logged Out",
+      "logoutSuccessDescription": "You have successfully logged out of your Democracy session. Enjoy the rest of your day!",
+      "welcome": "Welcome"
+    },
     "signUpForm": {
       "loginErrorMsg": "You are already logged in",
       "msgRequired": "This field is required",
@@ -14,6 +38,12 @@
       "passwordInputLabel": "Password",
       "passwordInputFieldHint": "Please enter your password twice",
       "submitBtn": "Submit"
+    },
+    "electionList": {
+      "button": {
+        "viewElection": "View",
+        "manageElection": "Manage"
+      }
     },
     "signInForm": {
       "alreadyLogInMsg": "You are already logged in",
@@ -45,35 +75,11 @@
       "tooManyElectionsErrorTitle": "Too Many Elections",
       "tooManyElectionsErrorBody": "Accounts can run a limit of three elections at once. Please delete old or unused elections."
     },
-    "loggedInInfo": {
-      "sectionTitle": "Authentication Data",
-      "loggedInFieldLabel": "Logged in",
-      "notLoggedIn": "No",
-      "loggedIn": "Yes",
-      "accessTokenFieldLabel": "Access Token",
-      "refreshTokenFieldLabel": "Refresh Token",
-      "noToken": "not set"
-    },
     "languagePicker": {
       "title": "Language Selection",
       "en": "English",
       "fr": "French",
       "cn": "Chinese"
-    },
-    "mainPage": {
-      "title": "Democracy",
-      "subtitle": "Welcome. Vote, register your candidacy, or configure a new election",
-      "appName": "Democracy",
-      "slogan": "Sign up and participate in student elections.",
-      "electionToolSectionTitle": "Election Tools",
-      "loginButton": "Log In",
-      "logoutButton": "Log Out",
-      "homeLink": "Home",
-      "voteLink": "Vote",
-      "setupLink": "Setup",
-      "logoutSuccessTitle": "Logged Out",
-      "logoutSuccessDescription": "You have successfully logged out of your Democracy session. Enjoy the rest of your day!",
-      "welcome": "Welcome"
     },
     "emptyPage": {
       "title": "Empty Page",
@@ -131,9 +137,9 @@
       "ballotSubSuccessModalBody": "Your ballot is on the way! Check back soon for results.",
       "ballotSubFailModalTitle": "Failed to Submit",
       "ballotSubFailModalBody": "Failed to submit your ballot. The administrator will be notified.",
-      "ballotElectionTitle": "Ballot for",
-      "ballotPositionTitle": "Elect a candidate for",
-      "ballotViewCandidateInfo": "Click on candidtes to view their platform",
+      "ballotElectionTitle": "Official Ballot for",
+      "ballotPositionTitle": "Elect a candidate for these positions:",
+      "ballotViewCandidateInfo": "Click on candidates to view their platform.",
       "ballotPosDescriptionTitle": "Description",
       "ballotPosCandidateTitle": "Candidates",
       "ballotVoteSectionTitle": "Select a candidate",
@@ -152,8 +158,35 @@
     "candidateInfoComp": {
       "modalTitle": "Candidate Information",
       "candidateName": "Name: ",
-      "candidatePersonalStatement": "Personal Statement: ",
-      "okBtn": "OK"
+      "candidatePersonalStatement": "Personal Statement: "
+    },
+    "setTimelineModal": {
+      "title": "Election Timeline Configuration",
+      "headings": {
+        "applicationTimes": "Application Start Date and Deadline",
+        "votingTimes": "Voting Start Date and Deadline"
+      },
+      "message": {
+        "changeTimelineWarning": "Changing the timeline is currently not restricted and can have serious consequences. In the future, starting the election will disable timeline manipulation."
+      },
+      "error": {
+        "applicationDeadlineEarly": "The application deadline must be after the start date!",
+        "voteStartEarly": "The voting start date must be after the application deadline date!",
+        "voteDeadlineEarly": "The voting deadline must be after the voting start date!"
+      },
+      "form": {
+        "timeDivider": "to"
+      }
+    },
+    "emailVerification": {
+      "title": {
+        "emailVerified": "Email Verified",
+        "emailAlreadyVerified": "Email Already Verified",
+        "emailVerificationError": "Email Verification Error"
+      },
+      "subtitle": {
+        "emailVerificationError": "Please ensure you have correctly followed the link from the email."
+      }
     }
   }
 }

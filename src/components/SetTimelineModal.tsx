@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React from 'react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import {
   Button,
@@ -35,11 +36,12 @@ export default function SetTimelineModal({
   closeModal,
   cleanupFunc,
 }: setTimelineModalInput) {
-  const history = useHistory();
+  const [t] = useTranslation();
+
   //set up required variable for rsuite forms.
   let form: any = undefined;
   //form model setup
-  const msg_required = 'This field is required';
+  const msg_required = t('general.required');
   const model = Schema.Model({
     submission_start_time: Schema.Types.DateType().isRequired(msg_required),
     submission_end_time: Schema.Types.DateType()
@@ -49,7 +51,7 @@ export default function SetTimelineModal({
           return false;
         }
         return true;
-      }, 'The application deadline must be after the start date!'),
+      }, t('setTimelineModal.error.applicationDeadlineEarly')),
     voting_start_time: Schema.Types.DateType()
       .isRequired(msg_required)
       .addRule((value, data) => {
@@ -57,7 +59,7 @@ export default function SetTimelineModal({
           return false;
         }
         return true;
-      }, 'The voting start date must be after the application deadline date!'),
+      }, t('setTimelineModal.error.voteStartEarly')),
     voting_end_time: Schema.Types.DateType()
       .isRequired(msg_required)
       .addRule((value, data) => {
@@ -65,7 +67,7 @@ export default function SetTimelineModal({
           return false;
         }
         return true;
-      }, 'The voting deadline must be after the voting start date!'),
+      }, t('setTimelineModal.error.voteDeadlineEarly')),
   });
   //formData setup
   const [formData, setFormData] = useState<Record<string, any>>({
@@ -83,7 +85,6 @@ export default function SetTimelineModal({
     formData: Record<string, any>
   ) {
     if (!form.check()) {
-      console.log('New election form has errors.');
       console.log(formErrors);
       return;
     }
@@ -121,7 +122,7 @@ export default function SetTimelineModal({
       overflow={false}
     >
       <Modal.Header>
-        <h4>Election Timeline Setup</h4>
+        <h4>{t('setTimelineModal.title')}</h4>
       </Modal.Header>
       <Modal.Body>
         <Form
@@ -137,11 +138,11 @@ export default function SetTimelineModal({
             <Message
               type="warning"
               showIcon
-              description={`Changing the timeline is currently not restricted and can have serious consequences. In the future, starting the election will disable timeline manipulation.`}
+              description={t('setTimelineModal.message.changeTimelineWarning')}
             />
             <br />
             <ControlLabel>
-              <h5>Application starting time and deadline</h5>
+              <h5>{t('setTimelineModal.headings.applicationTimes')}</h5>
             </ControlLabel>
             <FlexboxGrid justify="start" align="middle">
               <FlexboxGrid.Item>
@@ -152,7 +153,9 @@ export default function SetTimelineModal({
                   placement="bottomStart"
                 ></FormControl>
               </FlexboxGrid.Item>
-              <FlexboxGrid.Item style={{ padding: 10 }}>to</FlexboxGrid.Item>
+              <FlexboxGrid.Item style={{ padding: 10 }}>
+                {t('setTimelineModal.form.timeDivider')}
+              </FlexboxGrid.Item>
               <FlexboxGrid.Item>
                 <FormControl
                   accepter={DatePicker}
@@ -165,7 +168,7 @@ export default function SetTimelineModal({
           </FormGroup>
           <FormGroup>
             <ControlLabel>
-              <h5>Voting starting time and deadline</h5>
+              <h5>{t('setTimelineModal.headings.votingTimes')}</h5>
             </ControlLabel>
             <FlexboxGrid justify="start" align="middle">
               <FlexboxGrid.Item>
@@ -176,7 +179,9 @@ export default function SetTimelineModal({
                   placement="bottomStart"
                 ></FormControl>
               </FlexboxGrid.Item>
-              <FlexboxGrid.Item style={{ padding: 10 }}>to</FlexboxGrid.Item>
+              <FlexboxGrid.Item style={{ padding: 10 }}>
+                {t('setTimelineModal.form.timeDivider')}
+              </FlexboxGrid.Item>
               <FlexboxGrid.Item>
                 <FormControl
                   accepter={DatePicker}
@@ -198,9 +203,11 @@ export default function SetTimelineModal({
                     updateElection(election, formData);
                   }}
                 >
-                  Submit
+                  {t('general.submit')}
                 </Button>
-                <Button onClick={() => closeModal()}>Cancel</Button>
+                <Button onClick={() => closeModal()}>
+                  {t('general.cancel')}
+                </Button>
               </ButtonToolbar>
             </FlexboxGrid.Item>
           </FlexboxGrid>

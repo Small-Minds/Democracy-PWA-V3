@@ -73,9 +73,8 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
             onClick={() => {
               setOpen(false);
             }}
-            appearance="primary"
           >
-            {t('candidateInfoComp.okBtn')}
+            {t('general.close')}
           </Button>
         </Modal.Footer>
       </Modal>

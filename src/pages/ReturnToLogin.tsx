@@ -3,7 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { Button, FlexboxGrid, Icon, IconButton } from 'rsuite';
 
-const ReturnToLogin: FC<{ msg: string }> = ({ msg }) => {
+const ReturnToLogin: FC<{ title: string; subtitle?: string }> = ({
+  title,
+  subtitle,
+}) => {
   const [t] = useTranslation();
   const history = useHistory();
 
@@ -12,9 +15,13 @@ const ReturnToLogin: FC<{ msg: string }> = ({ msg }) => {
       <FlexboxGrid.Item>
         <div style={{ textAlign: 'center' }}>
           <br />
-          <h2>{msg}</h2>
+          <h2>{title}</h2>
           <br />
-          <br />
+          {subtitle && (
+            <Fragment>
+              <p>{subtitle}</p> <br />
+            </Fragment>
+          )}
           <br />
           <IconButton
             appearance="primary"
@@ -24,7 +31,7 @@ const ReturnToLogin: FC<{ msg: string }> = ({ msg }) => {
               history.push('/');
             }}
           >
-            Return to Login and Signup Page
+            {t('general.returnToLogin')}
           </IconButton>
           <br />
         </div>

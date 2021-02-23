@@ -293,7 +293,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
             onClick={() => history.push(`${match.url}/vote`)}
             disabled={!election.voting_open || !election.domain_match}
           >
-            {t('electionPage.votnBtn')}
+            {t('electionPage.voteBtn')}
           </IconButton>
           <IconButton
             appearance="primary"

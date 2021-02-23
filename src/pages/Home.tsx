@@ -10,7 +10,7 @@ function Home() {
 
   return (
     <Fragment>
-      <h1>{t('mainPage.title')}</h1>
+      <h1>{t('general.app.name')}</h1>
       <p>{t('mainPage.subtitle')}</p>
       <br />
       <br />

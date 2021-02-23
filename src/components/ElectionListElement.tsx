@@ -1,4 +1,5 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Col, FlexboxGrid, Icon, List } from 'rsuite';
 import { Election } from '../utils/api/ElectionManagement';
@@ -14,14 +15,15 @@ const ElectionListElement: FC<ElectionListElementProps> = ({
   election,
 }) => {
   const user = useContext(User);
+  const [t] = useTranslation();
 
-  const defaultName = 'View Election';
-  const manageName = 'Manage Election';
-  const getButtonName = () => {
-    if (!user || !user.user || !user.user.id) return defaultName;
-    if (user.user.id === election.manager) return manageName;
-    return defaultName;
-  };
+  const buttonName = useMemo(() => {
+    if (!user || !user.user || !user.user.id)
+      return t('electionList.button.viewElection');
+    if (user.user.id === election.manager)
+      return t('electionList.button.manageElection');
+    return t('electionList.button.viewElection');
+  }, [user, election]);
 
   return (
     <List.Item key={index} index={index}>
@@ -41,7 +43,7 @@ const ElectionListElement: FC<ElectionListElementProps> = ({
           style={{ paddingRight: 20, textAlign: 'right' }}
         >
           <Link to={`/election/${election.id}`}>
-            {getButtonName()}&nbsp;
+            {buttonName}&nbsp;
             <Icon icon="arrow-right-line" />
           </Link>
         </FlexboxGrid.Item>

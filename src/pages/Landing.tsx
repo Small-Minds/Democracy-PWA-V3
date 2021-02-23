@@ -18,7 +18,7 @@ function Landing() {
 
   return (
     <Fragment>
-      <h1>{t('mainPage.appName')}</h1>
+      <h1>{t('general.app.name')}</h1>
       <br />
       <p>{t('mainPage.slogan')}</p>
       <br />
