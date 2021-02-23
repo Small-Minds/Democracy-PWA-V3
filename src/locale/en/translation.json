@@ -124,6 +124,21 @@
       "posAppFormPersonalStatement": "Personal Statement",
       "posAppFormSubBtn": "Submit",
       "posAppFormCancelBtn": "Cancel"
+    },
+    "votePage": {
+      "ballotSubSuccessModalTitle": "Submitted",
+      "ballotSubSuccessModalBody": "Your ballot is on the way! Check back soon for results.",
+      "ballotSubFailModalTitle": "Failed to Submit",
+      "ballotSubFailModalBody": "Failed to submit your ballot. The administrator will be notified.",
+      "ballotElectionTitle": "Ballot for",
+      "ballotPositionTitle": "Elect a candidate for",
+      "ballotViewCandidateInfo": "Click on candidtes to view their platform",
+      "ballotPosDescriptionTitle": "Description",
+      "ballotPosCandidateTitle": "Candidates",
+      "ballotVoteSectionTitle": "Select a candidate",
+      "ballotVoteOption": "abstain",
+      "ballotSubBtn": "Submit",
+      "ballotCancelBtn": "Cancel"
     }
     
   }
