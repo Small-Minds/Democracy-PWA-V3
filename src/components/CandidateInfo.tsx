@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useMemo } from 'react';
 import { useEffect } from 'react';
 import Gravatar from 'react-gravatar';
+import { useTranslation } from 'react-i18next';
 import { Modal, Button, Avatar } from 'rsuite';
 import ModalBody from 'rsuite/lib/Modal/ModalBody';
 import { CandidateWithUserDetails } from '../utils/api/ElectionManagement';
@@ -16,6 +17,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
     return <Gravatar email={candidate.user.email} size={60} rating="pg" />;
   }, [candidate]);
 
+  const [t] = useTranslation();
   return (
     <Fragment>
       <Button
@@ -46,7 +48,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
           setOpen(false);
         }}
       >
-        <Modal.Header>Candidate Information</Modal.Header>
+        <Modal.Header>{t('candidateInfoComp.modalTitle')}</Modal.Header>
         <Modal.Body>
           <Avatar
             size="lg"
@@ -59,9 +61,11 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
           >
             <Gravatar email={candidate.user.email} size={60} rating="pg" />
           </Avatar>
-          <h5>Name: {candidate.user.name}</h5>
+          <h5>{`${t('candidateInfoComp.candidateName')} ${
+            candidate.user.name
+          }`}</h5>
           <br />
-          <h5>Personal Statement:</h5>
+          <h5>{t('candidateInfoComp.candidatePersonalStatement')}</h5>
           <p>{candidate.platform}</p>
         </Modal.Body>
         <Modal.Footer>
@@ -71,7 +75,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
             }}
             appearance="primary"
           >
-            Ok
+            {t('candidateInfoComp.okBtn')}
           </Button>
         </Modal.Footer>
       </Modal>

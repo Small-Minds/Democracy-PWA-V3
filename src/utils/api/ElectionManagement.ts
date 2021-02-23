@@ -136,13 +136,18 @@ export async function deleteElection(electionId: string): Promise<Number> {
       headers: { Authorization: `JWT ${token}` },
     })
     .then((res) => {
-      if (res.status == 204) {
-        Notification['success']({
-          title: 'Success',
-          description: 'The election is deleted successfully',
-        });
-      }
+      Notification['success']({
+        title: 'Success',
+        description: 'The election has been successfully deleted',
+      });
       return res.status;
+    })
+    .catch((err) => {
+      Notification['error']({
+        title: 'Error',
+        description: 'Failed to delete the election',
+      });
+      return err.status;
     });
 }
 
@@ -155,13 +160,20 @@ export async function updateOldElection(
       headers: { Authorization: `JWT ${token}` },
     })
     .then((res) => {
-      if (res.status != 200) {
-        Notification['error']({
-          title: 'Failed',
-          description: 'Failed to update the election',
+      if (res.status == 200) {
+        Notification['success']({
+          title: 'Success',
+          description: 'The election has been successfully updated',
         });
       }
       return res.status;
+    })
+    .catch((err) => {
+      Notification['error']({
+        title: 'Error',
+        description: 'Failed to update the election',
+      });
+      return err.status;
     });
 }
 
@@ -172,13 +184,18 @@ export async function deletePosition(positionId: string): Promise<Number> {
       headers: { Authorization: `JWT  ${token}` },
     })
     .then((res) => {
-      if (res.status == 204) {
-        Notification['success']({
-          title: 'Success',
-          description: 'The election is deleted successfully',
-        });
-      }
+      Notification['success']({
+        title: 'Success',
+        description: 'The position has been successfully deleted',
+      });
       return res.status;
+    })
+    .catch((err) => {
+      Notification['error']({
+        title: 'Error',
+        description: 'Failed to delete the position',
+      });
+      return err.status;
     });
 }
 

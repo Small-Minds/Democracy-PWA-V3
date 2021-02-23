@@ -3,8 +3,23 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
 import languageEN from './locale/en/translation.json';
-import languageCN from './locale/cn/translation.json';
+import languageZH from './locale/zh/translation.json';
 import languageFR from './locale/fr/translation.json';
+import languageAR from './locale/ar/translation.json';
+import languageHI from './locale/hi/translation.json';
+
+export type LanguageDef = {
+  name: string;
+  key: string;
+};
+
+export const locales = [
+  { name: 'English', key: 'en' },
+  { name: 'Français', key: 'fr' },
+  { name: '中文', key: 'zh' },
+  { name: 'العربية', key: 'ar' },
+  { name: 'हिन्दी', key: 'hi' },
+];
 
 i18n
   .use(LanguageDetector)
@@ -12,8 +27,10 @@ i18n
   .init({
     resources: {
       en: languageEN,
-      cn: languageCN,
+      zh: languageZH,
       fr: languageFR,
+      ar: languageAR,
+      hi: languageHI,
     },
     /*default language*/
     /* lng: 'en', */

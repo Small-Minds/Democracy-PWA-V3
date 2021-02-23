@@ -106,16 +106,14 @@ export default function Vote() {
         setFormErrors({});
         history.push(`/election/${id}`);
         Notification['success']({
-          title: 'Submitted',
-          description:
-            'Your ballot is on the way! Check back soon for results.',
+          title: t('votePage.ballotSubSuccessModalTitle'),
+          description: t('votePage.ballotSubSuccessModalBody'),
         });
       })
       .catch((err) => {
         Notification['error']({
-          title: 'Failed to Submit',
-          description:
-            'Failed to submit your ballot. The administrator will be notified.',
+          title: t('votePage.ballotSubFailModalTitle'),
+          description: t('votePage.ballotSubFailModalBody'),
         });
         console.log(err);
         if (err && err.response) console.log(err.response);
@@ -134,12 +132,13 @@ export default function Vote() {
 
   return (
     <div>
-      <h2>Ballot for {ballot.title}</h2>
+      <h2>{`${t('votePage.ballotElectionTitle')} ${ballot.title}`}</h2>
       <p>
-        Elect a candidate for{' '}
-        {ballot.positions.map((pos) => pos.title).join(', ')}.
+        {`${t('votePage.ballotPositionTitle')} ${ballot.positions
+          .map((pos) => pos.title)
+          .join(', ')}`}
       </p>
-      <p>Click on candidates to view their platform.</p>
+      <p>{t('votePage.ballotViewCandidateInfo')}</p>
       <br />
       <Form
         onChange={(newData) => setFormData(newData)}
@@ -156,10 +155,10 @@ export default function Vote() {
                 <h3>{pos.title}</h3>
               </Divider>
               <br />
-              <h5>Description</h5>
+              <h5>{t('votePage.ballotPosDecriptionTitle')}</h5>
               <p>{pos.description}</p>
               <br />
-              <h5>Candidates</h5>
+              <h5>{t('votePage.ballotPosCandidateTitle')}</h5>
               <br />
               <FlexboxGrid justify="start" align="middle">
                 {pos.candidates.map((candidate, index) => (
@@ -169,7 +168,7 @@ export default function Vote() {
                 ))}
               </FlexboxGrid>
               <br />
-              <h5>Select a candidate</h5>
+              <h5>{t('votePage.ballotVoteSectionTitle')}</h5>
               <br />
               <FormControl name={pos.id} accepter={RadioGroup} required>
                 {pos.candidates.map((candidate, index) => (
@@ -177,7 +176,9 @@ export default function Vote() {
                     <Radio value={candidate.id}>{candidate.user.name}</Radio>
                   </div>
                 ))}
-                <Radio value={`abstain`}>abstain</Radio>
+                <Radio value={`abstain`}>
+                  {t('votePage.ballotVoteOption')}
+                </Radio>
               </FormControl>
             </div>
           ))}
@@ -186,20 +187,20 @@ export default function Vote() {
             <FlexboxGrid.Item>
               <ButtonToolbar>
                 <Button
-                  size="lg"
-                  onClick={() => {
-                    history.goBack();
-                  }}
-                >
-                  Cancel
-                </Button>
-                <Button
                   appearance="primary"
                   size="lg"
                   type="submit"
                   onClick={() => submit()}
                 >
-                  Submit
+                  {t('votePage.ballotSubBtn')}
+                </Button>
+                <Button
+                  size="lg"
+                  onClick={() => {
+                    history.goBack();
+                  }}
+                >
+                  {t('votePage.ballotCancelBtn')}
                 </Button>
               </ButtonToolbar>
             </FlexboxGrid.Item>

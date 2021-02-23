@@ -25,13 +25,15 @@ import {
 interface setTimelineModalInput {
   election: ElectionDetails;
   isOpen: boolean;
-  closeModal: any;
+  closeModal: () => void;
+  cleanupFunc: () => void;
 }
 
 export default function SetTimelineModal({
   election,
   isOpen,
   closeModal,
+  cleanupFunc,
 }: setTimelineModalInput) {
   const history = useHistory();
   //set up required variable for rsuite forms.
@@ -92,45 +94,13 @@ export default function SetTimelineModal({
       voting_start_time: formData.voting_start_time,
       voting_end_time: formData.voting_end_time,
     };
-    updateOldElection(newElectionDetails).then((res) => {
-      if (res != 200) {
-        closeModal();
-        Notification['error']({
-          title: 'Failed',
-          description: 'Failed to update the election timelines',
-        });
-      } else {
-        setIsUpdated(true);
-      }
-    });
-  }
 
-  function cleanUpFunc() {
-    closeModal();
-    history.go(0);
-  }
-  if (isUpdated) {
-    return (
-      <Modal backdrop="static" show={isOpen} onHide={() => cleanUpFunc()}>
-        <Modal.Header>
-          <h4>Success</h4>
-        </Modal.Header>
-        <Modal.Body>
-          The election timelines has been updated successfully!
-        </Modal.Body>
-        <Modal.Footer>
-          <FlexboxGrid justify="end">
-            <FlexboxGrid.Item>
-              <ButtonToolbar>
-                <Button appearance="primary" onClick={() => cleanUpFunc()}>
-                  OK
-                </Button>
-              </ButtonToolbar>
-            </FlexboxGrid.Item>
-          </FlexboxGrid>
-        </Modal.Footer>
-      </Modal>
-    );
+    updateOldElection(newElectionDetails).then((res) => {
+      if (res == 200) {
+        cleanupFunc();
+      }
+      closeModal();
+    });
   }
 
   return (

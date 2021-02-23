@@ -1,16 +1,11 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Panel, Dropdown, ButtonToolbar, Navbar, Icon } from 'rsuite';
+import { locales } from '../i18n';
 
 export default function LanguagePicker() {
   //Set Up translation hook
   const [t, i18n] = useTranslation();
-  // Every language must have an object listed here.
-  const languageCollection = [
-    { label: t('languagePicker.en'), value: 'en' },
-    { label: t('languagePicker.fr'), value: 'fr' },
-    { label: t('languagePicker.cn'), value: 'cn' },
-  ];
 
   const languageArr = i18n.language.split('-');
   const languageKey = languageArr.length >= 1 ? languageArr[0] : i18n.language;
@@ -19,13 +14,13 @@ export default function LanguagePicker() {
     <Fragment>
       <Dropdown
         icon={<Icon icon="globe" />}
-        title={t(`languagePicker.${languageKey.toLowerCase() || 'en'}`)}
+        title={t('languageName')}
         onSelect={(key) => i18n.changeLanguage(key)}
         placement="bottomEnd"
       >
-        {languageCollection.map((lang, key) => (
-          <Dropdown.Item key={key} eventKey={lang.value}>
-            {lang.label}
+        {locales.map((lang, key) => (
+          <Dropdown.Item key={key} eventKey={lang.key}>
+            <b>{lang.key}</b> &middot; {lang.name}
           </Dropdown.Item>
         ))}
       </Dropdown>

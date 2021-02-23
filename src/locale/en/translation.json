@@ -1,5 +1,6 @@
 {
   "translation": {
+    "languageName": "English",
     "signUpForm": {
       "loginErrorMsg": "You are already logged in",
       "msgRequired": "This field is required",
@@ -84,7 +85,8 @@
     },
     "setupHomePage": {
       "title": "Setup",
-      "subtitle": "Configure a new or existing election"
+      "subtitle": "Configure a new or existing election",
+      "electionPanelTitle": "Your Elections"
     },
     "electionPage": {
       "deleteElectionModalTitle": "Delete Election",
@@ -104,6 +106,54 @@
       "addPositionBtn": "Add Position",
       "deleteEletionBtn": "Delete Election",
       "managementToolsSectionTitle": "Management Tools"
+    },
+    "manageAccountPage": {
+      "title": "Account",
+      "instruction": "Update or delete your Democracy account.",
+      "changeProfileBtn": "Change profile image with Gravatar"
+    },
+    "positionApplyPage": {
+      "fieldIsRequiredMsg": "This field is required",
+      "subSuccessModalTitle": "Congrats",
+      "subSuccessModalBody": "You have successfully submit your application",
+      "subLimitationModalTitle": "Application Limit Reached",
+      "subLimitationModalBody": "You can only apply for one position within this election.",
+      "subFailModalTitle": "Failed",
+      "subFailModalBody": "Failed to submit your application",
+      "positionSectionTitle": "Position Description",
+      "posAppFormTitle": "Application Form",
+      "posAppFormPersonalStatement": "Personal Statement",
+      "posAppFormSubBtn": "Submit",
+      "posAppFormCancelBtn": "Cancel"
+    },
+    "votePage": {
+      "ballotSubSuccessModalTitle": "Submitted",
+      "ballotSubSuccessModalBody": "Your ballot is on the way! Check back soon for results.",
+      "ballotSubFailModalTitle": "Failed to Submit",
+      "ballotSubFailModalBody": "Failed to submit your ballot. The administrator will be notified.",
+      "ballotElectionTitle": "Ballot for",
+      "ballotPositionTitle": "Elect a candidate for",
+      "ballotViewCandidateInfo": "Click on candidtes to view their platform",
+      "ballotPosDescriptionTitle": "Description",
+      "ballotPosCandidateTitle": "Candidates",
+      "ballotVoteSectionTitle": "Select a candidate",
+      "ballotVoteOption": "abstain",
+      "ballotSubBtn": "Submit",
+      "ballotCancelBtn": "Cancel"
+    },
+    "addPositionModalComp": {
+      "fieldRequiredMsg": "This field is required",
+      "title": "Add A New Position",
+      "posTitle": "Title",
+      "posDescription": "Description",
+      "createBtn": "Create",
+      "cancelBtn": "Cancel"
+    },
+    "candidateInfoComp": {
+      "modalTitle": "Candidate Information",
+      "candidateName": "Name: ",
+      "candidatePersonalStatement": "Personal Statement: ",
+      "okBtn": "OK"
     }
   }
 }

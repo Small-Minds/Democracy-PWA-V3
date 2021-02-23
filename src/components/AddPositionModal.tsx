@@ -42,7 +42,7 @@ const AddPositionModal: FC<APMProps> = ({
   //set up required variable for rsuite forms.
   let form: any = undefined;
   //form model setup
-  const msg_required = 'This field is required';
+  const msg_required = t('addPositionModalComp.fieldRequiredMsg');
   const model = Schema.Model({
     title: Schema.Types.StringType()
       .isRequired(msg_required)
@@ -94,7 +94,7 @@ const AddPositionModal: FC<APMProps> = ({
   return (
     <Fragment>
       <Modal size="sm" show={open} onHide={() => setOpen(false)}>
-        <Modal.Title>Add A New Position</Modal.Title>
+        <Modal.Title>{t('addPositionModalComp.title')}</Modal.Title>
         <Modal.Body>
           <Form
             onChange={(newData) => setFormData(newData)}
@@ -106,11 +106,13 @@ const AddPositionModal: FC<APMProps> = ({
             fluid
           >
             <FormGroup>
-              <ControlLabel>Title</ControlLabel>
+              <ControlLabel>{t('addPositionModalComp.posTitle')}</ControlLabel>
               <FormControl name="title" />
             </FormGroup>
             <FormGroup>
-              <ControlLabel>Description</ControlLabel>
+              <ControlLabel>
+                {t('addPositionModalComp.posDescription')}
+              </ControlLabel>
               <FormControl
                 rows={3}
                 name="description"
@@ -123,21 +125,21 @@ const AddPositionModal: FC<APMProps> = ({
           <Button
             disabled={!ctx?.credentials.authenticated}
             loading={loading}
-            appearance="subtle"
-            onClick={() => setOpen(false)}
-          >
-            Cancel
-          </Button>
-          <Button
-            disabled={!ctx?.credentials.authenticated}
-            loading={loading}
             appearance="primary"
             onClick={() => {
               setLoading(true);
               createNewPosition(formData.title, formData.description);
             }}
           >
-            Create
+            {t('addPositionModalComp.createBtn')}
+          </Button>
+          <Button
+            disabled={!ctx?.credentials.authenticated}
+            loading={loading}
+            appearance="subtle"
+            onClick={() => setOpen(false)}
+          >
+            {t('addPositionModalComp.cancelBtn')}
           </Button>
         </Modal.Footer>
       </Modal>

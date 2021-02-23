@@ -31,7 +31,7 @@ function PositionApply() {
   const ctx = useContext(Credentials);
   //set up required variable for rsuite forms.
   let form: any = undefined;
-  const msg_required = 'This field is required';
+  const msg_required = t('positionApplyPage.fieldIsRequiredMsg');
   const model = Schema.Model({
     personalStatement: Schema.Types.StringType()
       .isRequired(msg_required)
@@ -71,8 +71,8 @@ function PositionApply() {
     submitPositionApplication(application)
       .then(() => {
         Notification['success']({
-          title: 'Congrats',
-          description: 'You have successfully submit your application',
+          title: t('positionApplyPage.subSuccessModalTitle'),
+          description: t('positionApplyPage.subSuccessModalBody'),
         });
         history.goBack();
       })
@@ -80,16 +80,15 @@ function PositionApply() {
         if (x.response && x.response.status === 424) {
           // If the code is 424,
           Notification['error']({
-            title: 'Application Limit Reached',
-            description:
-              'You can only apply for one position within this election.',
+            title: t('positionApplyPage.subLimitationModalTilte'),
+            description: t('positionApplyPage.subLimitationModalBody'),
           });
           return;
         }
         console.error(x);
         Notification['error']({
-          title: 'Failed',
-          description: 'Failed to submit your application',
+          title: t('positionApplyPage.subFailModalTitle'),
+          description: t('positionApplyPage.subFailModalBody'),
         });
       });
   }
@@ -99,10 +98,10 @@ function PositionApply() {
         <div>
           <h1>{position.title}</h1>
           <br />
-          <h4>Position Description</h4>
+          <h4>{t('positionApplyPage.positionSectionTitle')}</h4>
           <p>{position.description}</p>
           <br />
-          <h4>Application Form</h4>
+          <h4>{t('positionApplyPage.posAppFormTitle')}</h4>
           <Form
             onChange={(newData) => setFormData(newData)}
             onCheck={(newErrors) => setFormErrors(newErrors)}
@@ -113,7 +112,9 @@ function PositionApply() {
             fluid
           >
             <FormGroup>
-              <ControlLabel>Personal Statement</ControlLabel>
+              <ControlLabel>
+                {t('positionApplyPage.posAppFormPersonalStatement')}
+              </ControlLabel>
               <FormControl
                 row={5}
                 name="personalStatement"
@@ -122,9 +123,11 @@ function PositionApply() {
             </FormGroup>
             <ButtonToolbar>
               <Button appearance="primary" onClick={() => submitApplication()}>
-                Submit
+                {t('positionApplyPage.posAppFormSubBtn')}
               </Button>
-              <Button onClick={() => history.goBack()}>Cancel</Button>
+              <Button onClick={() => history.goBack()}>
+                {t('positionApplyPage.posAppFormCancelBtn')}
+              </Button>
             </ButtonToolbar>
           </Form>
         </div>

@@ -1,6 +1,7 @@
-import React, { useEffect, useContext, useState, FC } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { Button, Col, FlexboxGrid, Icon, List } from 'rsuite';
+import React, { useContext, useState, FC } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Button, Col, FlexboxGrid, List } from 'rsuite';
+
 import {
   deletePosition,
   ElectionDetails,
@@ -11,9 +12,10 @@ import ConfirmModal from './ConfirmModal';
 
 interface PLProps {
   election: ElectionDetails;
+  updateElection: () => void;
 }
 
-const PositionList: FC<PLProps> = ({ election }) => {
+const PositionList: FC<PLProps> = ({ election, updateElection }) => {
   const ctx = useContext(Credentials);
   const user = useContext(User);
   const history = useHistory();
@@ -27,9 +29,7 @@ const PositionList: FC<PLProps> = ({ election }) => {
   if (!user || !ctx) return null;
 
   const showDelete = user.user.id === election.manager.id;
-  function refreshPage() {
-    history.go(0);
-  }
+
   return (
     <div>
       {election.positions.length !== 0 ? (
@@ -64,7 +64,10 @@ const PositionList: FC<PLProps> = ({ election }) => {
                       callBackFunc={() => deletePosition(position.id)}
                       isOpen={isDeletePositionModalOpen}
                       closeModal={() => closeDeletePositionModal()}
-                      cleanUpFunc={() => refreshPage()}
+                      cleanUpFunc={() => {
+                        updateElection();
+                      }}
+                      expectedResult={204}
                     />
                   </FlexboxGrid.Item>
                 )}
