@@ -102,7 +102,7 @@ export default function SetTimelineModal({
           title: 'Success',
           description: 'The election timeline has been successfully updated.',
         });
-      }else{
+      } else {
         Notification['error']({
           title: 'Error',
           description: 'Failed to update the election timeline',

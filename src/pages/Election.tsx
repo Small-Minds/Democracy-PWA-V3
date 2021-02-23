@@ -41,7 +41,6 @@ interface ElectionSubpage {
   finished?: boolean;
 }
 
-
 const ManagementTools: FC<ElectionSubpage> = ({
   id,
   election,
@@ -60,15 +59,15 @@ const ManagementTools: FC<ElectionSubpage> = ({
     setIsDeleteElectionModalOpen(false);
   }
 
-  function deleteElectionHandler(result: number){
-    if(result == 204){
+  function deleteElectionHandler(result: number) {
+    if (result == 204) {
       setIsDeleteElectionModalOpen(false);
       Notification['success']({
         title: 'Success',
         description: 'The election has been successfully updated',
       });
       history.push(`/`);
-    }else{
+    } else {
       setIsDeleteElectionModalOpen(false);
       Notification['error']({
         title: 'Error',

@@ -16,7 +16,7 @@ export default function ConfirmModal({
   callBackFunc,
   isOpen,
   closeModal,
-  cleanUpFunc
+  cleanUpFunc,
 }: ConfirmModalInput) {
   return (
     <Modal backdrop="static" show={isOpen} onHide={() => closeModal()}>
@@ -29,8 +29,8 @@ export default function ConfirmModal({
           onClick={() => {
             closeModal();
             callBackFunc().then((res: number) => {
-             cleanUpFunc(res)
-            })
+              cleanUpFunc(res);
+            });
           }}
           appearance="primary"
         >
