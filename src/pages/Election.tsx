@@ -31,6 +31,7 @@ import Loading from './Loading';
 import moment from 'moment';
 import ElectionResults from '../components/ElectionResults';
 import ElectionManager from '../components/ElectionManager';
+import { useTranslation } from 'react-i18next';
 
 interface ElectionSubpage {
   id: string | undefined;
@@ -39,6 +40,7 @@ interface ElectionSubpage {
   updateElection?: (id: string) => Promise<any>;
   finished?: boolean;
 }
+
 
 const ManagementTools: FC<ElectionSubpage> = ({
   id,
@@ -54,7 +56,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
     setIsDeleteElectionModalOpen,
   ] = useState<boolean>(false);
   const history = useHistory();
-
+  const [t] = useTranslation();
   function closeDeleteElectionModal() {
     setIsDeleteElectionModalOpen(false);
   }
@@ -65,20 +67,20 @@ const ManagementTools: FC<ElectionSubpage> = ({
   if (!id || !election || election === undefined) return null;
   return (
     <Fragment>
-      <h5 style={{ marginBottom: 10 }}>Management Tools</h5>
+      <h5 style={{ marginBottom: 10 }}>{t('electionPage.managementToolsSectionTitle')}</h5>
       <ButtonToolbar>
         <IconButton
           icon={<Icon icon="clock-o" />}
           onClick={() => setSetTimelineOpen(true)}
         >
-          Set Timeline
+          {t('electionPage.setTimelineBtn')}
         </IconButton>
         {finished !== true && (
           <IconButton
             icon={<Icon icon="plus" />}
             onClick={() => setAddPositionOpen(true)}
           >
-            Add Position
+            {t('electionPage.addPositionBtn')}
           </IconButton>
         )}
         <IconButton
@@ -89,12 +91,12 @@ const ManagementTools: FC<ElectionSubpage> = ({
             setIsDeleteElectionModalOpen(true);
           }}
         >
-          Delete Election
+          {t('electionPage.deleteElectionBtn')}
         </IconButton>
       </ButtonToolbar>
       <ConfirmModal
-        modalTitle="Delete Election"
-        modalBody="Do you want to delete this election?"
+        modalTitle={t("electionPage.deleteElectionModalTitle")}
+        modalBody={t("electionPage.deleteElectionModalBody")}
         callBackFunc={() => deleteElection(id)}
         isOpen={isDeleteElectionModalOpen}
         closeModal={() => closeDeleteElectionModal()}
@@ -120,16 +122,17 @@ const ManagementTools: FC<ElectionSubpage> = ({
 
 const Information: FC<ElectionSubpage> = ({ id, election }) => {
   if (!id || !election) return null;
+  const [t] = useTranslation();
   return (
     <Fragment>
-      <h3>Information</h3>
+      <h3>{t('electionPage.infoSubpageTitle')}</h3>
       <br />
       <ElectionManager election={election} />
       <br />
       <br />
       <ElectionTimeline election={election} />
       <br />
-      <h4>Positions</h4>
+      <h4>{t('electionPage.infoSubpagePostionSectionTitle')}</h4>
       <br />
       <PositionList election={election} />
       <br />
@@ -143,9 +146,10 @@ const Information: FC<ElectionSubpage> = ({ id, election }) => {
 
 const Positions: FC<ElectionSubpage> = ({ id, election }) => {
   if (!id || !election) return null;
+  const [t] = useTranslation();
   return (
     <Fragment>
-      <h3>Positions</h3>
+      <h3>{t('electionPage.positionSectionTilte')}</h3>
       <br />
       <PositionList election={election} />
     </Fragment>
@@ -154,9 +158,10 @@ const Positions: FC<ElectionSubpage> = ({ id, election }) => {
 
 const Platforms: FC<ElectionSubpage> = ({ id, election }) => {
   if (!id || !election) return null;
+  const [t] = useTranslation();
   return (
     <Fragment>
-      <h3>Candidate Platforms</h3>
+      <h3>{t('electionPage.platformSectionTitle')}</h3>
       <PlatformList election={election} />
     </Fragment>
   );
@@ -166,7 +171,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
   const { id } = useParams<Record<string, string | undefined>>();
   const history = useHistory();
   const user = useContext(User);
-
+  const [t] = useTranslation();
   const [showTools, setShowTools] = useState<boolean>(false);
   const [election, setElection] = useState<ElectionDetails>();
 
@@ -212,7 +217,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
           <span>{election.description}</span>
         </p>
         <br />
-        <h2>Results</h2>
+        <h2>{t("electionPage.resultSectionTitle")}</h2>
         {showTools && (
           <Fragment>
             <br />
@@ -246,7 +251,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
             type="error"
             showIcon
             description={
-              `You cannot participate in this election because your email domain is not` +
+              t("electionPage.electionDomainErrorMsg") +
               `  @${election.election_email_domain}`
             }
           />
@@ -261,7 +266,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
             onClick={() => history.push(`${match.url}/vote`)}
             disabled={!election.voting_open || !election.domain_match}
           >
-            Vote
+            {t('electionPage.votnBtn')}
           </IconButton>
           <IconButton
             appearance="primary"
@@ -270,25 +275,25 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
             color="green"
             disabled={!election.applications_open || !election.domain_match}
           >
-            Apply Now
+            {t('electionPage.applyBtn')}
           </IconButton>
           <IconButton
             icon={<Icon icon="info" />}
             onClick={() => history.push(match.url)}
           >
-            Information
+            {t('electionPage.infoBtn')}
           </IconButton>
           <IconButton
             icon={<Icon icon="cubes" />}
             onClick={() => history.push(`${match.url}/positions`)}
           >
-            Open Positions
+            {t('electionPage.openPositionBtn')}
           </IconButton>
           <IconButton
             icon={<Icon icon="speaker" />}
             onClick={() => history.push(`${match.url}/platforms`)}
           >
-            Candidate Platforms
+            {t('electionPage.platformBtn')}
           </IconButton>
         </ButtonToolbar>
       </Fragment>

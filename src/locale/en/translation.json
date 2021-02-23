@@ -85,6 +85,25 @@
     "setupHomePage": {
       "title": "Setup",
       "subtitle": "Configure a new or existing election"
+    },
+    "electionPage": {
+      "deleteElectionModalTitle": "Delete Election",
+      "deleteElectionModalBody": "Do you want to delete this election?",
+      "infoSubpageTitle": "Information",
+      "infoSubpagePostionSectionTitle": "Positions",
+      "positionSectionTilte": "Positions",
+      "platformSectionTitle": "Candidate Platforms",
+      "resultSectionTitle": "Result",
+      "electionDomainErrorMsg": "You cannot participate in this election because your email domain is not",
+      "voteBtn": "Vote",
+      "applyBtn": "Apply Now",
+      "infoBtn": "Information",
+      "openPositionBtn": "Open Positions",
+      "platformBtn": "Candidate Platforms",
+      "setTimelineBtn": "Set Timeline",
+      "addPositionBtn": "Add Position",
+      "deleteEletionBtn": "Delete Election",
+      "managementToolsSectionTitle": "Management Tools"
     }
   }
 }
