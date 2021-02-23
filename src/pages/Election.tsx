@@ -131,9 +131,7 @@ const Information: FC<ElectionSubpage> = ({ id, election, updateElection }) => {
       <PositionList
         election={election}
         updateElection={() => {
-          if (updateElection) {
-            updateElection(election.id);
-          }
+          if (updateElection) updateElection(election.id);
         }}
       />
       <br />
@@ -154,9 +152,7 @@ const Positions: FC<ElectionSubpage> = ({ id, election, updateElection }) => {
       <PositionList
         election={election}
         updateElection={() => {
-          if (updateElection) {
-            updateElection(election.id);
-          }
+          if (updateElection) updateElection(election.id);
         }}
       />
     </Fragment>

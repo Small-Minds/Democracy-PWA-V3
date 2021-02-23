@@ -1,6 +1,4 @@
-import { cleanup } from '@testing-library/react';
 import React from 'react';
-import { useState } from 'react';
 import { Modal, Button } from 'rsuite';
 
 interface ConfirmModalInput {
@@ -9,7 +7,7 @@ interface ConfirmModalInput {
   callBackFunc: any;
   isOpen: boolean;
   closeModal: any;
-  expectedResult: any;
+  expectedResult: number;
   cleanUpFunc: any;
 }
 
@@ -32,7 +30,7 @@ export default function ConfirmModal({
         <Button
           onClick={() => {
             closeModal();
-            callBackFunc().then((res: any) => {
+            callBackFunc().then((res: number) => {
               if (res == expectedResult) {
                 cleanUpFunc();
               } else return;
