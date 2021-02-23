@@ -41,7 +41,6 @@ interface ElectionSubpage {
   finished?: boolean;
 }
 
-
 const ManagementTools: FC<ElectionSubpage> = ({
   id,
   election,
@@ -67,7 +66,9 @@ const ManagementTools: FC<ElectionSubpage> = ({
   if (!id || !election || election === undefined) return null;
   return (
     <Fragment>
-      <h5 style={{ marginBottom: 10 }}>{t('electionPage.managementToolsSectionTitle')}</h5>
+      <h5 style={{ marginBottom: 10 }}>
+        {t('electionPage.managementToolsSectionTitle')}
+      </h5>
       <ButtonToolbar>
         <IconButton
           icon={<Icon icon="clock-o" />}
@@ -95,8 +96,8 @@ const ManagementTools: FC<ElectionSubpage> = ({
         </IconButton>
       </ButtonToolbar>
       <ConfirmModal
-        modalTitle={t("electionPage.deleteElectionModalTitle")}
-        modalBody={t("electionPage.deleteElectionModalBody")}
+        modalTitle={t('electionPage.deleteElectionModalTitle')}
+        modalBody={t('electionPage.deleteElectionModalBody')}
         callBackFunc={() => deleteElection(id)}
         isOpen={isDeleteElectionModalOpen}
         closeModal={() => closeDeleteElectionModal()}
@@ -217,7 +218,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
           <span>{election.description}</span>
         </p>
         <br />
-        <h2>{t("electionPage.resultSectionTitle")}</h2>
+        <h2>{t('electionPage.resultSectionTitle')}</h2>
         {showTools && (
           <Fragment>
             <br />
@@ -251,7 +252,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
             type="error"
             showIcon
             description={
-              t("electionPage.electionDomainErrorMsg") +
+              t('electionPage.electionDomainErrorMsg') +
               `  @${election.election_email_domain}`
             }
           />

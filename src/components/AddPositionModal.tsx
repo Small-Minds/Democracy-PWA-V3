@@ -110,7 +110,9 @@ const AddPositionModal: FC<APMProps> = ({
               <FormControl name="title" />
             </FormGroup>
             <FormGroup>
-              <ControlLabel>{t('addPositionModalComp.posDescription')}</ControlLabel>
+              <ControlLabel>
+                {t('addPositionModalComp.posDescription')}
+              </ControlLabel>
               <FormControl
                 rows={3}
                 name="description"
@@ -120,7 +122,7 @@ const AddPositionModal: FC<APMProps> = ({
           </Form>
         </Modal.Body>
         <Modal.Footer>
-        <Button
+          <Button
             disabled={!ctx?.credentials.authenticated}
             loading={loading}
             appearance="primary"

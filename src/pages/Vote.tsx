@@ -107,15 +107,13 @@ export default function Vote() {
         history.push(`/election/${id}`);
         Notification['success']({
           title: t('votePage.ballotSubSuccessModalTitle'),
-          description:
-            t('votePage.ballotSubSuccessModalBody'),
+          description: t('votePage.ballotSubSuccessModalBody'),
         });
       })
       .catch((err) => {
         Notification['error']({
           title: t('votePage.ballotSubFailModalTitle'),
-          description:
-            t('votePage.ballotSubFailModalBody'),
+          description: t('votePage.ballotSubFailModalBody'),
         });
         console.log(err);
         if (err && err.response) console.log(err.response);
@@ -136,8 +134,9 @@ export default function Vote() {
     <div>
       <h2>{`${t('votePage.ballotElectionTitle')} ${ballot.title}`}</h2>
       <p>
-        {`${t('votePage.ballotPositionTitle')} ${ballot.positions.map((pos) => pos.title).join(', ')}`}
-        
+        {`${t('votePage.ballotPositionTitle')} ${ballot.positions
+          .map((pos) => pos.title)
+          .join(', ')}`}
       </p>
       <p>{t('votePage.ballotViewCandidateInfo')}</p>
       <br />
@@ -177,7 +176,9 @@ export default function Vote() {
                     <Radio value={candidate.id}>{candidate.user.name}</Radio>
                   </div>
                 ))}
-                <Radio value={`abstain`}>{t('votePage.ballotVoteOption')}</Radio>
+                <Radio value={`abstain`}>
+                  {t('votePage.ballotVoteOption')}
+                </Radio>
               </FormControl>
             </div>
           ))}
@@ -185,7 +186,7 @@ export default function Vote() {
           <FlexboxGrid justify="end">
             <FlexboxGrid.Item>
               <ButtonToolbar>
-              <Button
+                <Button
                   appearance="primary"
                   size="lg"
                   type="submit"

@@ -81,8 +81,7 @@ function PositionApply() {
           // If the code is 424,
           Notification['error']({
             title: t('positionApplyPage.subLimitationModalTilte'),
-            description:
-              t('positionApplyPage.subLimitationModalBody'),
+            description: t('positionApplyPage.subLimitationModalBody'),
           });
           return;
         }
@@ -113,7 +112,9 @@ function PositionApply() {
             fluid
           >
             <FormGroup>
-              <ControlLabel>{t('positionApplyPage.posAppFormPersonalStatement')}</ControlLabel>
+              <ControlLabel>
+                {t('positionApplyPage.posAppFormPersonalStatement')}
+              </ControlLabel>
               <FormControl
                 row={5}
                 name="personalStatement"
@@ -124,7 +125,9 @@ function PositionApply() {
               <Button appearance="primary" onClick={() => submitApplication()}>
                 {t('positionApplyPage.posAppFormSubBtn')}
               </Button>
-              <Button onClick={() => history.goBack()}>{t('positionApplyPage.posAppFormCancelBtn')}</Button>
+              <Button onClick={() => history.goBack()}>
+                {t('positionApplyPage.posAppFormCancelBtn')}
+              </Button>
             </ButtonToolbar>
           </Form>
         </div>

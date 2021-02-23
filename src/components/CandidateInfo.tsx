@@ -16,7 +16,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
     if (!candidate || !candidate.user || !candidate.user.email) return null;
     return <Gravatar email={candidate.user.email} size={60} rating="pg" />;
   }, [candidate]);
-  
+
   const [t] = useTranslation();
   return (
     <Fragment>
@@ -61,7 +61,9 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
           >
             <Gravatar email={candidate.user.email} size={60} rating="pg" />
           </Avatar>
-          <h5>{`${t('candidateInfoComp.candidateName')} ${candidate.user.name}`}</h5>
+          <h5>{`${t('candidateInfoComp.candidateName')} ${
+            candidate.user.name
+          }`}</h5>
           <br />
           <h5>{t('candidateInfoComp.candidatePersonalStatement')}</h5>
           <p>{candidate.platform}</p>
