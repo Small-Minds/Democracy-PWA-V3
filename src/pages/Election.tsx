@@ -14,7 +14,7 @@ import {
   Route,
   useHistory,
 } from 'react-router-dom';
-import { ButtonToolbar, Icon, IconButton, Message } from 'rsuite';
+import { ButtonToolbar, Icon, IconButton, Message, Notification } from 'rsuite';
 import AddPositionModal from '../components/AddPositionModal';
 import ConfirmModal from '../components/ConfirmModal';
 import ElectionTimeline from '../components/ElectionTimeline';
@@ -60,6 +60,23 @@ const ManagementTools: FC<ElectionSubpage> = ({
     setIsDeleteElectionModalOpen(false);
   }
 
+  function deleteElectionHandler(result: number){
+    if(result == 204){
+      setIsDeleteElectionModalOpen(false);
+      Notification['success']({
+        title: 'Success',
+        description: 'The election has been successfully updated',
+      });
+      history.push(`/`);
+    }else{
+      setIsDeleteElectionModalOpen(false);
+      Notification['error']({
+        title: 'Error',
+        description: 'Failed to update the election',
+      });
+    }
+  }
+
   if (!id || !election || election === undefined) return null;
   return (
     <Fragment>
@@ -98,8 +115,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
         callBackFunc={() => deleteElection(id)}
         isOpen={isDeleteElectionModalOpen}
         closeModal={() => closeDeleteElectionModal()}
-        expectedResult={204}
-        cleanUpFunc={() => history.push(`/`)}
+        cleanUpFunc={(result: number) => deleteElectionHandler(result)}
       />
       <SetTimelineModal
         election={election}

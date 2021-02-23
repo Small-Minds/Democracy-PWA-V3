@@ -81,7 +81,7 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
                       callBackFunc={() => deletePosition(position.id)}
                       isOpen={isDeletePositionModalOpen}
                       closeModal={() => closeDeletePositionModal()}
-                      cleanUpFunc={() => deletePositionHandler}
+                      cleanUpFunc={(result: number) => deletePositionHandler(result)}
                     />
                   </FlexboxGrid.Item>
                 )}
