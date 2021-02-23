@@ -57,8 +57,31 @@
       "cn": "中文"
     },
     "mainPage": {
-      "appName": "迪蒙",
-      "electionToolSectionTitle": "选举控制板"
+      "title": "Democracy",
+      "subtitle": "欢迎。投票，注册您的候选人资格，或创建一个新选举",
+      "appName": "民主",
+      "slogan": "Sign up and participate in student elections.",
+      "electionToolSectionTitle": "选举控制板",
+      "loginButton": "Log In",
+      "logoutButton": "Log Out",
+      "homeLink": "Home",
+      "voteLink": "Vote",
+      "setupLink": "Setup",
+      "logoutSuccessTitle": "Logged Out",
+      "logoutSuccessDescription": "You have successfully logged out of your Democracy session. Enjoy the rest of your day!",
+      "welcome": "Welcome"
+    },
+    "emptyPage": {
+      "title": "Empty Page",
+      "body": "This is a placeholder page, and will be replaced."
+    },
+    "voteHomePage": {
+      "title": "Vote",
+      "subtitle": "Vote in a public election from your domain"
+    },
+    "setupHomePage": {
+      "title": "Setup",
+      "subtitle": "Configure a new or existing election"
     }
   }
 }
