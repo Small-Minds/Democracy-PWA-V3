@@ -147,7 +147,12 @@
       "posDescription": "Description",
       "createBtn": "Create",
       "cancelBtn": "Cancel"
+    },
+    "candidateInfoComp": {
+      "modalTitle": "Candidate Information",
+      "candidateName": "Name: ",
+      "candidatePersonalStatement": "Personal Statement: ",
+      "okBtn": "OK"
     }
-    
   }
 }
