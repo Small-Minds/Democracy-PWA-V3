@@ -17,7 +17,7 @@ function HomeSetup() {
       <NewElectionButton />
       <br />
       <br />
-      <Panel header={<h2>Your Elections</h2>} bordered>
+      <Panel header={<h2>{t('setupHomePage.electionPanelTitle')}</h2>} bordered>
         <ElectionList />
       </Panel>
     </Fragment>

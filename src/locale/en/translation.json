@@ -84,7 +84,8 @@
     },
     "setupHomePage": {
       "title": "Setup",
-      "subtitle": "Configure a new or existing election"
+      "subtitle": "Configure a new or existing election",
+      "electionPanelTitle": "Your Elections"
     },
     "electionPage": {
       "deleteElectionModalTitle": "Delete Election",
