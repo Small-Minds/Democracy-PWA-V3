@@ -139,6 +139,14 @@
       "ballotVoteOption": "abstain",
       "ballotSubBtn": "Submit",
       "ballotCancelBtn": "Cancel"
+    },
+    "addPositionModalComp": {
+      "fieldRequiredMsg": "This field is required",
+      "title": "Add A New Position",
+      "posTitle": "Title",
+      "posDescription": "Description",
+      "createBtn": "Create",
+      "cancelBtn": "Cancel"
     }
     
   }

@@ -91,7 +91,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
             setIsDeleteElectionModalOpen(true);
           }}
         >
-          {t('electionPage.deleteElectionBtn')}
+          {t('electionPage.deleteEletionBtn')}
         </IconButton>
       </ButtonToolbar>
       <ConfirmModal
