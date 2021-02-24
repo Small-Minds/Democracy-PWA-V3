@@ -201,6 +201,9 @@
       "loading": "Loading...",
       "id": "Election Id:",
       "creatationDate": "Election Creatation Date:"
+    },
+    "electionManager": {
+      "manager": "Run by "
     }
   }
 }

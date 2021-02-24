@@ -1,5 +1,6 @@
 import React, { FC, Fragment, useMemo } from 'react';
 import Gravatar from 'react-gravatar';
+import { useTranslation } from 'react-i18next/*';
 import { Avatar, FlexboxGrid, Icon } from 'rsuite';
 import { ElectionDetails } from '../utils/api/ElectionManagement';
 
@@ -15,7 +16,7 @@ const ElectionManager: FC<EMProps> = ({ election }) => {
   const initials = useMemo(() => {
     return '';
   }, [election]);
-
+  const [t] = useTranslation();
   if (!election || !election.manager || !election.manager.email) return null;
   return (
     <Fragment>
@@ -27,7 +28,7 @@ const ElectionManager: FC<EMProps> = ({ election }) => {
           </Avatar>
         </FlexboxGrid.Item>
         <FlexboxGrid.Item style={{ padding: 10 }}>
-          <h5>Run by {election.manager.name}</h5>
+          <h5>{`${t('electionManager.manager')} ${election.manager.name}`}</h5>
           <p>
             <code>{election.manager.email}</code>
           </p>
