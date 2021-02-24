@@ -196,6 +196,11 @@
     "confirmModal": {
       "okBtn": "OK",
       "cancelBtn": "Cancel"
+    },
+    "electionInfo": {
+      "loading": "Loading...",
+      "id": "Election Id:",
+      "creatationDate": "Election Creatation Date:"
     }
   }
 }
