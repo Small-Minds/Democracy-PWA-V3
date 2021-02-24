@@ -287,15 +287,7 @@ function NewElectionButton() {
               </Form>
             </Drawer.Body>
             <Drawer.Footer style={{ paddingBottom: 10 }}>
-              <Button
-                disabled={!ctx?.credentials.authenticated}
-                loading={loading}
-                appearance="subtle"
-                onClick={() => setOpen(false)}
-              >
-                Cancel
-              </Button>
-              <Button
+            <Button
                 disabled={!ctx?.credentials.authenticated}
                 loading={loading}
                 appearance="primary"
@@ -305,6 +297,14 @@ function NewElectionButton() {
                 }}
               >
                 Create
+              </Button>
+              <Button
+                disabled={!ctx?.credentials.authenticated}
+                loading={loading}
+                appearance="subtle"
+                onClick={() => setOpen(false)}
+              >
+                Cancel
               </Button>
             </Drawer.Footer>
           </FlexboxGrid.Item>

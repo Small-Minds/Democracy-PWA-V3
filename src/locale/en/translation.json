@@ -23,7 +23,8 @@
       "setupLink": "Setup",
       "logoutSuccessTitle": "Logged Out",
       "logoutSuccessDescription": "You have successfully logged out of your Democracy session. Enjoy the rest of your day!",
-      "welcome": "Welcome"
+      "welcome": "Welcome",
+      "accountSetting": "Account Settings"
     },
     "signUpForm": {
       "loginErrorMsg": "You are already logged in",

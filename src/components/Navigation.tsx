@@ -58,7 +58,7 @@ function AccountMenu() {
           history.push('/account');
         }}
       >
-        Account Settings
+        {t('mainPage.accountSetting')}
       </Dropdown.Item>
       <Dropdown.Item divider />
       <Dropdown.Item
