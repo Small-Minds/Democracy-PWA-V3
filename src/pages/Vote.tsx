@@ -177,14 +177,14 @@ export default function Vote() {
               <br />
               <h5>{t('votePage.ballotVoteSectionTitle')}</h5>
               <br />
-              <FormControl name={pos.id} accepter={RadioGroup} required>
+              <FormControl name={pos.id} accepter={RadioGroup}  required>
                 {pos.candidates.map((candidate, index) => (
                   <div key={index}>
-                    <Radio value={candidate.id}>{candidate.user.name}</Radio>
+                    <Radio value={candidate.id}><b>{candidate.user.name}</b></Radio>
                   </div>
                 ))}
-                <Radio value={`abstain`}>
-                  {t('votePage.ballotVoteOption')}
+                <Radio value={`abstain`} >
+                 <b>{t('votePage.ballotVoteOption')}</b> 
                 </Radio>
               </FormControl>
             </div>

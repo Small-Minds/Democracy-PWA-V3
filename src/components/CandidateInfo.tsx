@@ -62,7 +62,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
               </Avatar>
             </FlexboxGrid.Item>
             <FlexboxGrid.Item style={{ padding: 10 }}>
-              <h5>{candidate.user.name}</h5>
+              <b>{candidate.user.name}</b>
               <p>
                 <code>{candidate.user.email}</code>
               </p>

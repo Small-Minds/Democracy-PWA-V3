@@ -172,7 +172,7 @@
       "modalTitle": "Candidate Information",
       "candidateName": "Name: ",
       "candidatePlatform": "Election Platform",
-      "btnTip": "Click me to know more"
+      "btnTip": "Click me"
     },
     "setTimelineModal": {
       "title": "Election Timeline Configuration",
