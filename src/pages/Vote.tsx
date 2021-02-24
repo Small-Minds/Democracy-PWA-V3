@@ -168,23 +168,28 @@ export default function Vote() {
               <br />
               <h5>{t('votePage.ballotPosCandidateTitle')}</h5>
               <br />
-              <ButtonGroup justified>
-                 {pos.candidates.map((candidate, index) => (
-                    <CandidateInfo candidate={candidate} />
-                ))}
-              </ButtonGroup>
-               
+
+              {
+                <FlexboxGrid>
+                  {pos.candidates.map((candidate, index) => (
+                    <FlexboxGrid.Item colspan={8}>
+                      <CandidateInfo candidate={candidate} />
+                    </FlexboxGrid.Item>
+                  ))}
+                </FlexboxGrid>
+              }
+
               <br />
               <h5>{t('votePage.ballotVoteSectionTitle')}</h5>
               <br />
-              <FormControl name={pos.id} accepter={RadioGroup}  required>
+              <FormControl name={pos.id} accepter={RadioGroup} required>
                 {pos.candidates.map((candidate, index) => (
-                  <div key={index}>
-                    <Radio value={candidate.id}><b>{candidate.user.name}</b></Radio>
-                  </div>
+                  <Radio value={candidate.id}>
+                    <b>{candidate.user.name}</b>
+                  </Radio>
                 ))}
-                <Radio value={`abstain`} >
-                 <b>{t('votePage.ballotVoteOption')}</b> 
+                <Radio value={`abstain`}>
+                  <b>{t('votePage.ballotVoteOption')}</b>
                 </Radio>
               </FormControl>
             </div>

@@ -6,7 +6,6 @@ import EN from './locale/en.json';
 import ZH from './locale/zh.json';
 import FR from './locale/fr.json';
 
-
 export type LanguageDef = {
   name: string;
   key: string;

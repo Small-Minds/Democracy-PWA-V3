@@ -19,11 +19,11 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
   return (
     <Fragment>
       <Button
-        appearance="ghost"
         onClick={() => {
           setOpen(true);
         }}
         style={{ marginRight: 8, marginBottom: 8 }}
+        block
       >
         <Avatar
           size="lg"
@@ -38,7 +38,9 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
         <h5 style={{ marginTop: 5, textAlign: 'center' }}>
           {candidate.user.name}
         </h5>
-        <p><Icon icon="info" /> {t('candidateInfoComp.btnTip')}</p>
+        <p>
+          <Icon icon="info" /> {t('candidateInfoComp.btnTip')}
+        </p>
       </Button>
       <Modal
         show={open}
