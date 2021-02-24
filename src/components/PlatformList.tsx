@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 import Gravatar from 'react-gravatar';
+import { useTranslation } from 'react-i18next/*';
 import { useHistory } from 'react-router-dom';
 import { Avatar, FlexboxGrid, List, Placeholder } from 'rsuite';
 import {
@@ -37,7 +38,6 @@ const CandidateListItem: FC<{ candidate: CandidateWithUserDetails }> = ({
       </Avatar>
     );
   }, [candidate]);
-
   if (!candidate || !candidate.user || !candidate.user.email) return null;
   return (
     <Fragment>
@@ -68,7 +68,7 @@ const PlatformDisplay: FC<PositionDisplayProps> = ({ position }) => {
       setLoading(false);
     });
   }, [position]);
-
+  const [t] = useTranslation();
   return (
     <Fragment>
       <br />
@@ -77,7 +77,7 @@ const PlatformDisplay: FC<PositionDisplayProps> = ({ position }) => {
         <i>{position.description}</i>
       </p>
       <br />
-      <h4>{candidates.length !== 0 ? 'Candidates' : 'No Candidates'}</h4>
+      <h4>{candidates.length !== 0 ? t('platformList.title') : t('platformList.emptyTitle')}</h4>
       <List style={{ marginTop: 10, marginBottom: 20 }}>
         {loading && (
           <List.Item>
@@ -103,7 +103,7 @@ const PlatformList: FC<PLProps> = ({ election }) => {
   if (!user || !ctx || !election) return null;
 
   const showDelete = user.user.id === election.manager.id;
-
+  const [t] = useTranslation();
   return (
     <div>
       {election.positions.length !== 0 ? (
@@ -114,7 +114,7 @@ const PlatformList: FC<PLProps> = ({ election }) => {
         </Fragment>
       ) : (
         <FlexboxGrid>
-          <p>No positions posted yet. Check back soon for updates.</p>
+          <p>{t('platformList.emptyPosition')}</p>
         </FlexboxGrid>
       )}
     </div>

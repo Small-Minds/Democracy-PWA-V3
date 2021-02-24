@@ -218,6 +218,11 @@
       "review": "Review of applications by election manager",
       "voteBegin": "Voting period begins",
       "voteEnd": "Voting period ends"
+    },
+    "platformList": {
+      "title": "Candidates",
+      "emptyTitle": "No Candidates",
+      "emptyPositon": "No positions posted yet. Check back soon for updates."
     }
   }
 }
