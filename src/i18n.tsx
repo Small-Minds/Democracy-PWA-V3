@@ -3,8 +3,24 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
 import EN from './locale/en.json';
-import ZH from './locale/zh.json';
+// import ZH from './locale/zh.json';
 import FR from './locale/fr.json';
+<<<<<<< HEAD
+=======
+import AR from './locale/ar.json';
+// import HI from './locale/hi.json';
+// import BN from './locale/bn.json';
+// import DE from './locale/de.json';
+// import ES from './locale/es.json';
+// import PL from './locale/pl.json';
+
+/**
+ * Languages need to be updated in three places:
+ *  1. Import
+ *  2. Locales variable
+ *  3. Resources object in config
+ */
+>>>>>>> 6df84afd6d0e984bb80a13e918a625d144808272
 
 export type LanguageDef = {
   name: string;
@@ -14,7 +30,17 @@ export type LanguageDef = {
 export const locales = [
   { name: 'English', key: 'en' },
   { name: 'Français', key: 'fr' },
+<<<<<<< HEAD
   { name: '中文', key: 'zh' },
+=======
+  // { name: '中文', key: 'zh' },
+  // { name: 'Español', key: 'es' },
+  // { name: 'Deutsch', key: 'de' },
+  // { name: 'Język polski', key: 'pl' },
+  { name: 'العربية', key: 'ar' },
+  // { name: 'বাংলা', key: 'bn' },
+  // { name: 'हिन्दी', key: 'hi' },
+>>>>>>> 6df84afd6d0e984bb80a13e918a625d144808272
 ];
 // Returns true in development.
 const dev: boolean =
@@ -28,12 +54,21 @@ i18n
   .init({
     resources: {
       en: EN,
-      zh: ZH,
+      // zh: ZH,
       fr: FR,
+<<<<<<< HEAD
+=======
+      ar: AR,
+      // hi: HI,
+      // bn: BN,
+      // de: DE,
+      // es: ES,
+      // pl: PL,
+>>>>>>> 6df84afd6d0e984bb80a13e918a625d144808272
     },
     /*default language*/
-    lng: 'en',
     /*fallback language*/
+    fallbackLng: 'en',
     debug: dev,
     ns: ['translations'],
     defaultNS: 'translation',
@@ -51,7 +86,6 @@ i18n
       // order and from where user language should be detected
       order: [
         'querystring',
-        'cookie',
         'localStorage',
         'sessionStorage',
         'navigator',
@@ -69,7 +103,7 @@ i18n
       lookupFromSubdomainIndex: 0,
 
       // cache user language on
-      caches: ['localStorage', 'cookie'],
+      caches: ['localStorage', 'sessionStorage'],
       excludeCacheFor: ['cimode'], // languages to not persist (cookie, localStorage)
 
       // optional expire and domain for set cookie

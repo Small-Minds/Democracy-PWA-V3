@@ -1,7 +1,15 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Col, Container, Content, FlexboxGrid, Icon, IconButton } from 'rsuite';
+import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
+import {
+  Col,
+  Container,
+  Content,
+  FlexboxGrid,
+  Icon,
+  IconButton,
+  Notification,
+} from 'rsuite';
 import './App.css';
 import InfoModal from './components/InfoModal';
 import Navigation from './components/Navigation';
@@ -40,6 +48,7 @@ function App() {
   const [info, showInfo] = useState<boolean>(false);
   //Set Up Localization Hook
   const [t] = useTranslation();
+  const history = useHistory();
 
   // Load JWTs and validate.
   useEffect(() => {

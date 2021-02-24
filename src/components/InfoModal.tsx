@@ -25,7 +25,7 @@ const InfoModal: FC<InfoModalProps> = ({ open, setOpen }) => {
           </p>
           <br />
           <br />
-          <h4>Contributors</h4>
+          <h4>{t('v2.infoModal.titles.contributors')}</h4>
           <br />
           <ul>
             <li>
@@ -40,11 +40,11 @@ const InfoModal: FC<InfoModalProps> = ({ open, setOpen }) => {
           </ul>
           <br />
           <br />
-          <h4>Terms of Service</h4>
+          <h4>{t('v2.infoModal.titles.tos')}</h4>
           {t('semiLegal.termsOfService')}
           <br />
           <br />
-          <h4>Privacy Policy</h4>
+          <h4>{t('v2.infoModal.titles.privacy')}</h4>
           {t('semiLegal.privacyPolicy')}
           <br />
           <br />

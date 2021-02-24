@@ -9,13 +9,13 @@ body {
 
   /* To prevent jank, always show the scrollbar. */
   overflow-y: scroll;
-  min-width: 380px;
+  min-width: 420px;
 }
 
 /* Apple-System is the strange/blurry font. */
 
 /* On mobile, reduce padding on navbar buttons. */
-@media (max-width: 450px) {
+@media (max-width: 480px) {
   .rs-nav-item-content {
     padding-right: 6px !important;
     padding-left: 6px !important;

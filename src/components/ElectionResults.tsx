@@ -105,7 +105,7 @@ export default function ElectionResults() {
 
   //waiting for the response from getEletctionList
   if (isLoading) {
-    return <Loading />;
+    return <Loading half />;
   }
 
   if (!electionResult) {

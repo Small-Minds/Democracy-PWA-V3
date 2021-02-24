@@ -3,61 +3,61 @@
     "languageName": "Français",
     "compatability": 1.1,
     "general": {
-      "submit": "Nous faire parvenir",
+      "submit": "Soumettre",
       "cancel": "Annuler",
       "close": "Fermer",
-      "delete": "Effacer",
-      "required": "Ce champ est requis.",
-      "returnToLogin": "Revenir à la page de connexion et d'inscription",
+      "delete": "Supprimer",
+      "required": "Ce champ est obligatoire.",
+      "returnToLogin": "Retour à la page de connexion et d'inscription",
       "app": {
-        "name": "La démocratie"
+        "name": "Démocratie"
       }
     },
     "mainPage": {
-      "subtitle": "Bienvenue. Votez, enregistrez votre candidature ou configurez une nouvelle élection",
-      "slogan": "Inscrivez-vous et participez aux élections étudiantes.",
+      "subtitle": "Bienvenue. Voter, enregistrer votre candidature ou configurer une nouvelle élection",
+      "slogan": "Inscrivez-vous et participez aux élections des étudiants.",
       "loginButton": "Connexion",
-      "logoutButton": "Se déconnecter",
-      "homeLink": "Maison",
-      "voteLink": "Voter",
-      "setupLink": "Installer",
+      "logoutButton": "Déconnexion",
+      "homeLink": "Accueil",
+      "voteLink": "Vote",
+      "setupLink": "Configuration",
       "logoutSuccessTitle": "Déconnecté",
-      "logoutSuccessDescription": "Vous vous êtes déconnecté avec succès de votre session Démocratie. Bonne fin de journée!",
+      "logoutSuccessDescription": "Vous avez réussi à vous déconnecter de votre session Démocratie. Profitez du reste de votre journée !",
       "welcome": "Bienvenue",
       "accountSetting": "Paramètres du compte"
     },
     "signUpForm": {
       "loginErrorMsg": "Vous êtes déjà connecté",
-      "msgRequired": "Ce champ est requis",
-      "invalidEmailFormatMsg": "Veuillez utiliser une adresse mail valide",
+      "msgRequired": "Ce champ est obligatoire",
+      "invalidEmailFormatMsg": "Veuillez utiliser une adresse électronique valide",
       "signUpSuccessTitle": "Vérifiez votre boîte de réception",
-      "signUpSuccessDescription": "Vérifiez votre compte en ouvrant l'e-mail que nous vous avons envoyé et en cliquant sur le lien. Merci pour votre inscription!",
+      "signUpSuccessDescription": "Vérifiez votre compte en ouvrant le courriel que nous vous avons envoyé et en cliquant sur le lien. Merci de vous être inscrit !",
       "sectionTitle": "S'inscrire",
-      "nameInputLabel": "Prénom et nom",
+      "nameInputLabel": "Prénom et nom de famille",
       "usernameInputLabel": "Nom d'utilisateur",
-      "emailInputLabel": "E-mail",
+      "emailInputLabel": "Courriel",
       "passwordInputLabel": "Mot de passe",
       "passwordInputFieldHint": "Veuillez entrer votre mot de passe deux fois",
-      "submitBtn": "Nous faire parvenir"
+      "submitBtn": "Soumettre"
     },
     "electionList": {
-      "noMatchingElections": "Aucune élection n'a été trouvée. En créer un vous-même?",
+      "noMatchingElections": "Aucune élection n'a été trouvée. Voulez-vous en créer une vous-même ?",
       "button": {
-        "viewElection": "Vue",
+        "viewElection": "Voir",
         "manageElection": "Gérer"
       }
     },
     "signInForm": {
       "alreadyLogInMsg": "Vous êtes déjà connecté",
-      "msgRequired": "Ce champ est requis",
-      "ctxErrorMsg": "Veuillez actualiser la page",
-      "invalidEmailFormatMsg": "Veuillez utiliser une adresse mail valide",
+      "msgRequired": "Ce champ est obligatoire",
+      "ctxErrorMsg": "Veuillez rafraîchir la page",
+      "invalidEmailFormatMsg": "Veuillez utiliser une adresse électronique valide",
       "logInSuccessTitle": "Connecté",
-      "logInSuccessDescription": "Bienvenue à nouveau dans Democracy by Small Minds",
+      "logInSuccessDescription": "Bienvenue à la Démocratie par les petits esprits",
       "sectionTitle": "Connexion",
       "usernameInputLabel": "Nom d'utilisateur",
       "passwordInputLabel": "Mot de passe",
-      "submitBtn": "Nous faire parvenir"
+      "submitBtn": "Soumettre"
     },
     "createElectionBtn": {
       "maxLength200": "La longueur maximale de ce champ est de 200 caractères.",
@@ -66,7 +66,7 @@
       "successMsg": "Créer une nouvelle élection avec ID",
       "failMsgTitle": "Erreur",
       "failMsg": "Échec du lancement d'une nouvelle élection",
-      "msgRequired": "Ce champ est requis",
+      "msgRequired": "Ce champ est obligatoire",
       "msgInvalidFormat": "Le format du domaine n'est pas valide",
       "electionFormTitle": "Créer une nouvelle élection",
       "electionTitle": "Titre",
@@ -75,9 +75,9 @@
       "electionEnableMultiSubs": "Permettre aux candidats de postuler à plusieurs postes",
       "electionMultiSubsTrue": "Oui",
       "electionMultiSubsFalse": "Non",
-      "electionEmailDomain": "Domaine de messagerie d'élection",
+      "electionEmailDomain": "Domaine email des élections",
       "tooManyElectionsErrorTitle": "Trop d'élections",
-      "tooManyElectionsErrorBody": "Les comptes peuvent exécuter une limite de trois élections à la fois. Veuillez supprimer les élections anciennes ou inutilisées.",
+      "tooManyElectionsErrorBody": "Les comptes peuvent gérer une limite de trois élections à la fois. Veuillez supprimer les anciennes élections ou les élections non utilisées.",
       "applicationPeriod": "Heure de début et date limite de candidature",
       "betweenDates": "à",
       "votingPeriod": "Heure de début et date limite du vote",
@@ -87,81 +87,81 @@
     "languagePicker": {
       "title": "Sélection de la langue",
       "en": "Anglais",
-      "fr": "français",
-      "cn": "chinois"
+      "fr": "Français",
+      "cn": "Chinois"
     },
     "emptyPage": {
       "title": "Page vide",
       "body": "Ceci est une page d'espace réservé et sera remplacée."
     },
     "voteHomePage": {
-      "title": "Voter",
-      "subtitle": "Votez à une élection publique de votre domaine"
+      "title": "Vote",
+      "subtitle": "Votez lors d'une élection publique depuis votre domaine"
     },
     "setupHomePage": {
-      "title": "Installer",
+      "title": "Configuration",
       "subtitle": "Configurer une élection nouvelle ou existante",
       "electionPanelTitle": "Vos élections"
     },
     "electionPage": {
       "deleteElectionModalTitle": "Supprimer l'élection",
-      "deleteElectionModalBody": "Voulez-vous supprimer ce choix?",
-      "infoSubpageTitle": "Informations",
+      "deleteElectionModalBody": "Voulez-vous supprimer cette élection?",
+      "infoSubpageTitle": "Information",
       "infoSubpagePostionSectionTitle": "Positions",
       "positionSectionTilte": "Positions",
-      "platformSectionTitle": "Plateformes candidates",
+      "platformSectionTitle": "Plateformes des candidats",
       "resultSectionTitle": "Résultat",
       "electionDomainErrorMsg": "Vous ne pouvez pas participer à cette élection car votre domaine de messagerie n'est pas",
-      "voteBtn": "Voter",
-      "applyBtn": "Appliquer maintenant",
-      "infoBtn": "Informations",
-      "openPositionBtn": "Postes ouverts",
-      "platformBtn": "Plateformes candidates",
-      "setTimelineBtn": "Définir la chronologie",
-      "addPositionBtn": "Ajouter une position",
+      "voteBtn": "Vote",
+      "applyBtn": "Postulez maintenant",
+      "infoBtn": "Information",
+      "openPositionBtn": "Positions ouvertes",
+      "platformBtn": "Plateformes des candidats",
+      "setTimelineBtn": "Fixer un échéancier",
+      "addPositionBtn": "Ajouter un poste",
       "deleteEletionBtn": "Supprimer l'élection",
       "managementToolsSectionTitle": "Outils de gestion"
     },
     "manageAccountPage": {
       "title": "Compte",
-      "instruction": "Mettez à jour ou supprimez votre compte Democracy.",
-      "changeProfileBtn": "Changer l'image de profil avec Gravatar",
+      "instruction": "Mettez à jour ou supprimez votre compte Démocratie.",
+      "changeProfileBtn": "Changer l'image du profil avec Gravatar",
       "form": {
-        "title": "Mettre à jour les informations utilisateur",
+        "title": "Mise à jour des informations sur les utilisateurs",
         "name": "Nom"
       }
     },
     "positionApplyPage": {
-      "fieldIsRequiredMsg": "Ce champ est requis",
-      "subSuccessModalTitle": "félicitations",
+      "fieldIsRequiredMsg": "Ce champ est obligatoire",
+      "subSuccessModalTitle": "Félicitations",
       "subSuccessModalBody": "Vous avez soumis votre candidature avec succès",
-      "subLimitationModalTitle": "Limite d'application atteinte",
-      "subLimitationModalBody": "Vous ne pouvez postuler qu'à un seul poste au cours de cette élection.",
-      "subFailModalTitle": "Manqué",
-      "subFailModalBody": "Échec de l'envoi de votre demande",
+      "subLimitationModalTitle": "Limite de demande atteinte",
+      "subLimitationModalBody": "Vous ne pouvez postuler qu'à un seul poste dans le cadre de cette élection.",
+      "subFailModalTitle": "Échoué",
+      "subFailModalBody": "Échoué de soumettre votre application",
       "positionSectionTitle": "Description du poste",
       "posAppFormTitle": "Formulaire de candidature",
-      "posAppFormPlatform": "Plateforme électorale",
-      "posAppFormSubBtn": "Nous faire parvenir",
+      "posAppFormPlatform": "Plate-forme électorale",
+      "posAppFormSubBtn": "Soumettre",
       "posAppFormCancelBtn": "Annuler"
     },
     "votePage": {
       "ballotSubSuccessModalTitle": "Soumis",
-      "ballotSubSuccessModalBody": "Votre bulletin de vote est en route! Revenez bientôt pour les résultats.",
-      "ballotSubFailModalTitle": "Échec de la soumission",
-      "ballotSubFailModalBody": "Échec de la soumission de votre bulletin de vote. L'administrateur sera averti.",
+      "ballotSubSuccessModalBody": "Votre bulletin de vote est en route ! Revenez bientôt pour les résultats.",
+      "ballotSubFailModalTitle": "N'a pas été soumis",
+      "ballotSubFailModalBody": "Vous n'avez pas soumis votre bulletin de vote. L'administrateur en sera informé.",
       "ballotElectionTitle": "Bulletin de vote officiel pour",
-      "ballotPositionTitle": "Élire un candidat pour ces postes:",
+      "ballotPositionTitle": "Élire un candidat pour ces postes :",
       "ballotViewCandidateInfo": "Cliquez sur les candidats pour voir leur plateforme.",
       "ballotPosDescriptionTitle": "Description",
       "ballotPosCandidateTitle": "Candidats",
-      "ballotVoteSectionTitle": "Sélectionnez un candidat",
-      "ballotVoteOption": "abstention",
-      "ballotSubBtn": "Nous faire parvenir",
+      "ballotVoteSectionTitle": "Sélectionner un candidat",
+      "ballotVoteOption": "s'abstenir",
+      "ballotSubBtn": "Soumettre",
       "ballotCancelBtn": "Annuler"
     },
     "addPositionModalComp": {
-      "fieldRequiredMsg": "Ce champ est requis",
+      "fieldRequiredMsg": "Ce champ est obligatoire",
       "title": "Ajouter un nouveau poste",
       "posTitle": "Titre",
       "posDescription": "Description",
@@ -170,7 +170,7 @@
     },
     "candidateInfoComp": {
       "modalTitle": "Informations sur le candidat",
-      "candidateName": "Nom:",
+      "candidateName": "Nom: ",
       "candidatePlatform": "Plateforme électorale"
     },
     "setTimelineModal": {
@@ -246,7 +246,7 @@
       },
       "emptyPosition": "Aucun poste affiché pour le moment. Revenez bientôt pour les mises à jour.",
       "applyBtn": "Appliquer maintenant",
-      "deleteBtn": "Effacer",
+      "deleteBtn": "Supprimer",
       "confirmModalTitle": "Supprimer la position",
       "confirmModalBody": "Voulez-vous supprimer ce poste?"
     },

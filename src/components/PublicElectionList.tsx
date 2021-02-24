@@ -26,6 +26,7 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
   const ctx = useContext(Credentials);
   const user = useContext(User);
   const [electionList, setElectionList] = useState<Array<Election>>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const [t] = useTranslation();
 
   const userDomain = useMemo(() => {
@@ -39,20 +40,24 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
     // Return if the list has already been populated.
     if (electionList.length > 0) return;
     // If logged in, attempt to get the list of elections.
-    getPublicElectionList().then((res) => {
-      const elections: Election[] = res.data;
+    getPublicElectionList()
+      .then((res) => {
+        const elections: Election[] = res.data;
 
-      setElectionList(
-        filterDomain
-          ? elections.filter((e) => e.election_email_domain === userDomain)
-          : elections
-      );
-    });
+        return setElectionList(
+          filterDomain
+            ? elections.filter((e) => e.election_email_domain === userDomain)
+            : elections
+        );
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [ctx]);
 
   if (!user || !user.user || !user.user.email) return null;
-  if (!electionList) return <Loading />;
-  if (electionList.length === 0)
+  if (loading) return <Loading half />;
+  if (!electionList || electionList.length === 0)
     return (
       <Fragment>
         <br />

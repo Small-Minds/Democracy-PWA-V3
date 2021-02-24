@@ -70,8 +70,8 @@ const ManagementTools: FC<ElectionSubpage> = ({
     } else {
       setIsDeleteElectionModalOpen(false);
       Notification['error']({
-        title: 'Error',
-        description: 'Failed to update the election',
+        title: t('v2.errors.title'),
+        description: t('v2.errors.cantDelete'),
       });
     }
   }
@@ -212,9 +212,17 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
   const [election, setElection] = useState<ElectionDetails>();
 
   const updateElection = (i: string): Promise<any> => {
-    return getElection(i).then((res) => {
-      setElection(res);
-    });
+    return getElection(i)
+      .then((res) => {
+        setElection(res);
+      })
+      .catch((err) => {
+        Notification['error']({
+          title: t('v2.errors.title'),
+          description: t('v2.errors.electionInvalid'),
+        });
+        history.push('/');
+      });
   };
 
   // Get Election
@@ -239,7 +247,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
   if (!id || !election || election === undefined)
     return (
       <Fragment>
-        <Loading />
+        <Loading half />
       </Fragment>
     );
 

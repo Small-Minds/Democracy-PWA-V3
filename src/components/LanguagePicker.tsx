@@ -11,13 +11,13 @@ export default function LanguagePicker() {
     <Fragment>
       <Dropdown
         icon={<Icon icon="globe" />}
-        title={t('languageName')}
+        title={i18n.language.toUpperCase()}
         onSelect={(key) => i18n.changeLanguage(key)}
         placement="bottomEnd"
       >
         {locales.map((lang, key) => (
           <Dropdown.Item key={key} eventKey={lang.key}>
-            <b>{lang.key}</b> &middot; {lang.name}
+            <b>{lang.key.toUpperCase()}</b> &middot; {lang.name}
           </Dropdown.Item>
         ))}
       </Dropdown>

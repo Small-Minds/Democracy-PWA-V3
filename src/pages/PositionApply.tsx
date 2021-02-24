@@ -128,7 +128,7 @@ function PositionApply() {
           </Form>
         </div>
       ) : (
-        <Loading />
+        <Loading half />
       )}
     </div>
   );

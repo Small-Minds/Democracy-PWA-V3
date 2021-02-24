@@ -11,6 +11,7 @@ import NewElectionButton from './NewElectionButton';
 export default function ElectionList() {
   const ctx = useContext(Credentials);
   const [electionList, setElectionList] = useState<Array<Election>>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const [t] = useTranslation();
 
   useEffect(() => {
@@ -25,11 +26,14 @@ export default function ElectionList() {
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [ctx]);
 
-  if (!electionList) return <Loading />;
-  if (electionList.length === 0)
+  if (loading) return <Loading half />;
+  if (!electionList || electionList.length === 0)
     return (
       <Fragment>
         <br />

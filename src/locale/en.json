@@ -263,6 +263,19 @@
       "privacyPolicy": "By using this service, you agree to allow the public release of your name and email address on the website."
     },
     "v2": {
+      "errors": {
+        "error": "Error",
+        "pleaseLogInAgain": "Your credentials are invalid, please log in again.",
+        "electionInvalid": "Sorry, we can't find that election.",
+        "cantDelete": "Sorry, we couldn't delete that. Please try again later."
+      },
+      "infoModal": {
+        "titles": {
+          "tos": "Terms of Service",
+          "privacy": "Privacy Policy",
+          "contributors": "Contributors"
+        }
+      },
       "passwordResetRequest": {
         "title": "Request a Password Reset",
         "description": "We'll send you an email with a link you can use to change your password.",
