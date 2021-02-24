@@ -80,7 +80,7 @@ function PositionApply() {
         if (x.response && x.response.status === 424) {
           // If the code is 424,
           Notification['error']({
-            title: t('positionApplyPage.subLimitationModalTilte'),
+            title: t('positionApplyPage.subLimitationModalTitle'),
             description: t('positionApplyPage.subLimitationModalBody'),
           });
           return;
