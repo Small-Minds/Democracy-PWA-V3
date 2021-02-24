@@ -1,4 +1,5 @@
 import React, { useContext, useState, FC } from 'react';
+import { useTranslation } from 'react-i18next/*';
 import { useHistory } from 'react-router-dom';
 import { Button, Col, FlexboxGrid, List, Notification } from 'rsuite';
 
@@ -29,20 +30,20 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
   if (!user || !ctx) return null;
 
   const showDelete = user.user.id === election.manager.id;
-
+  const [t] = useTranslation();
   function deletePositionHandler(result: number): void {
     if (result == 204) {
       setIsDeletePositionModalOpen(false);
       updateElection();
       Notification['success']({
-        title: 'Success',
-        description: 'The position has been successfully deleted',
+        title: t('positionList.deleteNotification.successTitle'),
+        description: t('positionList.deleteNotification.successBody'),
       });
     } else {
       setIsDeletePositionModalOpen(false);
       Notification['error']({
-        title: 'Error',
-        description: 'Failed to delete the position',
+        title: t('positionList.deleteNotification.errorTitle'),
+        description: t('positionList.deleteNotification.errorBody'),
       });
     }
   }
@@ -73,11 +74,11 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
                       }}
                       block
                     >
-                      Delete
+                      {t('emptyPosition.deleteBtn')}
                     </Button>
                     <ConfirmModal
-                      modalTitle="Delete Position"
-                      modalBody="Do you want to delete this Position?"
+                      modalTitle={t('positionList.confirmModalTitle')}
+                      modalBody={t('positionList.confirmModalBody')}
                       callBackFunc={() => deletePosition(position.id)}
                       isOpen={isDeletePositionModalOpen}
                       closeModal={() => closeDeletePositionModal()}
@@ -103,7 +104,7 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
                       history.push(`/apply/${position.id}`);
                     }}
                   >
-                    Apply Now
+                    {t('positionList.applyBtn')}
                   </Button>
                 </FlexboxGrid.Item>
               </FlexboxGrid>
@@ -112,7 +113,7 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
         </List>
       ) : (
         <FlexboxGrid>
-          <p>No positions posted yet. Check back soon for updates.</p>
+          <p>{t('positionList.emptyPosition')}</p>
         </FlexboxGrid>
       )}
     </div>

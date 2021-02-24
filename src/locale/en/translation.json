@@ -222,7 +222,20 @@
     "platformList": {
       "title": "Candidates",
       "emptyTitle": "No Candidates",
-      "emptyPositon": "No positions posted yet. Check back soon for updates."
+      "emptyPosition": "No positions posted yet. Check back soon for updates."
+    },
+    "positionList": {
+      "deleteNotification":{
+        "successTitle": "Success",
+        "successBody": "The position has been successfully deleted",
+        "errorTitle": "Error",
+        "errorBody": "Failed to delete the position"
+      },
+      "emptyPosition": "No positions posted yet. Check back soon for updates.",
+      "applyBtn": "Apply Now",
+      "deleteBtn": "Delete",
+      "confirmModalTitle": "Delete Position",
+      "confirmModalBody": "Do you want to delete this Position?"
     }
   }
 }
