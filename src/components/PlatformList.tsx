@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import Gravatar from 'react-gravatar';
-import { useTranslation } from 'react-i18next/*';
+import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { Avatar, Container, FlexboxGrid, List, Placeholder } from 'rsuite';
 import {

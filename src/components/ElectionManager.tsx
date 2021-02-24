@@ -1,6 +1,6 @@
 import React, { FC, Fragment, useMemo } from 'react';
 import Gravatar from 'react-gravatar';
-import { useTranslation } from 'react-i18next/*';
+import { useTranslation } from 'react-i18next';
 import { Avatar, FlexboxGrid, Icon } from 'rsuite';
 import { ElectionDetails } from '../utils/api/ElectionManagement';
 
