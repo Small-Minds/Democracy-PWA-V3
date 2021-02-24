@@ -74,7 +74,7 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
                       }}
                       block
                     >
-                      {t('emptyPosition.deleteBtn')}
+                      {t('positionList.deleteBtn')}
                     </Button>
                     <ConfirmModal
                       modalTitle={t('positionList.confirmModalTitle')}
