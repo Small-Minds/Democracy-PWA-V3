@@ -74,7 +74,12 @@
       "electionMultiSubsFalse": "No",
       "electionEmailDomain": "Election Email Domain",
       "tooManyElectionsErrorTitle": "Too Many Elections",
-      "tooManyElectionsErrorBody": "Accounts can run a limit of three elections at once. Please delete old or unused elections."
+      "tooManyElectionsErrorBody": "Accounts can run a limit of three elections at once. Please delete old or unused elections.",
+      "applicationPeriod": "Application starting time and deadline",
+      "betweenDates": "to",
+      "votingPeriod": "Voting starting time and deadline",
+      "createBtn": "Create",
+      "cancelBtn": "Cancel"
     },
     "languagePicker": {
       "title": "Language Selection",
