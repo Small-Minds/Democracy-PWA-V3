@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC, Fragment, useMemo } from 'react';
 import { Icon, Loader, Timeline } from 'rsuite';
 import { ElectionDetails } from '../utils/api/ElectionManagement';
 import moment from 'moment';
@@ -11,6 +11,10 @@ interface Props {
 const timeformat: string = 'MMMM DD, YYYY, hh:mm A';
 
 const ElectionTimeline: FC<Props> = ({ election }) => {
+  const phase: number = useMemo(() => {
+    return 0;
+  }, [election]);
+
   if (!election)
     return (
       <Fragment>
@@ -27,8 +31,9 @@ const ElectionTimeline: FC<Props> = ({ election }) => {
           <Timeline.Item dot={<Icon icon="eye" size="2x" />}>
             <p>
               <b>{moment(election.submission_start_time).format(timeformat)}</b>
+              <p>Application period begins</p>
             </p>
-            <p>{t('electionTimeline.appBtn')}</p>
+            <p>{t('electionTimeline.appBegin')}</p>
           </Timeline.Item>
           <Timeline.Item dot={<Icon icon="pencil" size="2x" />}>
             <p>

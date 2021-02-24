@@ -23,6 +23,7 @@ import {
   VoteParams,
 } from '../utils/api/Voting';
 import { Credentials } from '../utils/Authentication';
+import { random } from '../utils/random';
 import Loading from './Loading';
 
 export default function Vote() {
@@ -45,8 +46,14 @@ export default function Vote() {
     if (!ctx || !ctx.credentials.authenticated) return;
     if (ballot) return;
     //If logged in, attempt to get the position details
-    getEmptyBallot(id).then((value: EmptyBallot) => {
-      setBallot(value);
+    getEmptyBallot(id).then((ballot: EmptyBallot) => {
+      // Shuffle candidates within ballot:
+      ballot.positions = ballot.positions.map((position) => {
+        position.candidates = random.shuffle(position.candidates);
+        return position;
+      });
+
+      setBallot(ballot);
     });
   }, []);
 

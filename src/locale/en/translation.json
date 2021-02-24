@@ -41,6 +41,7 @@
       "submitBtn": "Submit"
     },
     "electionList": {
+      "noMatchingElections": "No elections were found. Create one yourself?",
       "button": {
         "viewElection": "View",
         "manageElection": "Manage"
@@ -59,6 +60,7 @@
       "submitBtn": "Submit"
     },
     "createElectionBtn": {
+      "maxLength200": "The maximum length of this field is 200 characters.",
       "btnLabel": "Create New Election",
       "successMsgTitle": "Success",
       "successMsg": "Create new Election with ID",
@@ -68,7 +70,8 @@
       "msgInvalidFormat": "The domain format is invalid",
       "electionFormTitle": "Create a New Election",
       "electionTitle": "Title",
-      "electionDescription": "Description",
+      "electionDescriptionAndSubmissionInfo": "Description and Submission Instructions",
+      "electionSubtitle": "Subtitle",
       "electionEnableMultiSubs": "Enable Candidates to Apply to Multiple Positions",
       "electionMultiSubsTrue": "Yes",
       "electionMultiSubsFalse": "No",
@@ -134,7 +137,7 @@
       "subFailModalBody": "Failed to submit your application",
       "positionSectionTitle": "Position Description",
       "posAppFormTitle": "Application Form",
-      "posAppFormPersonalStatement": "Personal Statement",
+      "posAppFormPlatform": "Election Platform",
       "posAppFormSubBtn": "Submit",
       "posAppFormCancelBtn": "Cancel"
     },
@@ -164,7 +167,7 @@
     "candidateInfoComp": {
       "modalTitle": "Candidate Information",
       "candidateName": "Name: ",
-      "candidatePersonalStatement": "Personal Statement: "
+      "candidatePlatform": "Election Platform"
     },
     "setTimelineModal": {
       "title": "Election Timeline Configuration",

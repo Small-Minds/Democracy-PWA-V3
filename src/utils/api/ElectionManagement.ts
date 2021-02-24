@@ -1,6 +1,5 @@
 import { AxiosResponse } from 'axios';
 import { api, preRequestRefreshAuth } from '../API';
-import { Notification } from 'rsuite';
 import { UserInfo } from './User';
 const electionURL = `/elections/manage/election/`;
 const electionPositionURL = `/elections/manage/position/`;
@@ -16,6 +15,8 @@ export type EmptyElection = {
 
 export type Election = {
   created: string;
+  title: string;
+  subtitle: string;
   description: string;
   election_email_domain: string;
   enable_multiple_submissions: boolean;
@@ -24,13 +25,14 @@ export type Election = {
   positions: Array<string>;
   submission_end_time: string;
   submission_start_time: string;
-  title: string;
   voting_end_time: string;
   voting_start_time: string;
 };
 
 export type ElectionDetails = {
   created: string;
+  title: string;
+  subtitle: string;
   description: string;
   election_email_domain: string;
   enable_multiple_submissions: boolean;
@@ -39,7 +41,6 @@ export type ElectionDetails = {
   positions: Array<Position>;
   submission_end_time: string;
   submission_start_time: string;
-  title: string;
   voting_end_time: string;
   voting_start_time: string;
   voting_open: boolean;
@@ -92,6 +93,7 @@ export type PositionDetails = {
 
 export type CreateElectionParams = {
   title: string;
+  subtitle: string;
   description: string;
   election_email_domain: string;
   enable_multiple_submissions: boolean;

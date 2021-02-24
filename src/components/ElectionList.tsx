@@ -1,13 +1,15 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { List } from 'rsuite';
-import { getElectionList, Election } from '../utils/api/ElectionManagement';
+import Loading from '../pages/Loading';
+import { Election, getElectionList } from '../utils/api/ElectionManagement';
 import { Credentials } from '../utils/Authentication';
 import ElectionListElement from './ElectionListElement';
 
 export default function ElectionList() {
   const ctx = useContext(Credentials);
   const [electionList, setElectionList] = useState<Array<Election>>([]);
+  const [t] = useTranslation();
 
   useEffect(() => {
     // Return early if no context is provided.
@@ -24,6 +26,13 @@ export default function ElectionList() {
       });
   }, [ctx]);
 
+  if (!electionList) return <Loading />;
+  if (electionList.length === 0)
+    return (
+      <Fragment>
+        <p>{t('electionList.noMatchingElections')}</p>
+      </Fragment>
+    );
   return (
     <div>
       <List>

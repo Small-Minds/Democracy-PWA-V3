@@ -1,9 +1,7 @@
-import React, { Fragment, useState, useMemo } from 'react';
-import { useEffect } from 'react';
+import React, { Fragment, useMemo, useState } from 'react';
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
-import { Modal, Button, Avatar } from 'rsuite';
-import ModalBody from 'rsuite/lib/Modal/ModalBody';
+import { Avatar, Button, FlexboxGrid, Modal } from 'rsuite';
 import { CandidateWithUserDetails } from '../utils/api/ElectionManagement';
 
 interface CandidateInfoModalInput {
@@ -42,30 +40,35 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
         </h5>
       </Button>
       <Modal
-        backdrop={'static'}
         show={open}
         onHide={() => {
           setOpen(false);
         }}
       >
         <Modal.Header>{t('candidateInfoComp.modalTitle')}</Modal.Header>
-        <Modal.Body>
-          <Avatar
-            size="lg"
-            style={{
-              display: 'block',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-              marginTop: 20,
-            }}
-          >
-            <Gravatar email={candidate.user.email} size={60} rating="pg" />
-          </Avatar>
-          <h5>{`${t('candidateInfoComp.candidateName')} ${
-            candidate.user.name
-          }`}</h5>
+        <Modal.Body style={{ padding: 10 }}>
+          <FlexboxGrid justify="start" align="middle">
+            <FlexboxGrid.Item>
+              <Avatar
+                size="lg"
+                style={{
+                  display: 'block',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                }}
+              >
+                {userImage}
+              </Avatar>
+            </FlexboxGrid.Item>
+            <FlexboxGrid.Item style={{ padding: 10 }}>
+              <h5>{candidate.user.name}</h5>
+              <p>
+                <code>{candidate.user.email}</code>
+              </p>
+            </FlexboxGrid.Item>
+          </FlexboxGrid>
           <br />
-          <h5>{t('candidateInfoComp.candidatePersonalStatement')}</h5>
+          <h5>{t('candidateInfoComp.candidatePlatform')}</h5>
           <p>{candidate.platform}</p>
         </Modal.Body>
         <Modal.Footer>

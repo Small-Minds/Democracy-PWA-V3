@@ -33,13 +33,13 @@ function PositionApply() {
   let form: any = undefined;
   const msg_required = t('positionApplyPage.fieldIsRequiredMsg');
   const model = Schema.Model({
-    personalStatement: Schema.Types.StringType()
+    platform: Schema.Types.StringType()
       .isRequired(msg_required)
       .minLength(1, msg_required),
   });
   //form data setup
   const [formData, setFormData] = useState<Record<string, any>>({
-    personalStatement: '',
+    platform: '',
   });
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
 
@@ -65,7 +65,7 @@ function PositionApply() {
     }
 
     let application: PositionApplicationParams = {
-      platform: formData.personalStatement,
+      platform: formData.platform,
       position: positionId,
     };
     submitPositionApplication(application)
@@ -113,11 +113,11 @@ function PositionApply() {
           >
             <FormGroup>
               <ControlLabel>
-                {t('positionApplyPage.posAppFormPersonalStatement')}
+                {t('positionApplyPage.posAppFormPlatform')}
               </ControlLabel>
               <FormControl
                 row={5}
-                name="personalStatement"
+                name="platform"
                 componentClass="textarea"
               />
             </FormGroup>

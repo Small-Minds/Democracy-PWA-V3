@@ -8,13 +8,13 @@ export default function LanguagePicker() {
   const [t, i18n] = useTranslation();
 
   // Returns true in development.
-  const dev: boolean = useMemo(() => {
-    return (
-      window.location.hostname === 'localhost' ||
-      window.location.hostname === '127.0.0.1' ||
-      window.location.hostname === ''
-    );
-  }, []);
+  // const dev: boolean = useMemo(() => {
+  //   return (
+  //     window.location.hostname === 'localhost' ||
+  //     window.location.hostname === '127.0.0.1' ||
+  //     window.location.hostname === ''
+  //   );
+  // }, []);
 
   // TODO: Re-enable all other languages once
   return (
@@ -26,11 +26,7 @@ export default function LanguagePicker() {
         placement="bottomEnd"
       >
         {locales.map((lang, key) => (
-          <Dropdown.Item
-            key={key}
-            eventKey={lang.key}
-            disabled={lang.key !== 'en' && !dev}
-          >
+          <Dropdown.Item key={key} eventKey={lang.key}>
             <b>{lang.key}</b> &middot; {lang.name}
           </Dropdown.Item>
         ))}

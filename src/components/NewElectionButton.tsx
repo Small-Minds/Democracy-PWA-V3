@@ -49,10 +49,17 @@ function NewElectionButton() {
   //form model setup
   const msg_required = t('createElectionBtn.msgRequired');
   const msg_ivalid_format = t('createElectionBtn.msgInvalidFormat');
+  const msg_max_length_200 = t('createElectionBtn.maxLength200');
+
   const model = Schema.Model({
     title: Schema.Types.StringType()
       .isRequired(msg_required)
-      .minLength(1, msg_required),
+      .minLength(1, msg_required)
+      .maxLength(200, msg_max_length_200),
+    subtitle: Schema.Types.StringType()
+      .isRequired(msg_required)
+      .minLength(1, msg_required)
+      .maxLength(200, msg_max_length_200),
     description: Schema.Types.StringType()
       .isRequired(msg_required)
       .minLength(1, msg_required),
@@ -92,6 +99,7 @@ function NewElectionButton() {
   //form data setup
   const [formData, setFormData] = useState<Record<string, any>>({
     title: '',
+    subtitle: '',
     description: '',
     enable_multiple_submissions: false,
     election_email_domain: 'uottawa.ca',
@@ -123,6 +131,7 @@ function NewElectionButton() {
     // Call the creation endpoint.
     create({
       title: electionDetails.title,
+      subtitle: electionDetails.subtitle,
       description: electionDetails.description,
       election_email_domain: electionDetails.election_email_domain,
       enable_multiple_submissions: electionDetails.enable_multiple_submissions,
@@ -203,7 +212,15 @@ function NewElectionButton() {
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>
-                    {t('createElectionBtn.electionDescription')}
+                    {t('createElectionBtn.electionSubtitle')}
+                  </ControlLabel>
+                  <FormControl name="subtitle" />
+                </FormGroup>
+                <FormGroup>
+                  <ControlLabel>
+                    {t(
+                      'createElectionBtn.electionDescriptionAndSubmissionInfo'
+                    )}
                   </ControlLabel>
                   <FormControl
                     rows={5}

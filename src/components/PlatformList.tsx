@@ -9,7 +9,7 @@ import React, {
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next/*';
 import { useHistory } from 'react-router-dom';
-import { Avatar, FlexboxGrid, List, Placeholder } from 'rsuite';
+import { Avatar, Container, FlexboxGrid, List, Placeholder } from 'rsuite';
 import {
   CandidateWithUserDetails,
   ElectionDetails,
@@ -41,19 +41,22 @@ const CandidateListItem: FC<{ candidate: CandidateWithUserDetails }> = ({
   if (!candidate || !candidate.user || !candidate.user.email) return null;
   return (
     <Fragment>
-      <FlexboxGrid justify="start" align="top">
+      <FlexboxGrid justify="start" align="middle" style={{ marginBottom: 10 }}>
         <FlexboxGrid.Item style={{ paddingRight: 10 }}>
           {userImage}
         </FlexboxGrid.Item>
-        <FlexboxGrid.Item>
+        <FlexboxGrid.Item componentClass={'div'}>
           <h5>{candidate.user.name}</h5>
-          {candidate.platform.split('\n').map((line, index) => (
-            <p key={index}>
-              <i>{line}</i>
-            </p>
-          ))}
+          <p>
+            <code>{candidate.user.email}</code>
+          </p>
         </FlexboxGrid.Item>
       </FlexboxGrid>
+      <div>
+        {candidate.platform.split('\n').map((line, index) => (
+          <p key={index}>{line}</p>
+        ))}
+      </div>
     </Fragment>
   );
 };

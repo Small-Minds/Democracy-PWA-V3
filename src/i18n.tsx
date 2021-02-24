@@ -20,6 +20,11 @@ export const locales = [
   { name: 'العربية', key: 'ar' },
   { name: 'हिन्दी', key: 'hi' },
 ];
+// Returns true in development.
+const dev: boolean =
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1' ||
+  window.location.hostname === '';
 
 i18n
   .use(LanguageDetector)
@@ -33,9 +38,9 @@ i18n
       hi: languageHI,
     },
     /*default language*/
-    /* lng: 'en', */
+    lng: 'en',
     /*fallback language*/
-    debug: true,
+    debug: dev,
     ns: ['translations'],
     defaultNS: 'translation',
     keySeparator: '.',
