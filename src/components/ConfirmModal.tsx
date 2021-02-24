@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next/*';
 import { Modal, Button } from 'rsuite';
 
 interface ConfirmModalInput {
@@ -18,6 +19,7 @@ export default function ConfirmModal({
   closeModal,
   cleanUpFunc,
 }: ConfirmModalInput) {
+  const [t] = useTranslation();
   return (
     <Modal backdrop="static" show={isOpen} onHide={() => closeModal()}>
       <Modal.Header>
@@ -34,10 +36,10 @@ export default function ConfirmModal({
           }}
           appearance="primary"
         >
-          Ok
+          {t('confirmModal.okBtn')}
         </Button>
         <Button onClick={() => closeModal()} appearance="subtle">
-          Cancel
+        {t('confirmModal.cancelBtn')}
         </Button>
       </Modal.Footer>
     </Modal>

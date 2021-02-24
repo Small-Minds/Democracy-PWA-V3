@@ -192,6 +192,10 @@
       "noWinner": "No candidates.",
       "draw": "Draw",
       "votes": "Votes"
+    },
+    "confirmModal": {
+      "okBtn": "OK",
+      "cancelBtn": "Cancel"
     }
   }
 }
