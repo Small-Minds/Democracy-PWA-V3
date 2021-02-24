@@ -1,7 +1,7 @@
 import React, { Fragment, useMemo, useState } from 'react';
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
-import { Avatar, Button, FlexboxGrid, Modal } from 'rsuite';
+import { Avatar, Button, FlexboxGrid, Icon, Modal } from 'rsuite';
 import { CandidateWithUserDetails } from '../utils/api/ElectionManagement';
 
 interface CandidateInfoModalInput {
@@ -24,7 +24,6 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
           setOpen(true);
         }}
         style={{ marginRight: 8, marginBottom: 8 }}
-        block
       >
         <Avatar
           size="lg"
@@ -39,6 +38,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
         <h5 style={{ marginTop: 5, textAlign: 'center' }}>
           {candidate.user.name}
         </h5>
+        <p><Icon icon="info" /> {t('candidateInfoComp.btnTip')}</p>
       </Button>
       <Modal
         show={open}

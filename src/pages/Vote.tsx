@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import {
   Button,
+  ButtonGroup,
   ButtonToolbar,
   Divider,
   FlexboxGrid,
@@ -167,13 +168,12 @@ export default function Vote() {
               <br />
               <h5>{t('votePage.ballotPosCandidateTitle')}</h5>
               <br />
-              <FlexboxGrid justify="start" align="middle">
-                {pos.candidates.map((candidate, index) => (
-                  <FlexboxGrid.Item key={index}>
+              <ButtonGroup justified>
+                 {pos.candidates.map((candidate, index) => (
                     <CandidateInfo candidate={candidate} />
-                  </FlexboxGrid.Item>
                 ))}
-              </FlexboxGrid>
+              </ButtonGroup>
+               
               <br />
               <h5>{t('votePage.ballotVoteSectionTitle')}</h5>
               <br />

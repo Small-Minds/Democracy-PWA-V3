@@ -171,7 +171,8 @@
     "candidateInfoComp": {
       "modalTitle": "Candidate Information",
       "candidateName": "Name: ",
-      "candidatePlatform": "Election Platform"
+      "candidatePlatform": "Election Platform",
+      "btnTip": "Click me to know more"
     },
     "setTimelineModal": {
       "title": "Election Timeline Configuration",
