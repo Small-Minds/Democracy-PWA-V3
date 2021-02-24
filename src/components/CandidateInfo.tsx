@@ -24,6 +24,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
           setOpen(true);
         }}
         style={{ marginRight: 8, marginBottom: 8 }}
+        block
       >
         <Avatar
           size="lg"

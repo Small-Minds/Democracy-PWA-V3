@@ -5,12 +5,7 @@ import { initReactI18next } from 'react-i18next';
 import EN from './locale/en.json';
 import ZH from './locale/zh.json';
 import FR from './locale/fr.json';
-import AR from './locale/ar.json';
-import HI from './locale/hi.json';
-import BN from './locale/bn.json';
-import DE from './locale/de.json';
-import ES from './locale/es.json';
-import PL from './locale/pl.json';
+
 
 export type LanguageDef = {
   name: string;
@@ -21,12 +16,6 @@ export const locales = [
   { name: 'English', key: 'en' },
   { name: 'Français', key: 'fr' },
   { name: '中文', key: 'zh' },
-  { name: 'Español', key: 'es' },
-  { name: 'Deutsch', key: 'de' },
-  { name: 'Język polski', key: 'pl' },
-  { name: 'العربية', key: 'ar' },
-  { name: 'বাংলা', key: 'bn' },
-  { name: 'हिन्दी', key: 'hi' },
 ];
 // Returns true in development.
 const dev: boolean =
@@ -42,12 +31,6 @@ i18n
       en: EN,
       zh: ZH,
       fr: FR,
-      ar: AR,
-      hi: HI,
-      bn: BN,
-      de: DE,
-      es: ES,
-      pl: PL,
     },
     /*default language*/
     lng: 'en',
