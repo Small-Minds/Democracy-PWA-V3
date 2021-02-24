@@ -95,7 +95,7 @@ export default function ElectionResults() {
   let { id } = useParams<any>();
   const [isLoading, setLoading] = useState(true);
   const [electionResult, setElection] = useState<ElectionResult>();
-
+  const [t] = useTranslation();
   useEffect(() => {
     getElectionResult(id).then((res) => {
       setElection(res);
@@ -109,7 +109,7 @@ export default function ElectionResults() {
   }
 
   if (!electionResult) {
-    return <p>No results.</p>;
+    return <p>{t('electionResult.noResult')}</p>;
   }
 
   return (

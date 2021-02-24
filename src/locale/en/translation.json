@@ -191,7 +191,8 @@
     "electionResults": {
       "noWinner": "No candidates.",
       "draw": "Draw",
-      "votes": "Votes"
+      "votes": "Votes",
+      "noResult": "No results."
     },
     "confirmModal": {
       "okBtn": "OK",
