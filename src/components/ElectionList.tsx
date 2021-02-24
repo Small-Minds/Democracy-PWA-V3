@@ -1,10 +1,12 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { useEffect, useContext, useState, Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
-import { List } from 'rsuite';
+import { Link } from 'react-router-dom';
+import { FlexboxGrid, List } from 'rsuite';
 import Loading from '../pages/Loading';
-import { Election, getElectionList } from '../utils/api/ElectionManagement';
+import { getElectionList, Election } from '../utils/api/ElectionManagement';
 import { Credentials } from '../utils/Authentication';
 import ElectionListElement from './ElectionListElement';
+import NewElectionButton from './NewElectionButton';
 
 export default function ElectionList() {
   const ctx = useContext(Credentials);
@@ -30,14 +32,22 @@ export default function ElectionList() {
   if (electionList.length === 0)
     return (
       <Fragment>
+        <br />
         <p>{t('electionList.noMatchingElections')}</p>
+        <br />
       </Fragment>
     );
+
   return (
     <div>
       <List>
         {electionList.map((election, index) => (
-          <ElectionListElement key={index} index={index} election={election} />
+          <ElectionListElement
+            key={index}
+            index={index}
+            election={election}
+            managerList
+          />
         ))}
       </List>
     </div>

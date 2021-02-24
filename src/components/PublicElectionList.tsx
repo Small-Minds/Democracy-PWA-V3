@@ -1,13 +1,22 @@
-import React, { useEffect, useContext, useState, FC, useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import { List } from 'rsuite';
+import React, {
+  FC,
+  Fragment,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import { useTranslation } from 'react-i18next';
+import { FlexboxGrid, List } from 'rsuite';
+import Loading from '../pages/Loading';
 import {
-  getPublicElectionList,
   Election,
+  getPublicElectionList,
 } from '../utils/api/ElectionManagement';
 import { User } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';
 import ElectionListElement from './ElectionListElement';
+import NewElectionButton from './NewElectionButton';
 
 interface PELProps {
   filterDomain?: boolean;
@@ -17,6 +26,7 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
   const ctx = useContext(Credentials);
   const user = useContext(User);
   const [electionList, setElectionList] = useState<Array<Election>>([]);
+  const [t] = useTranslation();
 
   const userDomain = useMemo(() => {
     if (!user || !user.user || !user.user.email) return '';
@@ -41,6 +51,25 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
   }, [ctx]);
 
   if (!user || !user.user || !user.user.email) return null;
+  if (!electionList) return <Loading />;
+  if (electionList.length === 0)
+    return (
+      <Fragment>
+        <br />
+        <FlexboxGrid align="middle" justify="center">
+          <FlexboxGrid.Item>
+            <p>{t('electionList.noMatchingElections')}</p>
+          </FlexboxGrid.Item>
+        </FlexboxGrid>
+        <br />
+        <FlexboxGrid align="middle" justify="center">
+          <FlexboxGrid.Item>
+            <NewElectionButton />
+          </FlexboxGrid.Item>
+        </FlexboxGrid>
+        <br />
+      </Fragment>
+    );
   return (
     <div>
       <List>
@@ -48,6 +77,7 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
           <ElectionListElement key={index} index={index} election={election} />
         ))}
       </List>
+      <br />
     </div>
   );
 };

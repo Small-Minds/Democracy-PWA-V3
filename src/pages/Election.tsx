@@ -144,6 +144,13 @@ const Information: FC<ElectionSubpage> = ({ id, election, updateElection }) => {
     <Fragment>
       <h3>{t('electionPage.infoSubpageTitle')}</h3>
       <br />
+      <div>
+        {election.description.split('\n').map((line, index) => (
+          <p key={index}>{line}</p>
+        ))}
+      </div>
+      <br />
+      <br />
       <ElectionManager election={election} />
       <br />
       <br />
@@ -242,8 +249,12 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
         <h1>{election.title}</h1>
         <p>
           <b>@{election.election_email_domain}</b>
-          &nbsp;&middot;&nbsp;
-          <span>{election.description}</span>
+          {election.subtitle && (
+            <Fragment>
+              &nbsp;&middot;&nbsp;
+              <span>{election.subtitle}</span>
+            </Fragment>
+          )}
         </p>
         <br />
         <h2>{t('electionPage.resultSectionTitle')}</h2>
@@ -270,8 +281,12 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
       <h1>{election.title}</h1>
       <p>
         <b>@{election.election_email_domain}</b>
-        &nbsp;&middot;&nbsp;
-        <span>{election.description}</span>
+        {election.subtitle && (
+          <Fragment>
+            &nbsp;&middot;&nbsp;
+            <span>{election.subtitle}</span>
+          </Fragment>
+        )}
       </p>
       <br />
       {election && election.domain_match === false && (
