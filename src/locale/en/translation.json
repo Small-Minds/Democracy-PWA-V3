@@ -182,6 +182,12 @@
       },
       "form": {
         "timeDivider": "to"
+      },
+      "updateNotification":{
+        "successTitle": "Success",
+        "successBody": "The election timeline has been successfully updated.",
+        "errorTitle": "Error",
+        "errorBody": "Failed to update the election timeline."
       }
     },
     "emailVerification": {

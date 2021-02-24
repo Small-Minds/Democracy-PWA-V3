@@ -100,13 +100,13 @@ export default function SetTimelineModal({
       if (res == 200) {
         cleanupFunc();
         Notification['success']({
-          title: 'Success',
-          description: 'The election timeline has been successfully updated.',
+          title: t('setTimelineModal.updateNotification.successTitle'),
+          description: t('setTimelineModal.updateNotification.successBody'),
         });
       } else {
         Notification['error']({
-          title: 'Error',
-          description: 'Failed to update the election timeline',
+          title: t('setTimelineModal.updateNotification.errorTitle'),
+          description: t('setTimelineModal.updateNotification.errorBody'),
         });
       }
       closeModal();
