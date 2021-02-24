@@ -5,8 +5,6 @@ import { initReactI18next } from 'react-i18next';
 import EN from './locale/en.json';
 // import ZH from './locale/zh.json';
 import FR from './locale/fr.json';
-<<<<<<< HEAD
-=======
 import AR from './locale/ar.json';
 // import HI from './locale/hi.json';
 // import BN from './locale/bn.json';
@@ -20,7 +18,6 @@ import AR from './locale/ar.json';
  *  2. Locales variable
  *  3. Resources object in config
  */
->>>>>>> 6df84afd6d0e984bb80a13e918a625d144808272
 
 export type LanguageDef = {
   name: string;
@@ -30,9 +27,6 @@ export type LanguageDef = {
 export const locales = [
   { name: 'English', key: 'en' },
   { name: 'Français', key: 'fr' },
-<<<<<<< HEAD
-  { name: '中文', key: 'zh' },
-=======
   // { name: '中文', key: 'zh' },
   // { name: 'Español', key: 'es' },
   // { name: 'Deutsch', key: 'de' },
@@ -40,7 +34,6 @@ export const locales = [
   { name: 'العربية', key: 'ar' },
   // { name: 'বাংলা', key: 'bn' },
   // { name: 'हिन्दी', key: 'hi' },
->>>>>>> 6df84afd6d0e984bb80a13e918a625d144808272
 ];
 // Returns true in development.
 const dev: boolean =
@@ -56,15 +49,12 @@ i18n
       en: EN,
       // zh: ZH,
       fr: FR,
-<<<<<<< HEAD
-=======
       ar: AR,
       // hi: HI,
       // bn: BN,
       // de: DE,
       // es: ES,
       // pl: PL,
->>>>>>> 6df84afd6d0e984bb80a13e918a625d144808272
     },
     /*default language*/
     /*fallback language*/
