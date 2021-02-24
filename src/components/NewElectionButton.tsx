@@ -261,7 +261,9 @@ function NewElectionButton() {
                   </FlexboxGrid>
                 </FormGroup>
                 <FormGroup>
-                  <ControlLabel>{t('createElectionBtn.votingPeriod')}</ControlLabel>
+                  <ControlLabel>
+                    {t('createElectionBtn.votingPeriod')}
+                  </ControlLabel>
                   <FlexboxGrid justify="start" align="middle">
                     <FlexboxGrid.Item>
                       <FormControl
@@ -272,7 +274,7 @@ function NewElectionButton() {
                       ></FormControl>
                     </FlexboxGrid.Item>
                     <FlexboxGrid.Item style={{ padding: 10 }}>
-                    {t('createElectionBtn.betweenDates')}
+                      {t('createElectionBtn.betweenDates')}
                     </FlexboxGrid.Item>
                     <FlexboxGrid.Item>
                       <FormControl
@@ -287,7 +289,7 @@ function NewElectionButton() {
               </Form>
             </Drawer.Body>
             <Drawer.Footer style={{ paddingBottom: 10 }}>
-            <Button
+              <Button
                 disabled={!ctx?.credentials.authenticated}
                 loading={loading}
                 appearance="primary"

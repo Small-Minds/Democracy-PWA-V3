@@ -19,7 +19,7 @@ const ElectionTimeline: FC<Props> = ({ election }) => {
         </div>
       </Fragment>
     );
-  const [t] = useTranslation()
+  const [t] = useTranslation();
   return (
     <Fragment>
       <div style={{ marginBottom: 20 }}>

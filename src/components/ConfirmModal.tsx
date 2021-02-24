@@ -39,7 +39,7 @@ export default function ConfirmModal({
           {t('confirmModal.okBtn')}
         </Button>
         <Button onClick={() => closeModal()} appearance="subtle">
-        {t('confirmModal.cancelBtn')}
+          {t('confirmModal.cancelBtn')}
         </Button>
       </Modal.Footer>
     </Modal>

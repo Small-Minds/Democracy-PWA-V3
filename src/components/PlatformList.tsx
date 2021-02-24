@@ -77,7 +77,11 @@ const PlatformDisplay: FC<PositionDisplayProps> = ({ position }) => {
         <i>{position.description}</i>
       </p>
       <br />
-      <h4>{candidates.length !== 0 ? t('platformList.title') : t('platformList.emptyTitle')}</h4>
+      <h4>
+        {candidates.length !== 0
+          ? t('platformList.title')
+          : t('platformList.emptyTitle')}
+      </h4>
       <List style={{ marginTop: 10, marginBottom: 20 }}>
         {loading && (
           <List.Item>

@@ -183,7 +183,7 @@
       "form": {
         "timeDivider": "to"
       },
-      "updateNotification":{
+      "updateNotification": {
         "successTitle": "Success",
         "successBody": "The election timeline has been successfully updated.",
         "errorTitle": "Error",
@@ -231,7 +231,7 @@
       "emptyPosition": "No positions posted yet. Check back soon for updates."
     },
     "positionList": {
-      "deleteNotification":{
+      "deleteNotification": {
         "successTitle": "Success",
         "successBody": "The position has been successfully deleted",
         "errorTitle": "Error",
