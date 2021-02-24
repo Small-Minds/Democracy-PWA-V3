@@ -205,6 +205,13 @@
     },
     "electionManager": {
       "manager": "Run by "
+    },
+    "electionTimeline": {
+      "appBegin": "Application period begins",
+      "appEnd": "Application period ends",
+      "review": "Review of applications by election manager",
+      "voteBegin": "Voting period begins",
+      "voteEnd": "Voting period ends"
     }
   }
 }
