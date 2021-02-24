@@ -269,6 +269,9 @@
         "form": {
           "email": "Email Address",
           "submit": "Request Key"
+        },
+        "candidateInfoComp": {
+          "btnTip": "Click me"
         }
       },
       "passwordResetChange": {

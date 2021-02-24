@@ -39,7 +39,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
           {candidate.user.name}
         </h5>
         <p>
-          <Icon icon="info" /> {t('candidateInfoComp.btnTip')}
+          <Icon icon="info" /> {t('v2.candidateInfoComp.btnTip')}
         </p>
       </Button>
       <Modal
