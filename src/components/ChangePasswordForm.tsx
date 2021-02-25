@@ -1,8 +1,7 @@
-import React, { Fragment, FC, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
-import { Button, FlexboxGrid, Icon, IconButton } from 'rsuite';
 import {
+  Button,
   ButtonToolbar,
   ControlLabel,
   Form,
@@ -11,14 +10,17 @@ import {
   Notification,
   Schema,
 } from 'rsuite';
-import { requestPasswordReset } from '../utils/api/User';
+import { updatePassword } from '../utils/api/User';
 
-const PasswordResetRequest: FC = () => {
-  const [t] = useTranslation();
-  const history = useHistory();
+/**
+ * This form can be placed anywhere below the Credentials context provider.
+ */
 
+function ChangePasswordForm() {
   // This variable is required for rsuite forms.
   let form: any = undefined;
+  // Set up localization hook
+  const [t] = useTranslation();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(false);
@@ -26,14 +28,17 @@ const PasswordResetRequest: FC = () => {
   const [miscErrors, setMiscErrors] = useState<string>('');
 
   const [formData, setFormData] = useState<Record<string, any>>({
-    email: '',
+    new_password1: '',
+    new_password2: '',
   });
 
   //form model set up
   const msg_required = t('signInForm.msgRequired');
   const model = Schema.Model({
-    email: Schema.Types.StringType()
-      .isEmail(t('signInForm.invalidEmailFormatMsg'))
+    new_password1: Schema.Types.StringType()
+      .isRequired(msg_required)
+      .minLength(1, msg_required),
+    new_password2: Schema.Types.StringType()
       .isRequired(msg_required)
       .minLength(1, msg_required),
   });
@@ -53,7 +58,7 @@ const PasswordResetRequest: FC = () => {
 
     // Then, submit the form to the backend.
     console.log(formData);
-    requestPasswordReset(formData)
+    updatePassword(formData)
       .then((res) => {
         console.log(res);
         setLoading(false);
@@ -81,53 +86,45 @@ const PasswordResetRequest: FC = () => {
   };
 
   return (
-    <FlexboxGrid align="middle" justify="center" style={{ height: '50vh' }}>
-      <FlexboxGrid.Item>
-        <div style={{ textAlign: 'center' }}>
-          <br />
-          <h2>{t('v2.passwordResetRequest.title')}</h2>
-          <br />
-          <Form
-            onChange={(newData) => setFormData(newData)}
-            onCheck={(newErrors) => setFormErrors(newErrors)}
-            formValue={formData}
-            formError={formErrors}
-            model={model}
-            ref={(ref: any) => (form = ref)}
+    <Form
+      onChange={(newData) => setFormData(newData)}
+      onCheck={(newErrors) => setFormErrors(newErrors)}
+      formValue={formData}
+      formError={formErrors}
+      model={model}
+      ref={(ref: any) => (form = ref)}
+    >
+      <FormGroup>
+        <ControlLabel>{t('resetPassword.form.password1')}</ControlLabel>
+        <FormControl name="new_password1" type="password" disabled={disabled} />
+      </FormGroup>
+      <FormGroup>
+        <ControlLabel>{t('resetPassword.form.password2')}</ControlLabel>
+        <FormControl name="new_password2" type="password" disabled={disabled} />
+      </FormGroup>
+      <FormGroup>
+        <ButtonToolbar>
+          <Button
+            appearance="primary"
+            loading={loading}
+            disabled={disabled}
+            onClick={submitFormData}
           >
-            <FormGroup>
-              <ControlLabel>
-                {t('v2.passwordResetRequest.form.email')}
-              </ControlLabel>
-              <FormControl name="email" disabled={disabled} />
-            </FormGroup>
-            <FormGroup>
-              <ButtonToolbar>
-                <Button
-                  size="lg"
-                  appearance="primary"
-                  loading={loading}
-                  disabled={disabled}
-                  onClick={submitFormData}
-                >
-                  {t('v2.passwordResetRequest.form.submit')}
-                </Button>
-                {miscErrors ? (
-                  <Button
-                    appearance="subtle"
-                    onClick={submitFormData}
-                    disabled={disabled}
-                  >
-                    {miscErrors}
-                  </Button>
-                ) : null}
-              </ButtonToolbar>
-            </FormGroup>
-          </Form>
-        </div>
-      </FlexboxGrid.Item>
-    </FlexboxGrid>
+            {t('general.submit')}
+          </Button>
+          {miscErrors ? (
+            <Button
+              appearance="subtle"
+              onClick={submitFormData}
+              disabled={disabled}
+            >
+              {miscErrors}
+            </Button>
+          ) : null}
+        </ButtonToolbar>
+      </FormGroup>
+    </Form>
   );
-};
+}
 
-export default PasswordResetRequest;
+export default ChangePasswordForm;

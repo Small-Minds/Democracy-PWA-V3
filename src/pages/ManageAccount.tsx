@@ -4,6 +4,8 @@ import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { Avatar, Button, FlexboxGrid, Icon, IconButton } from 'rsuite';
+import ChangeNameForm from '../components/ChangeNameForm';
+import ChangePasswordForm from '../components/ChangePasswordForm';
 import { User } from '../utils/api/User';
 
 export default function ManageAccount() {
@@ -21,23 +23,32 @@ export default function ManageAccount() {
       <h1>{t('manageAccountPage.title')}</h1>
       <p>{t('manageAccountPage.instruction')}</p>
       <br />
-      <FlexboxGrid align="middle" justify="start">
-        <FlexboxGrid.Item>
-          <Avatar size="lg" style={{ marginTop: 20, marginBottom: 20 }}>
-            {userImage}
-          </Avatar>
-        </FlexboxGrid.Item>
-        <FlexboxGrid.Item>
-          <IconButton
-            style={{ margin: 20 }}
-            icon={<Icon icon="chevron-left" />}
-            href={'https://en.gravatar.com/'}
-            primary
-          >
-            {t('manageAccountPage.changeProfileBtn')}
-          </IconButton>
-        </FlexboxGrid.Item>
-      </FlexboxGrid>
+      <div>
+        <Avatar size="lg" style={{ marginTop: 20, marginBottom: 20 }}>
+          {userImage}
+        </Avatar>
+      </div>
+      <a
+        href="https://en.gravatar.com/"
+        rel="external nofollow"
+        target="_blank"
+      >
+        {t('manageAccountPage.changeProfileBtn')}
+      </a>
+      <br />
+      <br />
+      <br />
+      <h3>{t('signUpForm.nameInputLabel')}</h3>
+      <br />
+      <ChangeNameForm />
+      <br />
+      <br />
+      <h3>{t('resetPassword.form.password1')}</h3>
+      <br />
+      <ChangePasswordForm />
+      <br />
+      <br />
+      <br />
       <br />
     </Fragment>
   );

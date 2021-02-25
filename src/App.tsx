@@ -21,6 +21,8 @@ import HomeVote from './pages/HomeVote';
 import Info from './pages/Landing';
 import Loading from './pages/Loading';
 import ManageAccount from './pages/ManageAccount';
+import PasswordResetChange from './pages/PasswordResetChange';
+import PasswordResetRequest from './pages/PasswordResetRequest';
 import PositionApply from './pages/PositionApply';
 import ReturnToLogin from './pages/ReturnToLogin';
 import Vote from './pages/Vote';
@@ -153,6 +155,14 @@ function App() {
                         <Fragment>
                           {/* Public Pages */}
                           <Switch>
+                            <Route
+                              path="/password-reset/:uid/:token"
+                              component={PasswordResetChange}
+                            />
+                            <Route
+                              path="/password-reset/"
+                              component={PasswordResetRequest}
+                            />
                             <Route
                               path="/email-verified"
                               component={() => (
