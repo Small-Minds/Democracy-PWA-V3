@@ -48,6 +48,20 @@ export type ElectionDetails = {
   domain_match: boolean;
 };
 
+export type ManagedElectionDetails = {
+  manager: GenericUser;
+  title: string;
+  subtitle: string;
+  description: string;
+  enable_multiple_submissions: boolean;
+  election_email_domain: string;
+  whitelist: string;
+  submission_end_time: string;
+  submission_start_time: string;
+  voting_end_time: string;
+  voting_start_time: string;
+};
+
 /**
  * Results
  */
@@ -72,9 +86,15 @@ export type ElectionResult = {
   positions: PositionResult[];
 };
 
-/**
- * Candidates
- */
+/*
+  Users
+*/
+
+export type GenericUser = {
+  username: string;
+  email: string;
+  name: string;
+};
 
 export type CandidateWithUserDetails = {
   id: string;
@@ -157,6 +177,37 @@ export async function getElectionResult(
     config
   );
   return res.data;
+}
+
+export async function getManagedElectionDetails(
+  electionId: string
+): Promise<ManagedElectionDetails> {
+  const token = await preRequestRefreshAuth();
+  let config = {
+    headers: { Authorization: `JWT ${token}` },
+  };
+  const res: AxiosResponse = await api.get(
+    `/elections/manage/election/${electionId}/`,
+    config
+  );
+  return res.data;
+}
+
+export async function updateManagedElection(
+  electionId: string
+): Promise<number> {
+  const token = await preRequestRefreshAuth();
+  let config = {
+    headers: { Authorization: `JWT ${token}` },
+  };
+  return api
+    .patch(`/elections/manage/election/${electionId}/`, config)
+    .then((res) => {
+      return res.status;
+    })
+    .catch((err) => {
+      return err.status;
+    });
 }
 
 export async function deleteElection(electionId: string): Promise<Number> {

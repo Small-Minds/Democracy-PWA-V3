@@ -25,12 +25,7 @@ export default function EditWhiteListModal({
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Input
-          componentClass="textarea"
-          rows={100}
-          placeholder="Textarea"
-          required
-        />
+        <Input componentClass="textarea" rows={100} placeholder="Textarea" />
       </Modal.Body>
       <Modal.Footer>
         <Button appearance="primary">Submit</Button>
