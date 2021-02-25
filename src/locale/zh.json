@@ -41,7 +41,7 @@
       "submitBtn": "提交"
     },
     "electionList": {
-      "noMatchingElections": "找不到选举，不如自己创建一个？",
+      "noMatchingElections": "无选举，不如自己创建一个？",
       "button": {
         "viewElection": "查看选举",
         "manageElection": "管理选举"
@@ -124,7 +124,7 @@
     },
     "manageAccountPage": {
       "title": "帐户",
-      "instruction": "更新或删除您的「德先生（Democracy）」帐户",
+      "instruction": "更新或删除您的「德先生」帐户",
       "changeProfileBtn": "使用 Gravatar 更改个人资料头像",
       "form": {
         "title": "更新用户信息",
@@ -296,6 +296,12 @@
           "password1": "新密码",
           "password2": "请再次输入新密码",
           "submit": "确定"
+        }
+      },
+      "electionPage": {
+        "deleteNotification": {
+          "successTitle": "成功",
+          "successBody": "已成功删除所选的选举。"
         }
       }
     }

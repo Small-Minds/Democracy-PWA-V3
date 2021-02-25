@@ -298,6 +298,12 @@
           "password2": "Re-Enter New Password",
           "submit": "Change Password and Log In"
         }
+      },
+      "electionPage": {
+        "deleteNotification": {
+          "successTitle": "Success",
+          "successBody": "The election has been successfully deleted."
+        }
       }
     }
   }

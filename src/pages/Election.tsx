@@ -63,8 +63,8 @@ const ManagementTools: FC<ElectionSubpage> = ({
     if (result == 204) {
       setIsDeleteElectionModalOpen(false);
       Notification['success']({
-        title: 'Success',
-        description: 'The election has been successfully updated',
+        title: t('v2.electionPage.deleteNotification.successTitle'),
+        description: t('v2.electionPage.deleteNotification.successBody'),
       });
       history.push(`/`);
     } else {
