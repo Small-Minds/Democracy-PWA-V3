@@ -1,5 +1,7 @@
-import React from 'react';
-import { Button, Input, Modal } from 'rsuite';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { Button, ControlLabel, Form, FormControl, FormGroup, Input, Loader, Modal, Notification, Schema } from 'rsuite';
+import { getManagedElectionDetails, ManagedElectionDetails, updateManagedElection } from '../utils/api/ElectionManagement';
 
 interface EditWhiteListModalInput {
   closeModal: () => void;
@@ -12,6 +14,47 @@ export default function EditWhiteListModal({
   isOpen,
   electionId,
 }: EditWhiteListModalInput) {
+  let electionDetail: ManagedElectionDetails|undefined;
+  let form: any = undefined;
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [formErrors, setFormErrors] = useState<Record<string, any>>({});
+  const [formData, setFormData] = useState<Record<string, any>>({
+    whitelist: electionDetail?.whitelist
+  });
+  const model = Schema.Model({
+      whitelist: Schema.Types.StringType()
+  })
+
+  useEffect(() => {
+      getManagedElectionDetails(electionId)
+      .then((res:ManagedElectionDetails)=>{
+        electionDetail = res;  
+        setIsLoading(false);})
+  });
+  
+  function submitWhitelist(input: string): void{
+    if(electionDetail){
+        const newManagedElectionDetails: ManagedElectionDetails={
+            ...electionDetail,
+            whitelist: input
+        }
+        updateManagedElection(newManagedElectionDetails,electionId)
+        .then((res:number)=>{
+            if(res == 200){
+                Notification['success']({
+                    title: 'Success',
+                    description: 'The election whitelist has been successfully updated',
+                });
+                closeModal();
+            }else{
+                Notification['error']({
+                    title: 'Error',
+                    description: 'Failed to submit the whitelist',
+                });
+            }
+        })
+    }
+  }
   return (
     <Modal
       backdrop="static"
@@ -20,15 +63,27 @@ export default function EditWhiteListModal({
       size="lg"
     >
       <Modal.Header>
-        <Modal.Title>
           <h5>Edit Whitelist</h5>
-        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Input componentClass="textarea" rows={100} placeholder="Textarea" />
+        {isLoading?<Loader/>:
+        <Form
+        onChange={(newData) => setFormData(newData)}
+        onCheck={(newErrors) => setFormErrors(newErrors)}
+        formValue={formData}
+        formError={formErrors}
+        model={model}
+        ref={(ref: any) => (form = ref)}
+        fluid>
+            <FormGroup>
+            <ControlLabel>Whitelist: </ControlLabel>
+            <FormControl name="whitelist" componentClass="textarea" rows={100} placeholder="whitelist" type="string"/>
+            </FormGroup>
+        </Form>}
+        
       </Modal.Body>
       <Modal.Footer>
-        <Button appearance="primary">Submit</Button>
+        <Button appearance="primary" disabled={isLoading} onClick={()=>submitWhitelist(formData.whitelist)}>Submit</Button>
         <Button appearance="default" onClick={() => closeModal()}>
           Cancel
         </Button>

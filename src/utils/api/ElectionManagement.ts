@@ -194,6 +194,7 @@ export async function getManagedElectionDetails(
 }
 
 export async function updateManagedElection(
+  newManagedElectionDetails: ManagedElectionDetails,
   electionId: string
 ): Promise<number> {
   const token = await preRequestRefreshAuth();
@@ -201,7 +202,7 @@ export async function updateManagedElection(
     headers: { Authorization: `JWT ${token}` },
   };
   return api
-    .patch(`/elections/manage/election/${electionId}/`, config)
+    .patch(`/elections/manage/election/${electionId}/`, newManagedElectionDetails,config)
     .then((res) => {
       return res.status;
     })
