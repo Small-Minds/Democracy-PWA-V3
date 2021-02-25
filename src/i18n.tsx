@@ -3,7 +3,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
 import EN from './locale/en.json';
-// import ZH from './locale/zh.json';
+import ZH from './locale/zh.json';
 import FR from './locale/fr.json';
 import AR from './locale/ar.json';
 // import HI from './locale/hi.json';
@@ -27,7 +27,7 @@ export type LanguageDef = {
 export const locales = [
   { name: 'English', key: 'en' },
   { name: 'Français', key: 'fr' },
-  // { name: '中文', key: 'zh' },
+  { name: '中文', key: 'zh' },
   // { name: 'Español', key: 'es' },
   // { name: 'Deutsch', key: 'de' },
   // { name: 'Język polski', key: 'pl' },
@@ -47,7 +47,7 @@ i18n
   .init({
     resources: {
       en: EN,
-      // zh: ZH,
+      zh: ZH,
       fr: FR,
       ar: AR,
       // hi: HI,
