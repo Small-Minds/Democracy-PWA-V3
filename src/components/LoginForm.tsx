@@ -18,6 +18,7 @@ import { login } from '../utils/api/Login';
 import { couldStartTrivia } from 'typescript';
 import { getAccessToken, getRefreshToken } from '../utils/API';
 import { useTranslation } from 'react-i18next';
+import { Link, useHistory } from 'react-router-dom';
 
 /**
  * This form can be placed anywhere below the Credentials context provider.
@@ -28,6 +29,8 @@ function LoginForm() {
   let form: any = undefined;
   // Set up localization hook
   const [t] = useTranslation();
+  const history = useHistory();
+
   //form model set up
   const msg_required = t('signInForm.msgRequired');
   const model = Schema.Model({
@@ -99,7 +102,7 @@ function LoginForm() {
         console.log(history.length);
         if (history.length > 1) {
           console.log('Going back...');
-          history.back();
+          history.goBack();
         }
       })
       .catch((err) => {
@@ -160,6 +163,8 @@ function LoginForm() {
             </ButtonToolbar>
           </FormGroup>
         </Form>
+        <br />
+        <Link to="/password-reset">{t('v2.labels.forgotPassword')}</Link>
       </Panel>
       <br />
     </div>

@@ -81,52 +81,49 @@ const PasswordResetRequest: FC = () => {
   };
 
   return (
-    <FlexboxGrid align="middle" justify="center" style={{ height: '50vh' }}>
-      <FlexboxGrid.Item>
-        <div style={{ textAlign: 'center' }}>
-          <br />
-          <h2>{t('v2.passwordResetRequest.title')}</h2>
-          <br />
-          <Form
-            onChange={(newData) => setFormData(newData)}
-            onCheck={(newErrors) => setFormErrors(newErrors)}
-            formValue={formData}
-            formError={formErrors}
-            model={model}
-            ref={(ref: any) => (form = ref)}
-          >
-            <FormGroup>
-              <ControlLabel>
-                {t('v2.passwordResetRequest.form.email')}
-              </ControlLabel>
-              <FormControl name="email" disabled={disabled} />
-            </FormGroup>
-            <FormGroup>
-              <ButtonToolbar>
-                <Button
-                  size="lg"
-                  appearance="primary"
-                  loading={loading}
-                  disabled={disabled}
-                  onClick={submitFormData}
-                >
-                  {t('v2.passwordResetRequest.form.submit')}
-                </Button>
-                {miscErrors ? (
-                  <Button
-                    appearance="subtle"
-                    onClick={submitFormData}
-                    disabled={disabled}
-                  >
-                    {miscErrors}
-                  </Button>
-                ) : null}
-              </ButtonToolbar>
-            </FormGroup>
-          </Form>
-        </div>
-      </FlexboxGrid.Item>
-    </FlexboxGrid>
+    <div style={{ textAlign: 'center', padding: 20 }}>
+      <br />
+      <h3>{t('v2.passwordResetRequest.title')}</h3>
+      <br />
+      <p>{t('v2.passwordResetRequest.description')}</p>
+      <br />
+      <br />
+      <Form
+        onChange={(newData) => setFormData(newData)}
+        onCheck={(newErrors) => setFormErrors(newErrors)}
+        formValue={formData}
+        formError={formErrors}
+        model={model}
+        ref={(ref: any) => (form = ref)}
+      >
+        <FormGroup>
+          <ControlLabel>{t('v2.passwordResetRequest.form.email')}</ControlLabel>
+          <FormControl name="email" type="email" disabled={disabled} />
+        </FormGroup>
+        <FormGroup>
+          <ButtonToolbar>
+            <Button
+              size="lg"
+              appearance="primary"
+              loading={loading}
+              disabled={disabled}
+              onClick={submitFormData}
+            >
+              {t('v2.passwordResetRequest.form.submit')}
+            </Button>
+            {miscErrors ? (
+              <Button
+                appearance="subtle"
+                onClick={submitFormData}
+                disabled={disabled}
+              >
+                {miscErrors}
+              </Button>
+            ) : null}
+          </ButtonToolbar>
+        </FormGroup>
+      </Form>
+    </div>
   );
 };
 

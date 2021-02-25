@@ -263,6 +263,9 @@
       "privacyPolicy": "By using this service, you agree to allow the public release of your name and email address on the website."
     },
     "v2": {
+      "labels": {
+        "forgotPassword": "Forgot password?"
+      },
       "errors": {
         "error": "Error",
         "pleaseLogInAgain": "Your credentials are invalid, please log in again.",
