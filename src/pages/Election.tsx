@@ -32,6 +32,7 @@ import moment from 'moment';
 import ElectionResults from '../components/ElectionResults';
 import ElectionManager from '../components/ElectionManager';
 import { useTranslation } from 'react-i18next';
+import EditWhiteListModal from '../components/EditWhiteListModal';
 
 interface ElectionSubpage {
   id: string | undefined;
@@ -99,10 +100,10 @@ const ManagementTools: FC<ElectionSubpage> = ({
           </IconButton>
         )}
         <IconButton
-            icon={<Icon icon="edit2" />}
-            onClick={() => setEditWhiteListOpen(true)}
-          >
-            Edit Whitelist
+          icon={<Icon icon="edit2" />}
+          onClick={() => setEditWhiteListOpen(true)}
+        >
+          Edit Whitelist
         </IconButton>
         <IconButton
           appearance="primary"
@@ -139,6 +140,11 @@ const ManagementTools: FC<ElectionSubpage> = ({
           if (updateElection) updateElection(election.id);
           setAddPositionOpen(false);
         }}
+      />
+      <EditWhiteListModal
+        closeModal={() => setEditWhiteListOpen(false)}
+        isOpen={editWhiteListOpen}
+        electionId={election.id}
       />
     </Fragment>
   );
