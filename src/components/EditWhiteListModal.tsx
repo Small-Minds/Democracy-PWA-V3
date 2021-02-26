@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   ControlLabel,
@@ -46,7 +47,7 @@ export default function EditWhiteListModal({
   const model = Schema.Model({
     whitelist: Schema.Types.StringType(),
   });
-
+  const [t] = useTranslation();
   function submitWhitelist(input: string): void {
     if (electionDetail) {
       const newManagedElectionDetails: ManagedElectionDetails = {
@@ -58,15 +59,14 @@ export default function EditWhiteListModal({
           console.log(res);
           if (res == 200) {
             Notification['success']({
-              title: 'Success',
-              description:
-                'The election whitelist has been successfully updated',
+              title: t('v2.editWhitelistModal.successNotificationTitle'),
+              description: t('v2.editWhitelistModal.successNotificationBody'),
             });
             closeModal();
           } else {
             Notification['error']({
-              title: 'Error',
-              description: 'Failed to submit the whitelist',
+              title: t('v2.editWhitelistModal.errorNotificationTitle'),
+              description: t('v2.editWhitelistModal.errorNotificationBody'),
             });
           }
         }
@@ -82,7 +82,7 @@ export default function EditWhiteListModal({
       size="lg"
     >
       <Modal.Header>
-        <h5>Edit Whitelist</h5>
+        <h5>{t('v2.editWhitelistModal.title')}</h5>
       </Modal.Header>
       <Modal.Body>
         {isLoading ? (
@@ -98,7 +98,9 @@ export default function EditWhiteListModal({
             fluid
           >
             <FormGroup>
-              <ControlLabel>Whitelist: </ControlLabel>
+              <ControlLabel>
+                {t('v2.editWhitelistModal.formLabel')}
+              </ControlLabel>
               <FormControl
                 name="whitelist"
                 componentClass="textarea"
@@ -116,10 +118,10 @@ export default function EditWhiteListModal({
           disabled={isLoading}
           onClick={() => submitWhitelist(formData.whitelist)}
         >
-          Submit
+          {t('v2.editWhitelistModal.submitBtn')}
         </Button>
         <Button appearance="default" onClick={() => closeModal()}>
-          Cancel
+          {t('v2.editWhitelistModal.cancelBtn')}
         </Button>
       </Modal.Footer>
     </Modal>

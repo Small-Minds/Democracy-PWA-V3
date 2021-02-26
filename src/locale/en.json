@@ -303,7 +303,18 @@
         "deleteNotification": {
           "successTitle": "Success",
           "successBody": "The election has been successfully deleted."
-        }
+        },
+        "editWhitelistBtn": "Edit Whitelist"
+      },
+      "editWhitelistModal": {
+        "title": "Edit Whitelist",
+        "formLabel": "Whitelist: ",
+        "submitBtn": "Submit",
+        "cancelBtn": "Cancel",
+        "successNotificationTitle": "Success",
+        "successNotificationBody": "The election whitelist has been successfully updated",
+        "errorNotificationTitle": "Error",
+        "errorNotificationBody": "Failed to update the election whitelist"
       }
     }
   }

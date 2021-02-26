@@ -103,7 +103,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
           icon={<Icon icon="edit2" />}
           onClick={() => setEditWhiteListOpen(true)}
         >
-          Edit Whitelist
+          {t('v2.electionPage.editWhitelistBtn')}
         </IconButton>
         <IconButton
           appearance="primary"

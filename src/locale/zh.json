@@ -302,7 +302,18 @@
         "deleteNotification": {
           "successTitle": "成功",
           "successBody": "已成功删除所选的选举。"
-        }
+        },
+        "editWhitelistBtn": "编辑白名单"
+      },
+      "editWhitelistModal": {
+        "title": "编辑白名单",
+        "formLabel": "白名单: ",
+        "submitBtn": "提交",
+        "cancelBtn": "取消",
+        "successNotificationTitle": "成功",
+        "successNotificationBody": "选举白名单已成功更新",
+        "errorNotificationTitle": "错误",
+        "errorNotificationBody": "无法更新选举白名单"
       }
     }
   }
