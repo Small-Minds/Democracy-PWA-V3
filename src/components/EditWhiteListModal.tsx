@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -29,18 +30,13 @@ export default function EditWhiteListModal({
   isOpen,
   electionId,
 }: EditWhiteListModalInput) {
-  const electionDetail = useAsyncMemo(() => {
-    return getManagedElectionDetails(electionId)
-      .then((res) => {
-        setFormData({ whitelist: res.whitelist });
-        return res;
-      })
-      .finally(() => setIsLoading(false));
-  }, [electionId]);
-
   let form: any = undefined;
   const [isLoading, setIsLoading] = useState<boolean>();
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
+  const [
+    electionDetail,
+    setElectionDetail,
+  ] = useState<ManagedElectionDetails>();
   const [formData, setFormData] = useState<Record<string, any>>({
     whitelist: '',
   });
@@ -48,6 +44,15 @@ export default function EditWhiteListModal({
     whitelist: Schema.Types.StringType(),
   });
   const [t] = useTranslation();
+
+  useEffect(() => {
+    getManagedElectionDetails(electionId).then((res) => {
+      setElectionDetail(res);
+      setFormData({ whitelist: res.whitelist });
+      setIsLoading(false);
+    });
+  }, [electionId]);
+
   function submitWhitelist(input: string): void {
     if (electionDetail) {
       const newManagedElectionDetails: ManagedElectionDetails = {
