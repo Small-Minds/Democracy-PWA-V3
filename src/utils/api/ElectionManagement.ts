@@ -201,8 +201,13 @@ export async function updateManagedElection(
   let config = {
     headers: { Authorization: `JWT ${token}` },
   };
+  console.log(newManagedElectionDetails);
   return api
-    .patch(`/elections/manage/election/${electionId}/`, newManagedElectionDetails,config)
+    .patch(
+      `/elections/manage/election/${electionId}/`,
+      newManagedElectionDetails,
+      config
+    )
     .then((res) => {
       return res.status;
     })

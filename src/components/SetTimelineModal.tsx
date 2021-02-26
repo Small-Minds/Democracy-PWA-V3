@@ -77,7 +77,6 @@ export default function SetTimelineModal({
     voting_end_time: moment(election.voting_end_time).toDate(),
   });
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
-  const [isUpdated, setIsUpdated] = useState<boolean>(false);
   const timeformat = 'YYYY-MM-DD HH:mm';
 
   function updateElection(

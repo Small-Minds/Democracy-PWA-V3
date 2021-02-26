@@ -26,6 +26,7 @@
     "react-scripts": "4.0.2",
     "rsuite": "^4.8.9",
     "typescript": "^4.0.3",
+    "use-async-memo": "^1.2.2",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
