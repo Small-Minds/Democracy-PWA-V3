@@ -50,9 +50,9 @@ const Position: FC<{ position: PositionResult }> = ({ position }) => {
     return (
       <Fragment>
         <br />
-        <h3>
+        <h4>
           {position.title}: {t('electionResults.noWinner')}
-        </h3>
+        </h4>
         <br />
       </Fragment>
     );
@@ -61,13 +61,13 @@ const Position: FC<{ position: PositionResult }> = ({ position }) => {
     <Fragment>
       <br />
       {draw ? (
-        <h3>
-          {position.title}: {t('electionResults.draw')}
-        </h3>
+        <h4>
+          {position.title} &rarr; {t('electionResults.draw')}
+        </h4>
       ) : (
-        <h3>
-          {position.title}: {sortedResults[0].user.name}
-        </h3>
+        <h4>
+          {position.title} &rarr; {sortedResults[0].user.name}
+        </h4>
       )}
       <br />
       {sortedResults.map((res, index) => {

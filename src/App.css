@@ -2,15 +2,28 @@ body {
   /* Use System Fonts */
   /* Default: Apple-System, Arial, Helvetica, "PingFang SC", "Hiragino Sans GB",
 "Microsoft YaHei", STXihei, sans-serif */
-  font-family: Apple-System, BlinkMacSystemFont, -apple-system, Roboto,
-    Helvetica, Arial, sans-serif, 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', STXihei, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol';
+  font-family: Apple-System, -apple-system, BlinkMacSystemFont, avenir next,
+    avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui,
+    sans-serif, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', STXihei,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   text-rendering: optimizeLegibility;
 
   /* To prevent jank, always show the scrollbar. */
   overflow-y: scroll;
   /* min-width: 420px; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+.rs-btn-toolbar .rs-btn {
+  margin-bottom: 6px;
 }
 
 /* Apple-System is the strange/blurry font. */

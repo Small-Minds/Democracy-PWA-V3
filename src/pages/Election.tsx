@@ -1,18 +1,12 @@
-import React, {
-  Fragment,
-  FC,
-  useState,
-  useEffect,
-  useContext,
-  Dispatch,
-  SetStateAction,
-} from 'react';
+import moment from 'moment';
+import React, { FC, Fragment, useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
-  RouteComponentProps,
-  useParams,
-  Switch,
   Route,
+  RouteComponentProps,
+  Switch,
   useHistory,
+  useParams,
 } from 'react-router-dom';
 import { ButtonToolbar, Icon, IconButton, Message, Notification } from 'rsuite';
 import AddPositionModal from '../components/AddPositionModal';
@@ -22,16 +16,14 @@ import PlatformList from '../components/PlatformList';
 import PositionList from '../components/PositionList';
 import SetTimelineModal from '../components/SetTimelineModal';
 import {
-  getElection,
-  ElectionDetails,
   deleteElection,
+  ElectionDetails,
+  getElection,
 } from '../utils/api/ElectionManagement';
 import { User, UserDataInterface } from '../utils/api/User';
 import Loading from './Loading';
-import moment from 'moment';
 import ElectionResults from '../components/ElectionResults';
 import ElectionManager from '../components/ElectionManager';
-import { useTranslation } from 'react-i18next';
 import EditWhiteListModal from '../components/EditWhiteListModal';
 
 interface ElectionSubpage {
@@ -267,7 +259,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
   if (moment(election.voting_end_time) < moment()) {
     return (
       <Fragment>
-        <h1>{election.title}</h1>
+        <h2>{election.title}</h2>
         <p>
           <b>@{election.election_email_domain}</b>
           {election.subtitle && (
@@ -278,7 +270,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
           )}
         </p>
         <br />
-        <h2>{t('electionPage.resultSectionTitle')}</h2>
+        <h3>{t('electionPage.resultSectionTitle')}</h3>
         {showTools && (
           <Fragment>
             <br />
@@ -299,7 +291,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
 
   return (
     <Fragment>
-      <h1>{election.title}</h1>
+      <h2>{election.title}</h2>
       <p>
         <b>@{election.election_email_domain}</b>
         {election.subtitle && (

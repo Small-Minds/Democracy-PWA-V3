@@ -7,11 +7,15 @@ export default function LanguagePicker() {
   //Set Up translation hook
   const [t, i18n] = useTranslation();
 
+  // Get the language from the browser.
+  const langArr = i18n.language.split('-');
+  const lang = langArr.length === 0 ? '?' : langArr[0].toUpperCase();
+
   return (
     <Fragment>
       <Dropdown
         icon={<Icon icon="globe" />}
-        title={i18n.language.toUpperCase()}
+        title={lang}
         onSelect={(key) => i18n.changeLanguage(key)}
         placement="bottomEnd"
       >
