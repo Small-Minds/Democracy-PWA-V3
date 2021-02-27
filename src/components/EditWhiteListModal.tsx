@@ -12,7 +12,6 @@ import {
   Notification,
   Schema,
 } from 'rsuite';
-import { useAsyncMemo } from 'use-async-memo';
 import {
   getManagedElectionDetails,
   ManagedElectionDetails,
