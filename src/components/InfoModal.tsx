@@ -34,6 +34,9 @@ const InfoModal: FC<InfoModalProps> = ({ open, setOpen }) => {
             <li>
               <b>Alae Boufarrachene</b> &middot; Arabic translation
             </li>
+            <li>
+              <b>RuiFeng Tian</b> &middot; Chinese translation
+            </li>
             {/* <li>
               <b>Sirjan S. Rekhi</b> &middot; Hindi translation
             </li> */}
