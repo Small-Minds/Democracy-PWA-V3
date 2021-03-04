@@ -53,15 +53,15 @@ export default function EditElectionModal({
     updateOldElection(newElectionDetails).then((res: Number) => {
       if (res == 200) {
         Notification['success']({
-          title: 'Success',
-          description: 'The election details has been successfully updated',
+          title: t('v2.editElectionModal.successNotificationTitle'),
+          description: t('v2.editElectionModal.successNotificationBody'),
         });
         closeModal();
         cleanupFunc();
       } else {
         Notification['error']({
-          title: 'Failed',
-          description: 'Failed to update the election details',
+          title: t('v2.editElectionModal.errorNotificationTitle'),
+          description: t('v2.editElectionModal.errorNotificationBody'),
         });
         closeModal();
       }

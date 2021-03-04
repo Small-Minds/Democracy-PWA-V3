@@ -337,7 +337,11 @@
         "titleLabel": "Title",
         "descriptionLabel": "Description",
         "subBtn": "Submit",
-        "cancelBtn": "Cancel"
+        "cancelBtn": "Cancel",
+        "successNotificationTitle": "Success",
+        "successNotificationBody": "The election details has been successfully updated",
+        "errorNotificationTitle": "Failed",
+        "errorNotificationBody": "Failed to update the election details"
       }
     }
   }

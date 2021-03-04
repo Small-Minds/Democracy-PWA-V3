@@ -303,10 +303,13 @@
           "successTitle": "成功",
           "successBody": "已成功删除所选的选举。"
         },
-        "editWhitelistBtn": "编辑白名单"
+        "editWhitelistBtn": "编辑白名单",
+        "editElectionBtn": "修改选举"
       },
       "editWhitelistModal": {
         "title": "编辑白名单",
+        "warning": "请将有资格参与选举者的电子邮件添加至白名单",
+        "instructions": "请输入电子邮箱的纯文本至下面的白名单输入框中。当用户尝试申请职位或投票时将被扫描。不在列表中的用户将被限制参与。",
         "formLabel": "白名单: ",
         "submitBtn": "提交",
         "cancelBtn": "取消",
@@ -314,6 +317,18 @@
         "successNotificationBody": "选举白名单已成功更新",
         "errorNotificationTitle": "错误",
         "errorNotificationBody": "无法更新选举白名单"
+      },
+      "editElectionModal": {
+        "title": "修改选举明细",
+        "instructions": "您可以在此处编辑当前选举的标题和描述",
+        "titleLabel": "标题",
+        "descriptionLabel": "描述",
+        "subBtn": "提交",
+        "cancelBtn": "取消",
+        "successNotificationTitle": "成功",
+        "successNotificationBody": "选举明细已成功更新",
+        "errorNotificationTitle": "错误",
+        "errorNotificationBody": "无法更新选举明细"
       }
     }
   }
