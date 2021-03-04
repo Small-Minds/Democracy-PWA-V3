@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   ControlLabel,
@@ -38,7 +39,7 @@ export default function EditElectionModal({
     title: Schema.Types.StringType().isRequired(msg_required),
     description: Schema.Types.StringType().isRequired(msg_required),
   });
-
+  const [t] = useTranslation();
   async function submitNewDetails() {
     if (!form.check()) {
       return;
@@ -74,7 +75,7 @@ export default function EditElectionModal({
       size="sm"
     >
       <Modal.Header>
-        <h5>Edit Election Details</h5>
+        <h5>{t('v2.editElectionModal.title')}</h5>
       </Modal.Header>
       <Modal.Body>
         <Form
@@ -87,16 +88,16 @@ export default function EditElectionModal({
           fluid
         >
           <br />
-          <p>
-            You can edit the title and description of the current election here
-          </p>
+          <p>{t('v2.editElectionModal.instructions')}</p>
           <br />
           <FormGroup>
-            <ControlLabel>Title</ControlLabel>
+            <ControlLabel>{t('v2.editElectionModal.titleLabel')}</ControlLabel>
             <FormControl name="title" />
           </FormGroup>
           <FormGroup>
-            <ControlLabel>Description</ControlLabel>
+            <ControlLabel>
+              {t('v2.editElectionModal.descriptionLabel')}
+            </ControlLabel>
             <FormControl
               name="description"
               componentClass="textarea"
@@ -108,10 +109,10 @@ export default function EditElectionModal({
       </Modal.Body>
       <Modal.Footer>
         <Button appearance="primary" onClick={() => submitNewDetails()}>
-          Submit
+          {t('v2.editElectionModal.subBtn')}
         </Button>
         <Button appearance="default" onClick={() => closeModal()}>
-          Cancel
+          {t('v2.editElectionModal.cancelBtn')}
         </Button>
       </Modal.Footer>
     </Modal>

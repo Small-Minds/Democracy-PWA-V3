@@ -103,7 +103,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
           icon={<Icon icon="edit2" />}
           onClick={() => setEditElectionOpen(true)}
         >
-          Edit Election
+          {t('v2.electionPage.editElectionBtn')}
         </IconButton>
         <IconButton
           appearance="primary"

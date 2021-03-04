@@ -316,7 +316,8 @@
           "successTitle": "Success",
           "successBody": "The election has been successfully deleted."
         },
-        "editWhitelistBtn": "Edit Whitelist"
+        "editWhitelistBtn": "Edit Whitelist",
+        "editElectionBtn": "Edit Election"
       },
       "editWhitelistModal": {
         "title": "Edit Whitelist",
@@ -329,6 +330,14 @@
         "successNotificationBody": "The election whitelist has been successfully updated",
         "errorNotificationTitle": "Error",
         "errorNotificationBody": "Failed to update the election whitelist"
+      },
+      "editElectionModal": {
+        "title": "Edit Election Details",
+        "instructions": "You can edit the title and description of the current election here",
+        "titleLabel": "Title",
+        "descriptionLabel": "Description",
+        "subBtn": "Submit",
+        "cancelBtn": "Cancel"
       }
     }
   }
