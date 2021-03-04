@@ -84,8 +84,7 @@ function PositionApply() {
             description: t('positionApplyPage.subLimitationModalBody'),
           });
           return;
-        }
-        else if (x.response && x.response.status === 417) {
+        } else if (x.response && x.response.status === 417) {
           Notification['error']({
             title: t('v2.errors.notOnWhitelist.title'),
             description: t('v2.errors.notOnWhitelist.description'),

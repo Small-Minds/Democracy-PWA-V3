@@ -25,6 +25,7 @@ import Loading from './Loading';
 import ElectionResults from '../components/ElectionResults';
 import ElectionManager from '../components/ElectionManager';
 import EditWhiteListModal from '../components/EditWhiteListModal';
+import EditElectionModal from '../components/EditElectionModal';
 
 interface ElectionSubpage {
   id: string | undefined;
@@ -144,6 +145,14 @@ const ManagementTools: FC<ElectionSubpage> = ({
         closeModal={() => setEditWhiteListOpen(false)}
         isOpen={editWhiteListOpen}
         electionId={election.id}
+      />
+      <EditElectionModal
+        closeModal={() => setEditElectionOpen(false)}
+        isOpen={editElectionOpen}
+        electionDetails={election}
+        cleanupFunc={() => {
+          if (updateElection) updateElection(election.id);
+        }}
       />
     </Fragment>
   );
