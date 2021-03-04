@@ -43,6 +43,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
   const [setTimelineOpen, setSetTimelineOpen] = useState<boolean>(false);
   const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
   const [editWhiteListOpen, setEditWhiteListOpen] = useState<boolean>(false);
+  const [editElectionOpen, setEditElectionOpen] = useState<boolean>(false);
   const [
     isDeleteElectionModalOpen,
     setIsDeleteElectionModalOpen,
@@ -96,6 +97,12 @@ const ManagementTools: FC<ElectionSubpage> = ({
           onClick={() => setEditWhiteListOpen(true)}
         >
           {t('v2.electionPage.editWhitelistBtn')}
+        </IconButton>
+        <IconButton
+          icon={<Icon icon="edit2" />}
+          onClick={() => setEditElectionOpen(true)}
+        >
+          Edit Election
         </IconButton>
         <IconButton
           appearance="primary"
