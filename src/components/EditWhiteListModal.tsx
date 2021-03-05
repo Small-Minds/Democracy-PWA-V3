@@ -16,7 +16,7 @@ import {
 import {
   getManagedElectionDetails,
   ManagedElectionDetails,
-  updateManagedElection,
+  updateOldElection,
 } from '../utils/api/ElectionManagement';
 
 interface EditWhiteListModalInput {
@@ -55,12 +55,9 @@ export default function EditWhiteListModal({
 
   function submitWhitelist(input: string): void {
     if (electionDetail) {
-      const newManagedElectionDetails: ManagedElectionDetails = {
-        ...electionDetail,
-        whitelist: input,
-      };
-      updateManagedElection(newManagedElectionDetails, electionId).then(
-        (res: number) => {
+      //Pass the formData the the endpoint
+      updateOldElection(formData, electionId).then(
+        (res: Number) => {
           console.log(res);
           if (res == 200) {
             Notification['success']({

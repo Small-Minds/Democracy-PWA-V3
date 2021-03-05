@@ -193,27 +193,6 @@ export async function getManagedElectionDetails(
   return res.data;
 }
 
-export async function updateManagedElection(
-  newManagedElectionDetails: ManagedElectionDetails,
-  electionId: string
-): Promise<number> {
-  const token = await preRequestRefreshAuth();
-  let config = {
-    headers: { Authorization: `JWT ${token}` },
-  };
-  return api
-    .patch(
-      `/elections/manage/election/${electionId}/`,
-      newManagedElectionDetails,
-      config
-    )
-    .then((res) => {
-      return res.status;
-    })
-    .catch((err) => {
-      return err.status;
-    });
-}
 
 export async function deleteElection(electionId: string): Promise<Number> {
   const token = await preRequestRefreshAuth();
@@ -230,11 +209,11 @@ export async function deleteElection(electionId: string): Promise<Number> {
 }
 
 export async function updateOldElection(
-  newElectionDetails: ElectionDetails
+  newElectionDetails: Object, electionId: string
 ): Promise<Number> {
   const token = await preRequestRefreshAuth();
   return api
-    .patch(`${electionURL}${newElectionDetails.id}/`, newElectionDetails, {
+    .patch(`${electionURL}${electionId}/`, newElectionDetails, {
       headers: { Authorization: `JWT ${token}` },
     })
     .then((res) => {

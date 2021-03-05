@@ -13,7 +13,6 @@ import {
   Form,
   FormControl,
   FormGroup,
-  InputGroup,
   Modal,
   Schema,
   Notification,
@@ -87,15 +86,8 @@ export default function SetTimelineModal({
       console.log(formErrors);
       return;
     }
-    const newElectionDetails: ElectionDetails = {
-      ...election,
-      submission_end_time: formData.submission_end_time,
-      submission_start_time: formData.submission_start_time,
-      voting_start_time: formData.voting_start_time,
-      voting_end_time: formData.voting_end_time,
-    };
-
-    updateOldElection(newElectionDetails).then((res) => {
+    //Pass the formData the the endpoint
+    updateOldElection(formData, election.id).then((res) => {
       if (res == 200) {
         cleanupFunc();
         Notification['success']({

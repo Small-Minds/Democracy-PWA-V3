@@ -44,13 +44,8 @@ export default function EditElectionModal({
     if (!form.check()) {
       return;
     }
-
-    const newElectionDetails: ElectionDetails = {
-      ...electionDetails,
-      title: formData.title,
-      description: formData.description,
-    };
-    updateOldElection(newElectionDetails).then((res: Number) => {
+    //Pass the formData the the endpoint
+    updateOldElection(formData, electionDetails.id).then((res: Number) => {
       if (res == 200) {
         Notification['success']({
           title: t('v2.editElectionModal.successNotificationTitle'),
