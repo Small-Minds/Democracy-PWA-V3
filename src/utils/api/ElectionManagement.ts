@@ -42,8 +42,10 @@ export type ElectionDetails = {
   positions: Array<Position>;
   submission_end_time: string;
   submission_start_time: string;
+  submission_release_time: string;
   voting_end_time: string;
   voting_start_time: string;
+  voting_release_time: string;
   voting_open: boolean;
   applications_open: boolean;
   domain_match: boolean;
@@ -59,8 +61,10 @@ export type ManagedElectionDetails = {
   whitelist: string;
   submission_end_time: string;
   submission_start_time: string;
+  submission_release_time: string;
   voting_end_time: string;
   voting_start_time: string;
+  voting_release_time: string;
 };
 
 /**
