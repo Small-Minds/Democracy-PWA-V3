@@ -2,7 +2,6 @@ import moment from 'moment';
 import React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
 import {
   Button,
   ButtonToolbar,
@@ -22,6 +21,7 @@ import {
   ElectionDetails,
   updateOldElection,
 } from '../utils/api/ElectionManagement';
+
 interface setTimelineModalInput {
   election: ElectionDetails;
   isOpen: boolean;
@@ -84,15 +84,17 @@ export default function SetTimelineModal({
         return true;
       }, 'The election result release date must be after the voting end date!'),
   });
+
   //formData setup
   const [formData, setFormData] = useState<Record<string, any>>({
     submission_start_time: moment(election.submission_start_time).toDate(),
     submission_end_time: moment(election.submission_end_time).toDate(),
-    submission_release_time: moment(election.submission_release_time).toDate(),
+    submission_release_time: election.submission_release_time ? moment(election.submission_release_time).toDate() : moment(election.submission_end_time).toDate(),
     voting_start_time: moment(election.voting_start_time).toDate(),
     voting_end_time: moment(election.voting_end_time).toDate(),
-    voting_release_time: moment(election.voting_release_time).toDate(),
+    voting_release_time: election.voting_release_time ? moment(election.voting_release_time).toDate() : moment(election.voting_end_time).toDate(),
   });
+
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
   const timeformat = 'YYYY-MM-DD HH:mm';
 
