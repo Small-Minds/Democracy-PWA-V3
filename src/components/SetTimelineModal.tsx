@@ -51,10 +51,18 @@ export default function SetTimelineModal({
         }
         return true;
       }, t('setTimelineModal.error.applicationDeadlineEarly')),
-    voting_start_time: Schema.Types.DateType()
+    submission_release_time: Schema.Types.DateType()
       .isRequired(msg_required)
       .addRule((value, data) => {
         if (value < data.submission_end_time) {
+          return false;
+        }
+        return true;
+      }, 'The candidate platform release date must be after the application deadline date!'),
+    voting_start_time: Schema.Types.DateType()
+      .isRequired(msg_required)
+      .addRule((value, data) => {
+        if (value < data.submission_release_time) {
           return false;
         }
         return true;
@@ -67,13 +75,23 @@ export default function SetTimelineModal({
         }
         return true;
       }, t('setTimelineModal.error.voteDeadlineEarly')),
+    voting_release_time: Schema.Types.DateType()
+      .isRequired(msg_required)
+      .addRule((value, data) => {
+        if (value < data.voting_end_time) {
+          return false;
+        }
+        return true;
+      }, 'The election result release date must be after the voting end date!'),
   });
   //formData setup
   const [formData, setFormData] = useState<Record<string, any>>({
     submission_start_time: moment(election.submission_start_time).toDate(),
     submission_end_time: moment(election.submission_end_time).toDate(),
+    submission_release_time: moment(election.submission_release_time).toDate(),
     voting_start_time: moment(election.voting_start_time).toDate(),
     voting_end_time: moment(election.voting_end_time).toDate(),
+    voting_release_time: moment(election.voting_release_time).toDate(),
   });
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
   const timeformat = 'YYYY-MM-DD HH:mm';
@@ -158,6 +176,15 @@ export default function SetTimelineModal({
             </FlexboxGrid>
           </FormGroup>
           <FormGroup>
+            <ControlLabel>Candidate Platform Release Date</ControlLabel>
+            <FormControl
+              accepter={DatePicker}
+              name="submission_release_time"
+              format={timeformat}
+              placement="topStart"
+            ></FormControl>
+          </FormGroup>
+          <FormGroup>
             <ControlLabel>
               <h5>{t('setTimelineModal.headings.votingTimes')}</h5>
             </ControlLabel>
@@ -182,6 +209,15 @@ export default function SetTimelineModal({
                 ></FormControl>
               </FlexboxGrid.Item>
             </FlexboxGrid>
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel>Election Result Release Date</ControlLabel>
+            <FormControl
+              accepter={DatePicker}
+              name="voting_release_time"
+              format={timeformat}
+              placement="topStart"
+            ></FormControl>
           </FormGroup>
           <Divider />
           <FlexboxGrid justify="end">
