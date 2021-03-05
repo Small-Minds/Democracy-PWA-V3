@@ -335,6 +335,7 @@
         "title": "Edit Election Details",
         "instructions": "You can edit the title and description of the current election here",
         "titleLabel": "Title",
+        "subtitleLabel": "Subtitle",
         "descriptionLabel": "Description",
         "subBtn": "Submit",
         "cancelBtn": "Cancel",

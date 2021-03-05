@@ -320,6 +320,7 @@
       },
       "editElectionModal": {
         "title": "修改选举明细",
+        "subtitleLabel": "副标题",
         "instructions": "您可以在此处编辑当前选举的标题和描述",
         "titleLabel": "标题",
         "descriptionLabel": "描述",
