@@ -229,8 +229,11 @@ export async function updateOldElection(
     });
 }
 
-export async function deletePosition(positionId: string): Promise<Number> {
+export async function deletePosition(
+  positionId: string | undefined
+): Promise<Number> {
   const token = await preRequestRefreshAuth();
+
   return api
     .delete(`${electionPositionURL}${positionId}/`, {
       headers: { Authorization: `JWT  ${token}` },

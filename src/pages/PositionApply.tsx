@@ -13,8 +13,13 @@ import {
   FormControl,
   FormGroup,
   Schema,
+  FlexboxGrid,
 } from 'rsuite';
-import { Position } from '../utils/api/ElectionManagement';
+import {
+  ElectionDetails,
+  getElection,
+  Position,
+} from '../utils/api/ElectionManagement';
 import {
   getPosition,
   PositionApplicationParams,
@@ -28,6 +33,7 @@ function PositionApply() {
   const history = useHistory();
   let { positionId } = useParams<any>();
   const [position, setPosition] = useState<Position>();
+  const [election, setElection] = useState<ElectionDetails>();
   const ctx = useContext(Credentials);
   //set up required variable for rsuite forms.
   let form: any = undefined;
@@ -50,11 +56,14 @@ function PositionApply() {
     getPosition(positionId)
       .then((res) => {
         setPosition(res);
+        return getElection(res.election).then((val) => {
+          setElection(val);
+        });
       })
       .catch((err) => {
         console.error(err);
       });
-  }, [positionId]);
+  }, [positionId, ctx]);
 
   function submitApplication() {
     //Process form input, check for form errors
@@ -98,31 +107,51 @@ function PositionApply() {
         });
       });
   }
+
+  if (!position || !election) return <Loading half />;
+
+  const stripPlatform = (formData.platform || '').replace(/(\r\n|\n|\r)/gm, ' ');
+  const platformWordCount: number = stripPlatform
+    .split(' ')
+    .filter((x: any) => x).length;
+  const platformCharacters: number = stripPlatform.length;
+  const platformWords = platformCharacters === 0 ? 0 : platformWordCount;
+
   return (
     <div>
-      {position ? (
-        <div>
-          <h1>{position.title}</h1>
-          <br />
-          <h4>{t('positionApplyPage.positionSectionTitle')}</h4>
-          <p>{position.description}</p>
-          <br />
-          <h4>{t('positionApplyPage.posAppFormTitle')}</h4>
-          <Form
-            onChange={(newData) => setFormData(newData)}
-            onCheck={(newErrors) => setFormErrors(newErrors)}
-            formValue={formData}
-            formError={formErrors}
-            model={model}
-            ref={(ref: any) => (form = ref)}
-            fluid
-          >
-            <FormGroup>
-              <ControlLabel>
-                {t('positionApplyPage.posAppFormPlatform')}
-              </ControlLabel>
-              <FormControl row={5} name="platform" componentClass="textarea" />
-            </FormGroup>
+      <h1>{position.title}</h1>
+      <p className="light">
+        <small>
+          <b>{election.title}</b> &middot; {election.subtitle}
+        </small>
+      </p>
+      <br />
+      <h4>{t('positionApplyPage.positionSectionTitle')}</h4>
+      {position.description.split('\n').map((line, index) => (
+        <p key={index}>{line}</p>
+      ))}
+      <br />
+      <h4>{t('positionApplyPage.posAppFormTitle')}</h4>
+      <Form
+        onChange={(newData) => setFormData(newData)}
+        onCheck={(newErrors) => setFormErrors(newErrors)}
+        formValue={formData}
+        formError={formErrors}
+        model={model}
+        ref={(ref: any) => (form = ref)}
+        fluid
+      >
+        <FormGroup>
+          <ControlLabel>
+            {t('positionApplyPage.posAppFormPlatform')}
+          </ControlLabel>
+          <FormControl rows={10} name="platform" componentClass="textarea" />
+        </FormGroup>
+        <FlexboxGrid justify="space-between">
+          <FlexboxGrid.Item>
+            ~ {platformWords}w, {platformCharacters}ch
+          </FlexboxGrid.Item>
+          <FlexboxGrid.Item>
             <ButtonToolbar>
               <Button appearance="primary" onClick={() => submitApplication()}>
                 {t('positionApplyPage.posAppFormSubBtn')}
@@ -131,11 +160,9 @@ function PositionApply() {
                 {t('positionApplyPage.posAppFormCancelBtn')}
               </Button>
             </ButtonToolbar>
-          </Form>
-        </div>
-      ) : (
-        <Loading half />
-      )}
+          </FlexboxGrid.Item>
+        </FlexboxGrid>
+      </Form>
     </div>
   );
 }
