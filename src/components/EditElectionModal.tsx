@@ -92,7 +92,9 @@ export default function EditElectionModal({
             <FormControl name="title" />
           </FormGroup>
           <FormGroup>
-            <ControlLabel>{t('v2.editElectionModal.subtitleLabel')}</ControlLabel>
+            <ControlLabel>
+              {t('v2.editElectionModal.subtitleLabel')}
+            </ControlLabel>
             <FormControl name="subtitle" />
           </FormGroup>
           <FormGroup>

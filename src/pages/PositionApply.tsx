@@ -110,7 +110,10 @@ function PositionApply() {
 
   if (!position || !election) return <Loading half />;
 
-  const stripPlatform = (formData.platform || '').replace(/(\r\n|\n|\r)/gm, ' ');
+  const stripPlatform = (formData.platform || '').replace(
+    /(\r\n|\n|\r)/gm,
+    ' '
+  );
   const platformWordCount: number = stripPlatform
     .split(' ')
     .filter((x: any) => x).length;
