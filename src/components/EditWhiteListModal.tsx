@@ -56,23 +56,21 @@ export default function EditWhiteListModal({
   function submitWhitelist(input: string): void {
     if (electionDetail) {
       //Pass the formData the the endpoint
-      updateOldElection(formData, electionId).then(
-        (res: Number) => {
-          console.log(res);
-          if (res == 200) {
-            Notification['success']({
-              title: t('v2.editWhitelistModal.successNotificationTitle'),
-              description: t('v2.editWhitelistModal.successNotificationBody'),
-            });
-            closeModal();
-          } else {
-            Notification['error']({
-              title: t('v2.editWhitelistModal.errorNotificationTitle'),
-              description: t('v2.editWhitelistModal.errorNotificationBody'),
-            });
-          }
+      updateOldElection(formData, electionId).then((res: Number) => {
+        console.log(res);
+        if (res == 200) {
+          Notification['success']({
+            title: t('v2.editWhitelistModal.successNotificationTitle'),
+            description: t('v2.editWhitelistModal.successNotificationBody'),
+          });
+          closeModal();
+        } else {
+          Notification['error']({
+            title: t('v2.editWhitelistModal.errorNotificationTitle'),
+            description: t('v2.editWhitelistModal.errorNotificationBody'),
+          });
         }
-      );
+      });
     }
   }
 

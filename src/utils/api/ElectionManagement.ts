@@ -193,7 +193,6 @@ export async function getManagedElectionDetails(
   return res.data;
 }
 
-
 export async function deleteElection(electionId: string): Promise<Number> {
   const token = await preRequestRefreshAuth();
   return api
@@ -209,7 +208,8 @@ export async function deleteElection(electionId: string): Promise<Number> {
 }
 
 export async function updateOldElection(
-  newElectionDetails: Object, electionId: string
+  newElectionDetails: Object,
+  electionId: string
 ): Promise<Number> {
   const token = await preRequestRefreshAuth();
   return api
