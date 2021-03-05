@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import { createNoSubstitutionTemplateLiteral } from 'typescript';
 import { api, preRequestRefreshAuth } from '../API';
 import { UserInfo } from './User';
 const electionURL = `/elections/manage/election/`;
@@ -119,8 +120,10 @@ export type CreateElectionParams = {
   enable_multiple_submissions: boolean;
   submission_end_time: Date;
   submission_start_time: Date;
+  submission_release_time: Date;
   voting_end_time: Date;
   voting_start_time: Date;
+  voting_release_time: Date;
 };
 
 export async function create(
