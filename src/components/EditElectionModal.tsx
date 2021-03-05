@@ -32,11 +32,13 @@ export default function EditElectionModal({
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
   const [formData, setFormData] = useState<Record<string, any>>({
     title: electionDetails.title,
+    subtitle: electionDetails.subtitle,
     description: electionDetails.description,
   });
   const msg_required = 'This field is required';
   const model = Schema.Model({
     title: Schema.Types.StringType().isRequired(msg_required),
+    subtitle: Schema.Types.StringType().isRequired(msg_required),
     description: Schema.Types.StringType().isRequired(msg_required),
   });
   const [t] = useTranslation();
@@ -88,6 +90,10 @@ export default function EditElectionModal({
           <FormGroup>
             <ControlLabel>{t('v2.editElectionModal.titleLabel')}</ControlLabel>
             <FormControl name="title" />
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel>{t('v2.editElectionModal.subtitleLabel')}</ControlLabel>
+            <FormControl name="subtitle" />
           </FormGroup>
           <FormGroup>
             <ControlLabel>
