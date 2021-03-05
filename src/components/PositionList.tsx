@@ -24,6 +24,7 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
     isDeletePositionModalOpen,
     setIsDeletePositionModalOpen,
   ] = useState<boolean>(false);
+  const [positionId, setPositionId] = useState<string>();
   function closeDeletePositionModal() {
     setIsDeletePositionModalOpen(false);
   }
@@ -70,22 +71,13 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
                       appearance="primary"
                       color="red"
                       onClick={() => {
+                        setPositionId(position.id);
                         setIsDeletePositionModalOpen(true);
                       }}
                       block
                     >
                       {t('general.delete')}
                     </Button>
-                    <ConfirmModal
-                      modalTitle={t('positionList.confirmModalTitle')}
-                      modalBody={t('positionList.confirmModalBody')}
-                      callBackFunc={() => deletePosition(position.id)}
-                      isOpen={isDeletePositionModalOpen}
-                      closeModal={() => closeDeletePositionModal()}
-                      cleanUpFunc={(result: number) =>
-                        deletePositionHandler(result)
-                      }
-                    />
                   </FlexboxGrid.Item>
                 )}
                 <FlexboxGrid.Item
@@ -110,6 +102,14 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
               </FlexboxGrid>
             </List.Item>
           ))}
+          <ConfirmModal
+            modalTitle={t('positionList.confirmModalTitle')}
+            modalBody={t('positionList.confirmModalBody')}
+            callBackFunc={() => deletePosition(positionId)}
+            isOpen={isDeletePositionModalOpen}
+            closeModal={() => closeDeletePositionModal()}
+            cleanUpFunc={(result: number) => deletePositionHandler(result)}
+          />
         </List>
       ) : (
         <FlexboxGrid>
