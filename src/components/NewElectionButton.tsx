@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 import {
   Button,
   Col,
-  Container,
   ControlLabel,
   DatePicker,
   Drawer,
@@ -14,7 +13,6 @@ import {
   Form,
   FormControl,
   FormGroup,
-  InputGroup,
   Notification,
   Radio,
   RadioGroup,
@@ -32,8 +30,10 @@ import { Credentials } from '../utils/Authentication';
 // Attempts to set time to 9AM to 5pm
 const a = moment().add(7, 'days').hours(9).startOf('hour').toDate();
 const b = moment().add(14, 'days').hours(17).startOf('hour').toDate();
-const c = moment().add(21, 'days').hours(9).startOf('hour').toDate();
-const d = moment().add(28, 'days').hours(17).startOf('hour').toDate();
+const c = moment().add(17, 'days').hours(17).startOf('hour').toDate();
+const d = moment().add(21, 'days').hours(9).startOf('hour').toDate();
+const e = moment().add(28, 'days').hours(17).startOf('hour').toDate();
+const f = moment().add(30, 'days').hours(17).startOf('hour').toDate();
 const timeformat = 'YYYY-MM-DD HH:mm';
 
 function NewElectionButton() {
@@ -79,10 +79,18 @@ function NewElectionButton() {
         }
         return true;
       }, 'The application deadline must be after the start date!'),
-    voting_start_time: Schema.Types.DateType()
+    submission_release_time: Schema.Types.DateType()
       .isRequired(msg_required)
       .addRule((value, data) => {
         if (value < data.submission_end_time) {
+          return false;
+        }
+        return true;
+      }, 'The candidate platform release date must be after the application deadline date!'),
+    voting_start_time: Schema.Types.DateType()
+      .isRequired(msg_required)
+      .addRule((value, data) => {
+        if (value < data.submission_release_time) {
           return false;
         }
         return true;
@@ -95,6 +103,14 @@ function NewElectionButton() {
         }
         return true;
       }, 'The voting deadline must be after the voting start date!'),
+    voting_release_time: Schema.Types.DateType()
+      .isRequired(msg_required)
+      .addRule((value, data) => {
+        if (value < data.voting_end_time) {
+          return false;
+        }
+        return true;
+      }, 'The election result release date must be after the voting end date!'),
   });
   //form data setup
   const [formData, setFormData] = useState<Record<string, any>>({
@@ -105,8 +121,10 @@ function NewElectionButton() {
     election_email_domain: 'uottawa.ca',
     submission_start_time: a,
     submission_end_time: b,
-    voting_start_time: c,
-    voting_end_time: d,
+    submission_release_time: c,
+    voting_start_time: d,
+    voting_end_time: e,
+    voting_release_time: f,
   });
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
   const history = useHistory();
@@ -137,8 +155,10 @@ function NewElectionButton() {
       enable_multiple_submissions: electionDetails.enable_multiple_submissions,
       submission_start_time: electionDetails.submission_start_time,
       submission_end_time: electionDetails.submission_end_time,
+      submission_release_time: electionDetails.submission_release_time,
       voting_start_time: electionDetails.voting_start_time,
       voting_end_time: electionDetails.voting_end_time,
+      voting_release_time: electionDetails.voting_release_time,
     })
       .then((election) => {
         let path = `/election/${election.id}`;
@@ -278,6 +298,15 @@ function NewElectionButton() {
                   </FlexboxGrid>
                 </FormGroup>
                 <FormGroup>
+                  <ControlLabel>Candidate Platform Release Date</ControlLabel>
+                  <FormControl
+                    accepter={DatePicker}
+                    name="submission_release_time"
+                    format={timeformat}
+                    placement="topStart"
+                  ></FormControl>
+                </FormGroup>
+                <FormGroup>
                   <ControlLabel>
                     {t('createElectionBtn.votingPeriod')}
                   </ControlLabel>
@@ -302,6 +331,15 @@ function NewElectionButton() {
                       ></FormControl>
                     </FlexboxGrid.Item>
                   </FlexboxGrid>
+                </FormGroup>
+                <FormGroup>
+                  <ControlLabel>Election Result Release Date</ControlLabel>
+                  <FormControl
+                    accepter={DatePicker}
+                    name="voting_release_time"
+                    format={timeformat}
+                    placement="topStart"
+                  ></FormControl>
                 </FormGroup>
               </Form>
             </Drawer.Body>

@@ -40,8 +40,27 @@ const ElectionTimeline: FC<Props> = ({ election }) => {
             </p>
             <p>{t('electionTimeline.appEnd')}</p>
           </Timeline.Item>
+          {election.submission_release_time && (
+            <Fragment>
+              <Timeline.Item>
+                <p>{t('electionTimeline.review')}</p>
+              </Timeline.Item>
+              <Timeline.Item
+                dot={<Icon icon="character-authorize" size="2x" />}
+              >
+                <p>
+                  <b>
+                    {moment(election.submission_release_time).format(
+                      timeformat
+                    )}
+                  </b>
+                </p>
+                <p>Candidate platforms released</p>
+              </Timeline.Item>
+            </Fragment>
+          )}
           <Timeline.Item>
-            <p>{t('electionTimeline.review')}</p>
+            <p>Campaigning period</p>
           </Timeline.Item>
           <Timeline.Item dot={<Icon icon="list" size="2x" />}>
             <p>
@@ -55,6 +74,21 @@ const ElectionTimeline: FC<Props> = ({ election }) => {
             </p>
             <p>{t('electionTimeline.voteEnd')}</p>
           </Timeline.Item>
+          {election.voting_release_time && (
+            <Fragment>
+              <Timeline.Item>
+                <p>Certification of election results</p>
+              </Timeline.Item>
+              <Timeline.Item dot={<Icon icon="tasks" size="2x" />}>
+                <p>
+                  <b>
+                    {moment(election.voting_release_time).format(timeformat)}
+                  </b>
+                </p>
+                <p>Election results released</p>
+              </Timeline.Item>
+            </Fragment>
+          )}
         </Timeline>
       </div>
     </Fragment>

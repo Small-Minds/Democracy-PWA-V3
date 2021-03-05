@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import { createNoSubstitutionTemplateLiteral } from 'typescript';
 import { api, preRequestRefreshAuth } from '../API';
 import { UserInfo } from './User';
 const electionURL = `/elections/manage/election/`;
@@ -41,8 +42,10 @@ export type ElectionDetails = {
   positions: Array<Position>;
   submission_end_time: string;
   submission_start_time: string;
+  submission_release_time: string;
   voting_end_time: string;
   voting_start_time: string;
+  voting_release_time: string;
   voting_open: boolean;
   applications_open: boolean;
   domain_match: boolean;
@@ -119,8 +122,10 @@ export type CreateElectionParams = {
   enable_multiple_submissions: boolean;
   submission_end_time: Date;
   submission_start_time: Date;
+  submission_release_time: Date;
   voting_end_time: Date;
   voting_start_time: Date;
+  voting_release_time: Date;
 };
 
 export async function create(
