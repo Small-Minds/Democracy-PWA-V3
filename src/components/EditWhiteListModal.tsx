@@ -60,24 +60,26 @@ export default function EditWhiteListModal({
     setProcessing(true);
     if (electionDetail) {
       //Pass the formData the the endpoint
-      updateOldElection(formData, electionId).then((res: Number) => {
-        // console.log(res);
-        if (res == 200) {
-          Notification['success']({
-            title: t('v2.editWhitelistModal.successNotificationTitle'),
-            description: t('v2.editWhitelistModal.successNotificationBody'),
-          });
-        } else {
-          Notification['error']({
-            title: t('v2.editWhitelistModal.errorNotificationTitle'),
-            description: t('v2.editWhitelistModal.errorNotificationBody'),
-          });
-        }
-      }).finally(()=>{
-        setProcessing(false);
-        setDisable(false);
-        closeModal();
-      });
+      updateOldElection(formData, electionId)
+        .then((res: Number) => {
+          // console.log(res);
+          if (res == 200) {
+            Notification['success']({
+              title: t('v2.editWhitelistModal.successNotificationTitle'),
+              description: t('v2.editWhitelistModal.successNotificationBody'),
+            });
+          } else {
+            Notification['error']({
+              title: t('v2.editWhitelistModal.errorNotificationTitle'),
+              description: t('v2.editWhitelistModal.errorNotificationBody'),
+            });
+          }
+        })
+        .finally(() => {
+          setProcessing(false);
+          setDisable(false);
+          closeModal();
+        });
     }
   }
 
@@ -131,12 +133,16 @@ export default function EditWhiteListModal({
         <Button
           appearance="primary"
           disabled={isLoading || disable}
-          loading = {processing}
+          loading={processing}
           onClick={() => submitWhitelist(formData.whitelist)}
         >
           {t('v2.editWhitelistModal.submitBtn')}
         </Button>
-        <Button appearance="default" disabled={isLoading || disable} onClick={() => closeModal()}>
+        <Button
+          appearance="default"
+          disabled={isLoading || disable}
+          onClick={() => closeModal()}
+        >
           {t('v2.editWhitelistModal.cancelBtn')}
         </Button>
       </Modal.Footer>

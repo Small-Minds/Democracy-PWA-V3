@@ -112,28 +112,30 @@ export default function SetTimelineModal({
     if (!form.check()) {
       // console.log(formErrors);
       setDisable(false);
-    setLoading(false);
+      setLoading(false);
       return;
     }
     //Pass the formData the the endpoint
-    updateOldElection(formData, election.id).then((res) => {
-      if (res == 200) {
-        cleanupFunc();
-        Notification['success']({
-          title: t('setTimelineModal.updateNotification.successTitle'),
-          description: t('setTimelineModal.updateNotification.successBody'),
-        });
-      } else {
-        Notification['error']({
-          title: t('setTimelineModal.updateNotification.errorTitle'),
-          description: t('setTimelineModal.updateNotification.errorBody'),
-        });
-      }
-    }).finally(()=>{
-    setLoading(false);
-    setDisable(false);
-    closeModal();
-    });
+    updateOldElection(formData, election.id)
+      .then((res) => {
+        if (res == 200) {
+          cleanupFunc();
+          Notification['success']({
+            title: t('setTimelineModal.updateNotification.successTitle'),
+            description: t('setTimelineModal.updateNotification.successBody'),
+          });
+        } else {
+          Notification['error']({
+            title: t('setTimelineModal.updateNotification.errorTitle'),
+            description: t('setTimelineModal.updateNotification.errorBody'),
+          });
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+        setDisable(false);
+        closeModal();
+      });
   }
 
   return (

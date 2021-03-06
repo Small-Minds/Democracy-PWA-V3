@@ -36,19 +36,25 @@ export default function ConfirmModal({
           onClick={() => {
             setDisable(true);
             setLoading(true);
-            callBackFunc().then((res: number) => {
-              cleanUpFunc(res);
-            }).finally(()=>{
-              setLoading(false);
-              setDisable(false);
-              closeModal();
-            });
+            callBackFunc()
+              .then((res: number) => {
+                cleanUpFunc(res);
+              })
+              .finally(() => {
+                setLoading(false);
+                setDisable(false);
+                closeModal();
+              });
           }}
           appearance="primary"
         >
           {t('confirmModal.okBtn')}
         </Button>
-        <Button disabled={disable} onClick={() => closeModal()} appearance="default">
+        <Button
+          disabled={disable}
+          onClick={() => closeModal()}
+          appearance="default"
+        >
           {t('confirmModal.cancelBtn')}
         </Button>
       </Modal.Footer>

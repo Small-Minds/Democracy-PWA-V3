@@ -129,7 +129,7 @@ const AddPositionModal: FC<APMProps> = ({
         </Modal.Body>
         <Modal.Footer>
           <Button
-            disabled={!ctx?.credentials.authenticated  || disable}
+            disabled={!ctx?.credentials.authenticated || disable}
             loading={loading}
             appearance="primary"
             onClick={() => {
