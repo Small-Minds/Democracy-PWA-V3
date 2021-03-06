@@ -30,6 +30,8 @@ export default function EditWhiteListModal({
   isOpen,
   electionId,
 }: EditWhiteListModalInput) {
+  const [processing, setProcessing] = useState<boolean>(false);
+  const [disable, setDisable] = useState<boolean>(false);
   let form: any = undefined;
   const [isLoading, setIsLoading] = useState<boolean>();
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
@@ -54,6 +56,8 @@ export default function EditWhiteListModal({
   }, [electionId]);
 
   function submitWhitelist(input: string): void {
+    setDisable(true);
+    setProcessing(true);
     if (electionDetail) {
       //Pass the formData the the endpoint
       updateOldElection(formData, electionId).then((res: Number) => {
@@ -63,13 +67,16 @@ export default function EditWhiteListModal({
             title: t('v2.editWhitelistModal.successNotificationTitle'),
             description: t('v2.editWhitelistModal.successNotificationBody'),
           });
-          closeModal();
         } else {
           Notification['error']({
             title: t('v2.editWhitelistModal.errorNotificationTitle'),
             description: t('v2.editWhitelistModal.errorNotificationBody'),
           });
         }
+      }).finally(()=>{
+        setProcessing(false);
+        setDisable(false);
+        closeModal();
       });
     }
   }
@@ -123,12 +130,13 @@ export default function EditWhiteListModal({
       <Modal.Footer>
         <Button
           appearance="primary"
-          disabled={isLoading}
+          disabled={isLoading || disable}
+          loading = {processing}
           onClick={() => submitWhitelist(formData.whitelist)}
         >
           {t('v2.editWhitelistModal.submitBtn')}
         </Button>
-        <Button appearance="default" onClick={() => closeModal()}>
+        <Button appearance="default" disabled={isLoading || disable} onClick={() => closeModal()}>
           {t('v2.editWhitelistModal.cancelBtn')}
         </Button>
       </Modal.Footer>
