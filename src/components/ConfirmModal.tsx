@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, Button } from 'rsuite';
 
@@ -20,6 +21,8 @@ export default function ConfirmModal({
   cleanUpFunc,
 }: ConfirmModalInput) {
   const [t] = useTranslation();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [disable, setDisable] = useState<boolean>(false);
   return (
     <Modal backdrop="static" show={isOpen} onHide={() => closeModal()}>
       <Modal.Header>
@@ -28,17 +31,24 @@ export default function ConfirmModal({
       <Modal.Body>{modalBody}</Modal.Body>
       <Modal.Footer>
         <Button
+          loading={loading}
+          disabled={disable}
           onClick={() => {
-            closeModal();
+            setDisable(true);
+            setLoading(true);
             callBackFunc().then((res: number) => {
               cleanUpFunc(res);
+            }).finally(()=>{
+              setLoading(false);
+              setDisable(false);
+              closeModal();
             });
           }}
           appearance="primary"
         >
           {t('confirmModal.okBtn')}
         </Button>
-        <Button onClick={() => closeModal()} appearance="default">
+        <Button disabled={disable} onClick={() => closeModal()} appearance="default">
           {t('confirmModal.cancelBtn')}
         </Button>
       </Modal.Footer>
