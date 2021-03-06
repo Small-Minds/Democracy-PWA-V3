@@ -28,6 +28,8 @@ export default function EditElectionModal({
   electionDetails,
   cleanupFunc,
 }: EditElectionModalInput) {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [disable, setDisable] = useState<boolean>(false);
   let form: any = undefined;
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
   const [formData, setFormData] = useState<Record<string, any>>({
@@ -52,9 +54,14 @@ export default function EditElectionModal({
   });
   const [t] = useTranslation();
   async function submitNewDetails() {
+    setDisable(true);
+    setLoading(true);
     if (!form.check()) {
+      setLoading(false);
+      setDisable(false);
       return;
     }
+
     //Pass the formData the the endpoint
     updateOldElection(formData, electionDetails.id).then((res: Number) => {
       if (res == 200) {
@@ -62,15 +69,17 @@ export default function EditElectionModal({
           title: t('v2.editElectionModal.successNotificationTitle'),
           description: t('v2.editElectionModal.successNotificationBody'),
         });
-        closeModal();
         cleanupFunc();
       } else {
         Notification['error']({
           title: t('v2.editElectionModal.errorNotificationTitle'),
           description: t('v2.editElectionModal.errorNotificationBody'),
         });
-        closeModal();
       }
+    }).finally(()=>{
+      setLoading(false);
+      setDisable(false);
+      closeModal();
     });
   }
   return (
@@ -120,10 +129,10 @@ export default function EditElectionModal({
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button appearance="primary" onClick={() => submitNewDetails()}>
+        <Button appearance="primary" loading={loading} disabled={disable} onClick={() => submitNewDetails()}>
           {t('v2.editElectionModal.subBtn')}
         </Button>
-        <Button appearance="default" onClick={() => closeModal()}>
+        <Button appearance="default" disabled={disable} onClick={() => closeModal()}>
           {t('v2.editElectionModal.cancelBtn')}
         </Button>
       </Modal.Footer>
