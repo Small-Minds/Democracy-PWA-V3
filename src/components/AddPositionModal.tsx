@@ -38,6 +38,7 @@ const AddPositionModal: FC<APMProps> = ({
 }) => {
   const ctx = useContext(Credentials);
   const [loading, setLoading] = useState<boolean>(false);
+  const [disable, setDisable] = useState<boolean>(false);
   const [t] = useTranslation();
   //set up required variable for rsuite forms.
   let form: any = undefined;
@@ -64,12 +65,13 @@ const AddPositionModal: FC<APMProps> = ({
   const createNewPosition = async (title: string, description: string) => {
     if (!ctx || !ctx.credentials.authenticated) return;
     setLoading(true);
-
+    setDisable(true);
     // Process form input, check for form errors
     if (!form.check()) {
       // console.log('New election form has errors.');
       // console.log(formErrors);
       setLoading(false);
+      setDisable(false);
       return;
     }
     // Call the creation endpoint.
@@ -91,6 +93,7 @@ const AddPositionModal: FC<APMProps> = ({
       })
       .finally(() => {
         setLoading(false);
+        setDisable(false);
       });
   };
 
@@ -126,7 +129,7 @@ const AddPositionModal: FC<APMProps> = ({
         </Modal.Body>
         <Modal.Footer>
           <Button
-            disabled={!ctx?.credentials.authenticated}
+            disabled={!ctx?.credentials.authenticated  || disable}
             loading={loading}
             appearance="primary"
             onClick={() => {
@@ -137,7 +140,7 @@ const AddPositionModal: FC<APMProps> = ({
             {t('addPositionModalComp.createBtn')}
           </Button>
           <Button
-            disabled={!ctx?.credentials.authenticated}
+            disabled={!ctx?.credentials.authenticated || disable}
             loading={loading}
             appearance="subtle"
             onClick={() => setOpen(false)}
