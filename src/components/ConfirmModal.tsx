@@ -22,7 +22,6 @@ export default function ConfirmModal({
 }: ConfirmModalInput) {
   const [t] = useTranslation();
   const [loading, setLoading] = useState<boolean>(false);
-  const [disable, setDisable] = useState<boolean>(false);
   return (
     <Modal backdrop="static" show={isOpen} onHide={() => closeModal()}>
       <Modal.Header>
@@ -32,9 +31,8 @@ export default function ConfirmModal({
       <Modal.Footer>
         <Button
           loading={loading}
-          disabled={disable}
+          disabled={loading}
           onClick={() => {
-            setDisable(true);
             setLoading(true);
             callBackFunc()
               .then((res: number) => {
@@ -42,7 +40,6 @@ export default function ConfirmModal({
               })
               .finally(() => {
                 setLoading(false);
-                setDisable(false);
                 closeModal();
               });
           }}
@@ -51,7 +48,7 @@ export default function ConfirmModal({
           {t('confirmModal.okBtn')}
         </Button>
         <Button
-          disabled={disable}
+          disabled={loading}
           onClick={() => closeModal()}
           appearance="default"
         >

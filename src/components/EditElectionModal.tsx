@@ -29,7 +29,6 @@ export default function EditElectionModal({
   cleanupFunc,
 }: EditElectionModalInput) {
   const [loading, setLoading] = useState<boolean>(false);
-  const [disable, setDisable] = useState<boolean>(false);
   let form: any = undefined;
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
   const [formData, setFormData] = useState<Record<string, any>>({
@@ -54,11 +53,9 @@ export default function EditElectionModal({
   });
   const [t] = useTranslation();
   async function submitNewDetails() {
-    setDisable(true);
     setLoading(true);
     if (!form.check()) {
       setLoading(false);
-      setDisable(false);
       return;
     }
 
@@ -80,7 +77,6 @@ export default function EditElectionModal({
       })
       .finally(() => {
         setLoading(false);
-        setDisable(false);
         closeModal();
       });
   }
@@ -134,14 +130,14 @@ export default function EditElectionModal({
         <Button
           appearance="primary"
           loading={loading}
-          disabled={disable}
+          disabled={loading}
           onClick={() => submitNewDetails()}
         >
           {t('v2.editElectionModal.subBtn')}
         </Button>
         <Button
           appearance="default"
-          disabled={disable}
+          disabled={loading}
           onClick={() => closeModal()}
         >
           {t('v2.editElectionModal.cancelBtn')}

@@ -37,7 +37,6 @@ export default function SetTimelineModal({
 }: setTimelineModalInput) {
   const [t] = useTranslation();
   const [loading, setLoading] = useState<boolean>(false);
-  const [disable, setDisable] = useState<boolean>(false);
   //set up required variable for rsuite forms.
   let form: any = undefined;
   //form model setup
@@ -107,11 +106,9 @@ export default function SetTimelineModal({
     election: ElectionDetails,
     formData: Record<string, any>
   ) {
-    setDisable(true);
     setLoading(true);
     if (!form.check()) {
       // console.log(formErrors);
-      setDisable(false);
       setLoading(false);
       return;
     }
@@ -133,7 +130,6 @@ export default function SetTimelineModal({
       })
       .finally(() => {
         setLoading(false);
-        setDisable(false);
         closeModal();
       });
   }
@@ -243,14 +239,14 @@ export default function SetTimelineModal({
                   appearance="primary"
                   type="submit"
                   loading={loading}
-                  disabled={disable}
+                  disabled={loading}
                   onClick={() => {
                     updateElection(election, formData);
                   }}
                 >
                   {t('general.submit')}
                 </Button>
-                <Button disabled={disable} onClick={() => closeModal()}>
+                <Button disabled={loading} onClick={() => closeModal()}>
                   {t('general.cancel')}
                 </Button>
               </ButtonToolbar>
