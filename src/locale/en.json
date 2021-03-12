@@ -344,6 +344,13 @@
         "successNotificationBody": "The election details has been successfully updated",
         "errorNotificationTitle": "Failed",
         "errorNotificationBody": "Failed to update the election details"
+      },
+      "votePage": {
+        "noContest": "No candidates applied for this position.",
+        "option": {
+          "abstain": "Abstain",
+          "noConfidence": "Vote of No Confidence"
+        }
       }
     }
   }

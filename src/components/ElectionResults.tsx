@@ -87,6 +87,11 @@ const Position: FC<{ position: PositionResult }> = ({ position }) => {
           </div>
         );
       })}
+      <br />
+      <p>
+        Votes of Abstention: <code>{position.abstain}</code><br />
+        Votes of No Confidence: <code>{position.no_confidence}</code>
+      </p>
     </Fragment>
   );
 };
@@ -98,6 +103,7 @@ export default function ElectionResults() {
   const [t] = useTranslation();
   useEffect(() => {
     getElectionResult(id).then((res) => {
+      console.log(res); // TODO: Remove me!
       setElection(res);
       setLoading(false);
     });

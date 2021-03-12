@@ -67,7 +67,10 @@ export default function Vote() {
     // Place all missing keys into an array.
     const missingPositions: PositionDetails[] = [];
     ballot.positions.forEach((position) => {
-      if (formDataKeys.indexOf(position.id) === -1) {
+      if (
+        formDataKeys.indexOf(position.id) === -1 &&
+        position.candidates.length !== 0
+      ) {
         missingPositions.push(position);
       }
     });
@@ -96,11 +99,29 @@ export default function Vote() {
     // console.log('Form has NO ERRORS, submitting...');
     const votes: VoteParams[] = [];
     ballot.positions.forEach((position) => {
+      // Don't submit a vote for no-candidate positions.
+      if (position.candidates.length === 0) return;
       const choice = formData[position.id];
-      if (choice === 'abstain') return;
+      if (choice === 'abstain') {
+        votes.push({
+          position: position.id,
+          candidate: undefined,
+          vote_type: 'ABSTAIN',
+        });
+        return;
+      }
+      if (choice === 'no_confidence') {
+        votes.push({
+          position: position.id,
+          candidate: undefined,
+          vote_type: 'NO_CONFIDENCE',
+        });
+        return;
+      }
       votes.push({
         position: position.id,
         candidate: choice,
+        vote_type: 'NORMAL',
       });
     });
     // console.log(votes);
@@ -119,6 +140,7 @@ export default function Vote() {
         });
       })
       .catch((err: AxiosError) => {
+        console.error(err);
         if (err.response && err.response.status) {
           if (err.response.status === 417) {
             Notification['error']({
@@ -177,35 +199,49 @@ export default function Vote() {
               <h5>{t('votePage.ballotPosDescriptionTitle')}</h5>
               <p>{pos.description}</p>
               <br />
-              <h5>{t('votePage.ballotPosCandidateTitle')}</h5>
-              <br />
+              {pos.candidates.length !== 0 ? (
+                <Fragment>
+                  <h5>{t('votePage.ballotPosCandidateTitle')}</h5>
+                  <br />
 
-              {
-                <FlexboxGrid align="middle">
-                  {pos.candidates.map((candidate, index) => (
-                    <FlexboxGrid.Item
-                      key={index}
-                      style={{ paddingRight: 10, width: 180 }}
-                    >
-                      <CandidateInfo candidate={candidate} />
-                    </FlexboxGrid.Item>
-                  ))}
-                </FlexboxGrid>
-              }
+                  {
+                    <FlexboxGrid align="middle">
+                      {pos.candidates.map((candidate, index) => (
+                        <FlexboxGrid.Item
+                          key={index}
+                          style={{ paddingRight: 10, width: 180 }}
+                        >
+                          <CandidateInfo candidate={candidate} />
+                        </FlexboxGrid.Item>
+                      ))}
+                    </FlexboxGrid>
+                  }
 
-              <br />
-              <h5>{t('votePage.ballotVoteSectionTitle')}</h5>
-              <br />
-              <FormControl name={pos.id} accepter={RadioGroup} required>
-                {pos.candidates.map((candidate, index) => (
-                  <Radio value={candidate.id}>
-                    <b>{candidate.user.name}</b>
-                  </Radio>
-                ))}
-                <Radio value={`abstain`}>
-                  <b>{t('votePage.ballotVoteOption')}</b>
-                </Radio>
-              </FormControl>
+                  <br />
+                  <h5>{t('votePage.ballotVoteSectionTitle')}</h5>
+                  <br />
+                  <FormControl name={pos.id} accepter={RadioGroup} required>
+                    {pos.candidates.map((candidate, index) => (
+                      <Radio key={index} value={candidate.id}>
+                        <b>{candidate.user.name}</b>
+                      </Radio>
+                    ))}
+                    <Radio value={`abstain`}>
+                      <b>{t('v2.votePage.option.abstain')}</b>
+                    </Radio>
+                    <Radio value={`no_confidence`}>
+                      <b>{t('v2.votePage.option.noConfidence')}</b>
+                    </Radio>
+                  </FormControl>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <p>
+                    <b>{t('v2.votePage.noContest')}</b>
+                  </p>
+                  <br />
+                </Fragment>
+              )}
             </div>
           ))}
           <Divider />

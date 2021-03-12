@@ -4,7 +4,8 @@ import { PositionDetails } from './ElectionManagement';
 
 export type VoteParams = {
   position: string;
-  candidate: string;
+  candidate: string | undefined;
+  vote_type: string;
 };
 
 export type SubmitBallotParams = {

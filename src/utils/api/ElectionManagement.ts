@@ -83,6 +83,8 @@ export type PositionResult = {
   title: string;
   description: string;
   candidates: CandidateResult[];
+  abstain: number;
+  no_confidence: number;
 };
 
 export type ElectionResult = {
