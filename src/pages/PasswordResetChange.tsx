@@ -4,11 +4,10 @@ import { useHistory, useParams } from 'react-router-dom';
 import {
   Button,
   ButtonToolbar,
-  ControlLabel,
   Form,
-  FormControl,
-  FormGroup,
-  Icon,
+  
+  
+  
   IconButton,
   Notification,
   Schema,
@@ -111,27 +110,27 @@ const PasswordResetChange: FC = () => {
         model={model}
         ref={(ref: any) => (form = ref)}
       >
-        <FormGroup>
-          <ControlLabel>
+        <Form.Group>
+          <Form.ControlLabel>
             {t('v2.passwordResetChange.form.password1')}
-          </ControlLabel>
-          <FormControl
+          </Form.ControlLabel>
+          <Form.Control
             name="new_password1"
             type="password"
             disabled={disabled}
           />
         </FormGroup>
-        <FormGroup>
-          <ControlLabel>
+        <Form.Group>
+          <Form.ControlLabel>
             {t('v2.passwordResetChange.form.password2')}
-          </ControlLabel>
-          <FormControl
+          </Form.ControlLabel>
+          <Form.Control
             name="new_password2"
             type="password"
             disabled={disabled}
           />
         </FormGroup>
-        <FormGroup>
+        <Form.Group>
           <ButtonToolbar>
             <Button
               size="lg"

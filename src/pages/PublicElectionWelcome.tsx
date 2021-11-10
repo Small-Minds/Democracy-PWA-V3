@@ -2,7 +2,7 @@ import React, { FC, Fragment, useEffect, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
-import { Container, FlexboxGrid, Icon, IconButton, Panel } from 'rsuite';
+import { Container, FlexboxGrid,  IconButton, Panel } from 'rsuite';
 import { api } from '../utils/API';
 import Loading from './Loading';
 
@@ -15,10 +15,8 @@ const PublicElectionWelcome: FC = () => {
   const [t] = useTranslation();
   const history = useHistory();
   const { id } = useParams<Record<string, string | undefined>>();
-  const [
-    sparseElectionDetails,
-    setSparseElectionDetails,
-  ] = useState<SparseElectionDetails>();
+  const [sparseElectionDetails, setSparseElectionDetails] =
+    useState<SparseElectionDetails>();
 
   useEffect(() => {
     if (!id) return;

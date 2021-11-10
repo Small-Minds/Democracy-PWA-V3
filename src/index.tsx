@@ -10,12 +10,13 @@ import * as Sentry from '@sentry/react';
 import ReportError from './components/ReportError';
 
 // Returns true in development.
-const dev: boolean = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+const dev: boolean =
+  !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
 // Google Analytics
 if (!process.env.REACT_APP_GA_KEY)
-  console.error("Please redeoploy the app with a valid google analytics key.");
-ReactGA.initialize(process.env.REACT_APP_GA_KEY || "", {
+  console.error('Please redeoploy the app with a valid google analytics key.');
+ReactGA.initialize(process.env.REACT_APP_GA_KEY || '', {
   debug: dev,
   gaOptions: {
     cookieDomain: 'auto',
@@ -24,14 +25,13 @@ ReactGA.initialize(process.env.REACT_APP_GA_KEY || "", {
 
 // Sentry for Error Reporting
 if (!process.env.REACT_APP_SENTRY_KEY)
-  console.error("Please redeoploy the app with a valid sentry key.");
+  console.error('Please redeoploy the app with a valid sentry key.');
 Sentry.init({
   debug: dev,
   environment: dev ? 'development' : 'production',
   release: 'democracy@0.1.0',
-  dsn: process.env.REACT_APP_SENTRY_KEY || "",
+  dsn: process.env.REACT_APP_SENTRY_KEY || '',
 });
-
 
 ReactDOM.render(
   <React.StrictMode>

@@ -4,10 +4,9 @@ import { useHistory } from 'react-router-dom';
 import {
   Button,
   ButtonToolbar,
-  ControlLabel,
   Form,
-  FormControl,
-  FormGroup,
+  
+  
   Notification,
   Schema,
 } from 'rsuite';
@@ -97,11 +96,11 @@ const PasswordResetRequest: FC = () => {
         model={model}
         ref={(ref: any) => (form = ref)}
       >
-        <FormGroup>
-          <ControlLabel>{t('v2.passwordResetRequest.form.email')}</ControlLabel>
-          <FormControl name="email" type="email" disabled={disabled} />
+        <Form.Group>
+          <Form.ControlLabel>{t('v2.passwordResetRequest.form.email')}</Form.ControlLabel>
+          <Form.Control name="email" type="email" disabled={disabled} />
         </FormGroup>
-        <FormGroup>
+        <Form.Group>
           <ButtonToolbar>
             <Button
               size="lg"

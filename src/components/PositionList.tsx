@@ -20,10 +20,8 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
   const ctx = useContext(Credentials);
   const user = useContext(User);
   const history = useHistory();
-  const [
-    isDeletePositionModalOpen,
-    setIsDeletePositionModalOpen,
-  ] = useState<boolean>(false);
+  const [isDeletePositionModalOpen, setIsDeletePositionModalOpen] =
+    useState<boolean>(false);
   const [positionId, setPositionId] = useState<string>();
   function closeDeletePositionModal() {
     setIsDeletePositionModalOpen(false);

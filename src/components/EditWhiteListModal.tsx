@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
-  ControlLabel,
+  
   Form,
-  FormControl,
-  FormGroup,
+  
+  
   Loader,
   Message,
   Modal,
@@ -34,10 +34,8 @@ export default function EditWhiteListModal({
   let form: any = undefined;
   const [isLoading, setIsLoading] = useState<boolean>();
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
-  const [
-    electionDetail,
-    setElectionDetail,
-  ] = useState<ManagedElectionDetails>();
+  const [electionDetail, setElectionDetail] =
+    useState<ManagedElectionDetails>();
   const [formData, setFormData] = useState<Record<string, any>>({
     whitelist: '',
   });
@@ -112,11 +110,11 @@ export default function EditWhiteListModal({
             <br />
             <p>{t('v2.editWhitelistModal.instructions')}</p>
             <br />
-            <FormGroup>
-              <ControlLabel>
+            <Form.Group>
+              <Form.ControlLabel>
                 {t('v2.editWhitelistModal.formLabel')}
               </ControlLabel>
-              <FormControl
+              <Form.Control
                 name="whitelist"
                 componentClass="textarea"
                 rows={20}

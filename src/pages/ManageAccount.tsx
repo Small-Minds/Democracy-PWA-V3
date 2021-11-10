@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useMemo } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
-import { Avatar, FlexboxGrid, Icon } from 'rsuite';
+import { Avatar, FlexboxGrid } from 'rsuite';
 import ChangeNameForm from '../components/ChangeNameForm';
 import ChangePasswordForm from '../components/ChangePasswordForm';
 import { User } from '../utils/api/User';

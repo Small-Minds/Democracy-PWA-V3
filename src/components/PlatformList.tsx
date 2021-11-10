@@ -14,7 +14,7 @@ import { useHistory } from 'react-router-dom';
 import {
   Avatar,
   FlexboxGrid,
-  Icon,
+  
   IconButton,
   List,
   Message,
@@ -142,10 +142,10 @@ const PlatformList: FC<PLProps> = ({ election }) => {
   // Ensure all prerequisites are met.
   if (!user || !ctx || !election) return null;
 
-  const manager = useMemo(() => user.user.id === election.manager.id, [
-    election,
-    user,
-  ]);
+  const manager = useMemo(
+    () => user.user.id === election.manager.id,
+    [election, user]
+  );
 
   const hide: boolean = useMemo(() => {
     if (election.submission_release_time) {

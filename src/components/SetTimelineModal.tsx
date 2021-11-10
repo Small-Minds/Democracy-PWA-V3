@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next';
 import {
   Button,
   ButtonToolbar,
-  ControlLabel,
+  
   DatePicker,
   Divider,
   FlexboxGrid,
   Form,
-  FormControl,
-  FormGroup,
+  
+  
   Message,
   Modal,
   Notification,
@@ -154,19 +154,19 @@ export default function SetTimelineModal({
           ref={(ref: any) => (form = ref)}
           fluid
         >
-          <FormGroup>
+          <Form.Group>
             <Message
               type="warning"
               showIcon
               description={t('setTimelineModal.message.changeTimelineWarning')}
             />
             <br />
-            <ControlLabel>
+            <Form.ControlLabel>
               <h5>{t('setTimelineModal.headings.applicationTimes')}</h5>
             </ControlLabel>
             <FlexboxGrid justify="start" align="middle">
               <FlexboxGrid.Item>
-                <FormControl
+                <Form.Control
                   accepter={DatePicker}
                   name="submission_start_time"
                   format={timeformat}
@@ -177,7 +177,7 @@ export default function SetTimelineModal({
                 {t('setTimelineModal.form.timeDivider')}
               </FlexboxGrid.Item>
               <FlexboxGrid.Item>
-                <FormControl
+                <Form.Control
                   accepter={DatePicker}
                   name="submission_end_time"
                   format={timeformat}
@@ -186,22 +186,22 @@ export default function SetTimelineModal({
               </FlexboxGrid.Item>
             </FlexboxGrid>
           </FormGroup>
-          <FormGroup>
-            <ControlLabel>Candidate Platform Release Date</ControlLabel>
-            <FormControl
+          <Form.Group>
+            <Form.ControlLabel>Candidate Platform Release Date</ControlLabel>
+            <Form.Control
               accepter={DatePicker}
               name="submission_release_time"
               format={timeformat}
               placement="topStart"
             ></FormControl>
           </FormGroup>
-          <FormGroup>
-            <ControlLabel>
+          <Form.Group>
+            <Form.ControlLabel>
               <h5>{t('setTimelineModal.headings.votingTimes')}</h5>
             </ControlLabel>
             <FlexboxGrid justify="start" align="middle">
               <FlexboxGrid.Item>
-                <FormControl
+                <Form.Control
                   accepter={DatePicker}
                   name="voting_start_time"
                   format={timeformat}
@@ -212,7 +212,7 @@ export default function SetTimelineModal({
                 {t('setTimelineModal.form.timeDivider')}
               </FlexboxGrid.Item>
               <FlexboxGrid.Item>
-                <FormControl
+                <Form.Control
                   accepter={DatePicker}
                   name="voting_end_time"
                   format={timeformat}
@@ -221,9 +221,9 @@ export default function SetTimelineModal({
               </FlexboxGrid.Item>
             </FlexboxGrid>
           </FormGroup>
-          <FormGroup>
-            <ControlLabel>Election Result Release Date</ControlLabel>
-            <FormControl
+          <Form.Group>
+            <Form.ControlLabel>Election Result Release Date</ControlLabel>
+            <Form.Control
               accepter={DatePicker}
               name="voting_release_time"
               format={timeformat}

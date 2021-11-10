@@ -5,11 +5,10 @@ import { useHistory, useParams } from 'react-router-dom';
 import {
   Button,
   ButtonToolbar,
-  ControlLabel,
   FlexboxGrid,
   Form,
-  FormControl,
-  FormGroup,
+  
+  
   Notification,
   Schema,
 } from 'rsuite';
@@ -143,11 +142,11 @@ function PositionApply() {
         ref={(ref: any) => (form = ref)}
         fluid
       >
-        <FormGroup>
-          <ControlLabel>
+        <Form.Group>
+          <Form.ControlLabel>
             {t('positionApplyPage.posAppFormPlatform')}
-          </ControlLabel>
-          <FormControl rows={10} name="platform" componentClass="textarea" />
+          </Form.ControlLabel>
+          <Form.Control rows={10} name="platform" componentClass="textarea" />
         </FormGroup>
         <FlexboxGrid justify="space-between">
           <FlexboxGrid.Item>

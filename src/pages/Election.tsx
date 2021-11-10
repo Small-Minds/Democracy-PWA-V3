@@ -19,7 +19,7 @@ import {
 import {
   Badge,
   ButtonToolbar,
-  Icon,
+  
   IconButton,
   Message,
   Notification,
@@ -61,10 +61,8 @@ const ManagementTools: FC<ElectionSubpage> = ({
   const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
   const [editWhiteListOpen, setEditWhiteListOpen] = useState<boolean>(false);
   const [editElectionOpen, setEditElectionOpen] = useState<boolean>(false);
-  const [
-    isDeleteElectionModalOpen,
-    setIsDeleteElectionModalOpen,
-  ] = useState<boolean>(false);
+  const [isDeleteElectionModalOpen, setIsDeleteElectionModalOpen] =
+    useState<boolean>(false);
   const history = useHistory();
   const [t] = useTranslation();
   function closeDeleteElectionModal() {

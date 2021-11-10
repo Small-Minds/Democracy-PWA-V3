@@ -2,8 +2,7 @@ import React, { FC, Fragment, useEffect, useMemo, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { Icon } from 'rsuite';
-import ProgressLine from 'rsuite/lib/Progress/ProgressLine';
+import ProgressLine from 'rsuite/esm/Progress/ProgressLine';
 import Loading from '../pages/Loading';
 import {
   CandidateResult,

@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { Col, Container, Content, FlexboxGrid, Icon, IconButton } from 'rsuite';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Col, Container, Content, FlexboxGrid, IconButton } from 'rsuite';
 import './App.css';
 import InfoModal from './components/InfoModal';
 import Navigation from './components/Navigation';
@@ -30,6 +30,8 @@ import {
 } from './utils/Authentication';
 import GoogleAnalytics from './components/GoogleAnalytics';
 import versionInfo from '../package.json';
+import { Switch } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const version = versionInfo.version;
 
@@ -39,9 +41,8 @@ const version = versionInfo.version;
  */
 function App() {
   // When the app first starts, it is unauthenticated.
-  const [credentials, setCredentials] = useState<CredentialData>(
-    blankCredentialData
-  );
+  const [credentials, setCredentials] =
+    useState<CredentialData>(blankCredentialData);
   const [user, setUser] = useState<UserInfo>(blankUserInfo);
   // If processing credentials, be working.
   const [working, setWorking] = useState<boolean>(true);

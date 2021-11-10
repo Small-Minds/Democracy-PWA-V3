@@ -2,7 +2,7 @@ import React, { Fragment, useMemo, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
-import { Avatar, Button, FlexboxGrid, Icon, Modal } from 'rsuite';
+import { Avatar, Button, FlexboxGrid,  Modal } from 'rsuite';
 import { CandidateWithUserDetails } from '../utils/api/ElectionManagement';
 
 interface CandidateInfoModalInput {

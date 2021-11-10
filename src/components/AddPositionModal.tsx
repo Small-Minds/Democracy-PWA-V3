@@ -2,10 +2,10 @@ import React, { FC, Fragment, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
-  ControlLabel,
+  
   Form,
-  FormControl,
-  FormGroup,
+  
+  
   Modal,
   Notification,
   Schema,
@@ -105,15 +105,15 @@ const AddPositionModal: FC<APMProps> = ({
             ref={(ref: any) => (form = ref)}
             fluid
           >
-            <FormGroup>
-              <ControlLabel>{t('addPositionModalComp.posTitle')}</ControlLabel>
-              <FormControl name="title" />
+            <Form.Group>
+              <Form.ControlLabel>{t('addPositionModalComp.posTitle')}</ControlLabel>
+              <Form.Control name="title" />
             </FormGroup>
-            <FormGroup>
-              <ControlLabel>
+            <Form.Group>
+              <Form.ControlLabel>
                 {t('addPositionModalComp.posDescription')}
               </ControlLabel>
-              <FormControl
+              <Form.Control
                 rows={8}
                 name="description"
                 componentClass="textarea"

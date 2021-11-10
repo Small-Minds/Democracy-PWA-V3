@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import {
   Button,
   ButtonToolbar,
-  ControlLabel,
+  
   Form,
-  FormControl,
-  FormGroup,
+  
+  
   Notification,
   Schema,
 } from 'rsuite';
@@ -100,11 +100,11 @@ function ChangeNameForm() {
       model={model}
       ref={(ref: any) => (form = ref)}
     >
-      <FormGroup>
-        <ControlLabel>{t('signUpForm.nameInputLabel')}</ControlLabel>
-        <FormControl name="name" disabled={disabled} />
+      <Form.Group>
+        <Form.ControlLabel>{t('signUpForm.nameInputLabel')}</ControlLabel>
+        <Form.Control name="name" disabled={disabled} />
       </FormGroup>
-      <FormGroup>
+      <Form.Group>
         <ButtonToolbar>
           <Button
             appearance="primary"

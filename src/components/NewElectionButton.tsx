@@ -6,14 +6,14 @@ import { useHistory } from 'react-router-dom';
 import {
   Button,
   Col,
-  ControlLabel,
+  
   DatePicker,
   Drawer,
   FlexboxGrid,
   Form,
-  FormControl,
-  FormGroup,
-  Icon,
+  
+  
+  
   IconButton,
   Notification,
   Radio,
@@ -228,35 +228,35 @@ function NewElectionButton() {
                 ref={(ref: any) => (form = ref)}
                 fluid
               >
-                <FormGroup>
-                  <ControlLabel>
+                <Form.Group>
+                  <Form.ControlLabel>
                     {t('createElectionBtn.electionTitle')}
                   </ControlLabel>
-                  <FormControl name="title" />
+                  <Form.Control name="title" />
                 </FormGroup>
-                <FormGroup>
-                  <ControlLabel>
+                <Form.Group>
+                  <Form.ControlLabel>
                     {t('createElectionBtn.electionSubtitle')}
                   </ControlLabel>
-                  <FormControl name="subtitle" />
+                  <Form.Control name="subtitle" />
                 </FormGroup>
-                <FormGroup>
-                  <ControlLabel>
+                <Form.Group>
+                  <Form.ControlLabel>
                     {t(
                       'createElectionBtn.electionDescriptionAndSubmissionInfo'
                     )}
                   </ControlLabel>
-                  <FormControl
+                  <Form.Control
                     rows={5}
                     name="description"
                     componentClass="textarea"
                   />
                 </FormGroup>
-                <FormGroup>
-                  <ControlLabel>
+                <Form.Group>
+                  <Form.ControlLabel>
                     {t('createElectionBtn.electionEnableMultiSubs')}
                   </ControlLabel>
-                  <FormControl
+                  <Form.Control
                     name="enable_multiple_submissions"
                     accepter={RadioGroup}
                     inline
@@ -269,19 +269,19 @@ function NewElectionButton() {
                     </Radio>
                   </FormControl>
                 </FormGroup>
-                <FormGroup>
-                  <ControlLabel>
+                <Form.Group>
+                  <Form.ControlLabel>
                     {t('createElectionBtn.electionEmailDomain')}
                   </ControlLabel>
-                  <FormControl name="election_email_domain"></FormControl>
+                  <Form.Control name="election_email_domain"></FormControl>
                 </FormGroup>
-                <FormGroup>
-                  <ControlLabel>
+                <Form.Group>
+                  <Form.ControlLabel>
                     {t('createElectionBtn.applicationPeriod')}
                   </ControlLabel>
                   <FlexboxGrid justify="start" align="middle">
                     <FlexboxGrid.Item>
-                      <FormControl
+                      <Form.Control
                         accepter={DatePicker}
                         name="submission_start_time"
                         format={timeformat}
@@ -292,7 +292,7 @@ function NewElectionButton() {
                       {t('createElectionBtn.betweenDates')}
                     </FlexboxGrid.Item>
                     <FlexboxGrid.Item>
-                      <FormControl
+                      <Form.Control
                         accepter={DatePicker}
                         name="submission_end_time"
                         format={timeformat}
@@ -301,22 +301,22 @@ function NewElectionButton() {
                     </FlexboxGrid.Item>
                   </FlexboxGrid>
                 </FormGroup>
-                <FormGroup>
-                  <ControlLabel>Candidate Platform Release Date</ControlLabel>
-                  <FormControl
+                <Form.Group>
+                  <Form.ControlLabel>Candidate Platform Release Date</ControlLabel>
+                  <Form.Control
                     accepter={DatePicker}
                     name="submission_release_time"
                     format={timeformat}
                     placement="topStart"
                   ></FormControl>
                 </FormGroup>
-                <FormGroup>
-                  <ControlLabel>
+                <Form.Group>
+                  <Form.ControlLabel>
                     {t('createElectionBtn.votingPeriod')}
                   </ControlLabel>
                   <FlexboxGrid justify="start" align="middle">
                     <FlexboxGrid.Item>
-                      <FormControl
+                      <Form.Control
                         accepter={DatePicker}
                         name="voting_start_time"
                         format={timeformat}
@@ -327,7 +327,7 @@ function NewElectionButton() {
                       {t('createElectionBtn.betweenDates')}
                     </FlexboxGrid.Item>
                     <FlexboxGrid.Item>
-                      <FormControl
+                      <Form.Control
                         accepter={DatePicker}
                         name="voting_end_time"
                         format={timeformat}
@@ -336,9 +336,9 @@ function NewElectionButton() {
                     </FlexboxGrid.Item>
                   </FlexboxGrid>
                 </FormGroup>
-                <FormGroup>
-                  <ControlLabel>Election Result Release Date</ControlLabel>
-                  <FormControl
+                <Form.Group>
+                  <Form.ControlLabel>Election Result Release Date</ControlLabel>
+                  <Form.Control
                     accepter={DatePicker}
                     name="voting_release_time"
                     format={timeformat}

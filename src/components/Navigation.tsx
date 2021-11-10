@@ -3,7 +3,7 @@ import { Fade, Slide } from 'react-awesome-reveal';
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Avatar, Dropdown, Icon, Nav, Navbar, Notification } from 'rsuite';
+import { Avatar, Dropdown,  Nav, Navbar, Notification } from 'rsuite';
 import { clearTokens } from '../utils/API';
 import { User } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';

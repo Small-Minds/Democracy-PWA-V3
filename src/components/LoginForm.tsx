@@ -4,10 +4,10 @@ import { Link, useHistory } from 'react-router-dom';
 import {
   Button,
   ButtonToolbar,
-  ControlLabel,
+  
   Form,
-  FormControl,
-  FormGroup,
+  
+  
   Notification,
   Panel,
   Schema,
@@ -141,15 +141,15 @@ function LoginForm() {
           model={model}
           ref={(ref: any) => (form = ref)}
         >
-          <FormGroup>
-            <ControlLabel>{t('signUpForm.emailInputLabel')}</ControlLabel>
-            <FormControl name="username" disabled={disabled} />
+          <Form.Group>
+            <Form.ControlLabel>{t('signUpForm.emailInputLabel')}</ControlLabel>
+            <Form.Control name="username" disabled={disabled} />
           </FormGroup>
-          <FormGroup>
-            <ControlLabel>{t('signInForm.passwordInputLabel')}</ControlLabel>
-            <FormControl name="password" type="password" disabled={disabled} />
+          <Form.Group>
+            <Form.ControlLabel>{t('signInForm.passwordInputLabel')}</ControlLabel>
+            <Form.Control name="password" type="password" disabled={disabled} />
           </FormGroup>
-          <FormGroup>
+          <Form.Group>
             <ButtonToolbar>
               <Button
                 appearance="primary"

@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import {
   Button,
   ButtonToolbar,
-  ControlLabel,
+  
   Form,
-  FormControl,
-  FormGroup,
+  
+  
   Notification,
   Schema,
 } from 'rsuite';
@@ -96,15 +96,15 @@ function ChangePasswordForm() {
       model={model}
       ref={(ref: any) => (form = ref)}
     >
-      <FormGroup>
-        <ControlLabel>{t('resetPassword.form.password1')}</ControlLabel>
-        <FormControl name="new_password1" type="password" disabled={disabled} />
+      <Form.Group>
+        <Form.ControlLabel>{t('resetPassword.form.password1')}</ControlLabel>
+        <Form.Control name="new_password1" type="password" disabled={disabled} />
       </FormGroup>
-      <FormGroup>
-        <ControlLabel>{t('resetPassword.form.password2')}</ControlLabel>
-        <FormControl name="new_password2" type="password" disabled={disabled} />
+      <Form.Group>
+        <Form.ControlLabel>{t('resetPassword.form.password2')}</ControlLabel>
+        <Form.Control name="new_password2" type="password" disabled={disabled} />
       </FormGroup>
-      <FormGroup>
+      <Form.Group>
         <ButtonToolbar>
           <Button
             appearance="primary"

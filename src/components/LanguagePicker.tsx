@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dropdown, Icon } from 'rsuite';
+import { Dropdown } from 'rsuite';
 import { locales } from '../i18n';
 
 export default function LanguagePicker() {

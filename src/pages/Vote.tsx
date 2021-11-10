@@ -10,8 +10,8 @@ import {
   Divider,
   FlexboxGrid,
   Form,
-  FormControl,
-  FormGroup,
+  
+  
   Notification,
   Radio,
   RadioGroup,
@@ -192,7 +192,7 @@ export default function Vote() {
         ref={(ref: any) => (form = ref)}
         fluid
       >
-        <FormGroup>
+        <Form.Group>
           <Fade cascade triggerOnce damping={0.1} duration={200} delay={100}>
             {ballot.positions.map((pos, index) => (
               <div key={index}>
@@ -228,7 +228,7 @@ export default function Vote() {
                     <br />
                     <h5>{t('votePage.ballotVoteSectionTitle')}</h5>
                     <br />
-                    <FormControl name={pos.id} accepter={RadioGroup} required>
+                    <Form.Control name={pos.id} accepter={RadioGroup} required>
                       {pos.candidates.map((candidate, index) => (
                         <Radio key={index} value={candidate.id}>
                           <b>{candidate.user.name}</b>

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
-  ControlLabel,
+  
   Form,
-  FormControl,
-  FormGroup,
+  
+  
   Modal,
   Notification,
   Schema,
@@ -103,21 +103,21 @@ export default function EditElectionModal({
           <br />
           <p>{t('v2.editElectionModal.instructions')}</p>
           <br />
-          <FormGroup>
-            <ControlLabel>{t('v2.editElectionModal.titleLabel')}</ControlLabel>
-            <FormControl name="title" />
+          <Form.Group>
+            <Form.ControlLabel>{t('v2.editElectionModal.titleLabel')}</ControlLabel>
+            <Form.Control name="title" />
           </FormGroup>
-          <FormGroup>
-            <ControlLabel>
+          <Form.Group>
+            <Form.ControlLabel>
               {t('v2.editElectionModal.subtitleLabel')}
             </ControlLabel>
-            <FormControl name="subtitle" />
+            <Form.Control name="subtitle" />
           </FormGroup>
-          <FormGroup>
-            <ControlLabel>
+          <Form.Group>
+            <Form.ControlLabel>
               {t('v2.editElectionModal.descriptionLabel')}
             </ControlLabel>
-            <FormControl
+            <Form.Control
               name="description"
               componentClass="textarea"
               rows={4}

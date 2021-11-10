@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import {
   Button,
   ButtonToolbar,
-  ControlLabel,
+  
   Form,
-  FormControl,
-  FormGroup,
+  
+  
   HelpBlock,
   Notification,
   Panel,
@@ -118,23 +118,23 @@ function SignupForm() {
           model={model}
           ref={(ref: any) => (form = ref)}
         >
-          <FormGroup>
-            <ControlLabel>{t('signUpForm.nameInputLabel')}</ControlLabel>
-            <FormControl name="name" disabled={disabled} />
+          <Form.Group>
+            <Form.ControlLabel>{t('signUpForm.nameInputLabel')}</ControlLabel>
+            <Form.Control name="name" disabled={disabled} />
           </FormGroup>
-          <FormGroup>
-            <ControlLabel>{t('signUpForm.emailInputLabel')}</ControlLabel>
-            <FormControl name="email" type="email" disabled={disabled} />
+          <Form.Group>
+            <Form.ControlLabel>{t('signUpForm.emailInputLabel')}</ControlLabel>
+            <Form.Control name="email" type="email" disabled={disabled} />
           </FormGroup>
-          <FormGroup>
-            <ControlLabel>{t('signUpForm.passwordInputLabel')}</ControlLabel>
-            <FormControl name="password1" type="password" disabled={disabled} />
+          <Form.Group>
+            <Form.ControlLabel>{t('signUpForm.passwordInputLabel')}</ControlLabel>
+            <Form.Control name="password1" type="password" disabled={disabled} />
           </FormGroup>
-          <FormGroup>
-            <FormControl name="password2" type="password" disabled={disabled} />
+          <Form.Group>
+            <Form.Control name="password2" type="password" disabled={disabled} />
             <HelpBlock>{t('signUpForm.passwordInputFieldHint')}</HelpBlock>
           </FormGroup>
-          <FormGroup>
+          <Form.Group>
             <ButtonToolbar>
               <Button
                 appearance="primary"

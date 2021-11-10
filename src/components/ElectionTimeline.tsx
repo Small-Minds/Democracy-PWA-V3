@@ -1,5 +1,5 @@
 import React, { FC, Fragment, useMemo } from 'react';
-import { Icon, Loader, Timeline } from 'rsuite';
+import {  Loader, Timeline } from 'rsuite';
 import { ElectionDetails } from '../utils/api/ElectionManagement';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
