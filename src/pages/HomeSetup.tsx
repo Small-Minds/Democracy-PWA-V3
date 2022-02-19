@@ -19,6 +19,10 @@ function HomeSetup() {
       <br />
       <ElectionList />
       <br />
+      <h2>{t('setupHomePage.positionSubmissionsTitle')}</h2>
+      <br />
+      <ElectionList />
+      <br />
     </Fragment>
   );
 }

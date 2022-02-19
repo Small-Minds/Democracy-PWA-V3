@@ -101,7 +101,8 @@
     "setupHomePage": {
       "title": "Setup",
       "subtitle": "Configure a new or existing election",
-      "electionPanelTitle": "Your Elections"
+      "electionPanelTitle": "Your Elections",
+      "positionSubmissionsTitle": "Your Applications"
     },
     "electionPage": {
       "deleteElectionModalTitle": "Delete Election",
@@ -271,6 +272,7 @@
       },
       "errors": {
         "error": "Error",
+        "title": "Error",
         "pleaseLogInAgain": "Your credentials are invalid, please log in again.",
         "electionInvalid": "Sorry, we can't find that election.",
         "cantDelete": "Sorry, we couldn't delete that. Please try again later.",
