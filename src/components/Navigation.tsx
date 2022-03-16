@@ -104,9 +104,9 @@ function Navigation() {
             <Nav.Item eventKey="/" icon={<Icon icon="home" />}>
               {t('mainPage.homeLink')}
             </Nav.Item>
-            <Nav.Item eventKey="/vote" icon={<Icon icon="check2" />}>
+            {/* <Nav.Item eventKey="/vote" icon={<Icon icon="check2" />}>
               {t('mainPage.voteLink')}
-            </Nav.Item>
+            </Nav.Item> */}
             <Nav.Item eventKey="/setup" icon={<Icon icon="gears2" />}>
               {t('mainPage.setupLink')}
             </Nav.Item>
