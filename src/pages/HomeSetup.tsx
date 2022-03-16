@@ -19,10 +19,10 @@ function HomeSetup() {
       <br />
       <ElectionList />
       <br />
-      <h2>{t('setupHomePage.positionSubmissionsTitle')}</h2>
+      {/* <h2>{t('setupHomePage.positionSubmissionsTitle')}</h2>
       <br />
       <ElectionList />
-      <br />
+      <br /> */}
     </Fragment>
   );
 }
