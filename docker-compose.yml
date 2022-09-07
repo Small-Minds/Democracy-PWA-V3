@@ -8,6 +8,16 @@ services:
     image: smallminds/democracy-pwa
     container_name: democracy-pwa
     environment:
-      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
+      - REACT_APP_BACKEND_URL="democracy-be.ryanfleck.ca"
+      - REACT_APP_GA_KEY=${REACT_APP_GA_KEY}
+      - REACT_APP_SENTRY_KEY=${REACT_APP_SENTRY_KEY}
     ports:
       - 1789:80
+          - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.rule=Host(`democracy.ryanfleck.ca`)"
+      - "traefik.http.routers.portainer.entrypoints=websecure"
+      - "traefik.http.services.portainer.loadbalancer.server.port=80"
+      - "traefik.http.routers.portainer.service=democracy-pwa"
+      - "traefik.http.routers.portainer.tls.certresolver=lets-encrypt"
