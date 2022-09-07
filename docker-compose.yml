@@ -7,10 +7,8 @@ services:
       dockerfile: ./Dockerfile
     image: smallminds/democracy-pwa
     container_name: democracy-pwa
-    environment:
-      - REACT_APP_BACKEND_URL="democracy-be.ryanfleck.ca"
-      - REACT_APP_GA_KEY=${REACT_APP_GA_KEY}
-      - REACT_APP_SENTRY_KEY=${REACT_APP_SENTRY_KEY}
+    env_file:
+      - ./.env
     ports:
       - 1789:80
           - web
