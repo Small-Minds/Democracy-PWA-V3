@@ -9,8 +9,6 @@ services:
     container_name: democracy-pwa
     env_file:
       - ./.env
-    ports:
-      - 80:80
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.portainer.rule=Host(`democracy.ryanfleck.ca`)"
